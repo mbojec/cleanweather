@@ -1,0 +1,44 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -0.5rem 0 -0.5rem;
+}
+
+@for $i from 1 through 12 {
+  .col-xs-#{$i} {
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+    width: 100% * ($i / 12);
+  }
+
+}
+
+@for $i from 1 through 12 {
+  @media(min-width: $screen-breakpoint-sm){
+    .col-sm-#{$i}{
+      margin-top: 1rem;
+      padding: 0 0.5rem;
+      width: 100% * ($i / 12);
+    }
+  }
+}
+
+@for $i from 1 through 12 {
+  @media(min-width: $screen-breakpoint-md){
+    .col-md-#{$i}{
+      margin-top: 1rem;
+      padding: 0 0.5rem;
+      width: 100% * ($i / 12);
+    }
+  }
+}
+
+@for $i from 1 through 12 {
+  @media(min-width: $screen-breakpoint-lg){
+    .col-lg-#{$i}{
+      margin-top: 1rem;
+      padding: 0 0.5rem;
+      width: 100% * ($i / 12);
+    }
+  }
+}
