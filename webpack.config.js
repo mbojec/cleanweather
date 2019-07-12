@@ -115,10 +115,16 @@ module.exports = function (env) {
         }
     };
 
+    const svg = {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+    };
+
     config.module.rules.push(js);
     config.module.rules.push(scss);
     config.module.rules.push(images);
     config.module.rules.push(fonts);
+    config.module.rules.push(svg);
 
     const Clean = require(
         'clean-webpack-plugin'
