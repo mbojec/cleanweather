@@ -1,0 +1,122 @@
+.current__button {
+  @include screen-md{
+    padding: 0;
+    width: 0;
+  }
+}
+
+.current__master {
+  @include screen-md{
+    border-right: 1px solid $color-gray-light;
+    border-left: 1px solid $color-gray-light;
+    position: relative;
+    padding: 0;
+  }
+}
+
+.current__button__group{
+  margin: 1rem 1.6rem;
+
+  @include screen-md{
+    display: none;
+  }
+}
+
+.current__button__group__button{
+  background: $color-blue-light;
+  color: $color-blue;
+  font-size: 1.2rem;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.current__button__group__button--master{
+  border-radius: 5px 0 0 5px;
+  border-left: 1px solid $color-blue;
+  border-top: 1px solid $color-blue;
+  border-bottom: 1px solid $color-blue;
+  border-right: 0;
+}
+
+.current__button__group__button--detail{
+  border-radius: 0 5px 5px 0;
+  border: 1px solid $color-blue;
+}
+
+.current__button__group__button--selected{
+  background: $color-blue;
+  color: $color-white;
+}
+
+.current__button__group__button--unselected{
+  background: $color-blue-light;
+  color: $color-blue;
+}
+
+.decoration--top {
+  @include screen-md{
+    position: absolute;
+    top: -5vh;
+    width: 100%;
+    height: 5vh;
+    background: $color-purple;
+  }
+
+  @include screen-lg{
+    height: 10vh;
+    top: -10vh;
+  }
+
+}
+
+.decoration--bottom {
+  @include screen-md{
+    position: absolute;
+    bottom: -5vh;
+    width: 100%;
+    height: 5vh;
+    background: $color-purple;
+  }
+
+  @include screen-lg{
+    height: 10vh;
+    bottom: -10vh;
+  }
+
+}
+
+.temperature {
+  margin-top: 1.6rem;
+  height: 220px;
+  position: relative;
+}
+
+.temperature__graph {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.temperature__value {
+  color: $color-black;
+  font-size: 3.2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.path{
+  stroke-dasharray: 300,450;
+  stroke-dashoffset: 300;
+  animation: dash 1s linear forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

@@ -68,7 +68,7 @@ class Navigation extends Component{
               <FontAwesomeIcon icon={faCalendarWeek}/>
               <Link to={'/longTerm'}>.....</Link>
             </div>
-            <div className={`nav-bar__icon__search ${this.state.menu_selected === 'search'? "nav-bar__icon__search--selected": "nav-bar__icon__search--unselected"}`} onClick={event => this.setMenuIconSelected('search')}>
+            <div className={`nav-bar__icon__search ${this.state.menu_selected === '_search.scss.scss'? "nav-bar__icon__search--selected": "nav-bar__icon__search--unselected"}`} onClick={event => this.setMenuIconSelected('_search.scss.scss')}>
               <FontAwesomeIcon icon={faSearchLocation} />
               <Link to={'/search'}>.....</Link>
             </div>

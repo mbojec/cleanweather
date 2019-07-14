@@ -1,0 +1,104 @@
+.long-term__button {
+  @include screen-md{
+    padding: 0;
+    width: 0;
+  }
+}
+
+.long-term__master {
+  @include screen-md{
+    border-right: 1px solid $color-gray-light;
+    border-left: 1px solid $color-gray-light;
+    position: relative;
+    padding: 0;
+  }
+}
+
+.long-term__button__group{
+  margin: 1rem 1.6rem;
+
+  @include screen-md{
+    display: none;
+  }
+}
+
+.long-term__button__group__button{
+  background: $color-blue-light;
+  color: $color-blue;
+  font-size: 1.2rem;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.long-term__button__group__button--master{
+  border-radius: 5px 0 0 5px;
+  border-left: 1px solid $color-blue;
+  border-top: 1px solid $color-blue;
+  border-bottom: 1px solid $color-blue;
+  border-right: 0;
+}
+
+.long-term__button__group__button--detail{
+  border-radius: 0 5px 5px 0;
+  border: 1px solid $color-blue;
+}
+
+.long-term__button__group__button--selected{
+  background: $color-blue;
+  color: $color-white;
+}
+
+.long-term__button__group__button--unselected{
+  background: $color-blue-light;
+  color: $color-blue;
+}
+
+.decoration--top {
+  @include screen-md{
+    position: absolute;
+    top: -5vh;
+    width: 100%;
+    height: 5vh;
+    background: $color-purple;
+  }
+
+  @include screen-lg{
+    height: 10vh;
+    top: -10vh;
+  }
+
+}
+
+.decoration--bottom {
+  @include screen-md{
+    position: absolute;
+    bottom: -5vh;
+    width: 100%;
+    height: 5vh;
+    background: $color-purple;
+  }
+
+  @include screen-lg{
+    height: 10vh;
+    bottom: -10vh;
+  }
+
+}
+
+.decoration--bottom {
+  @include screen-md{
+    position: absolute;
+    bottom: -5vh;
+    width: 100%;
+    height: 5vh;
+    background: $color-purple;
+  }
+
+  @include screen-lg{
+    height: 10vh;
+    bottom: -10vh;
+  }
+
+}

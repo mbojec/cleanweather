@@ -155,6 +155,7 @@
   width: 60%;
   height: 100vh;
   border-right: 1px solid $color-gray;
+  z-index: 2;
 
   @include screen-sm{
     left: -300px;
