@@ -8,39 +8,190 @@
   align-items: center;
   background-color: $color-white;
   color: $color-gray-light;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  //box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid $color-gray-light;
   position: relative;
+
 
   @include screen-md{
     box-shadow: 0 0 0 0;
-    border-bottom: 1px solid $color-gray-light;
+    border-bottom: 0;
     border-radius: 20px 0 0 20px;
     flex-direction: column;
     justify-content: flex-start;
+    height: 90vh;
+  }
+
+  @include screen-lg{
     height: 80vh;
   }
 }
 
+
 .nav-bar__brand{
-  order: 1;
-  margin-left: 1.6rem;
+  order: 2;
   margin-top: 4px;
 
   @include screen-md{
-    margin-left: 0;
+    order: 1;
+    margin-left: 1rem;
+    margin-bottom: 2rem;
   }
 }
 
-.nav-bar__search {
-  order: 2;
+.nav-bar__icon__search {
+  order: 3;
   margin-right: 1.6rem;
   font-size: 24px;
   color: $color-gray;
 
   @include screen-md{
+    border-radius: 5px;
+    height: 36px;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: 5;
     margin-right: 0;
     margin-top: 2rem;
+    margin-left: 1rem;
   }
 
+}
+
+.nav-bar__icon__search--selected{
+  @include screen-md{
+    background: $color-purple;
+    color: $color-white;
+  }
+
+}
+
+.nav-bar__icon__search--unselected{
+  @include screen-md{
+    background: $color-purple-light;
+    color: $color-purple;
+  }
+
+}
+
+.nav-bar__icon--clock {
+  display: none;
+
+  @include screen-md{
+    @include menu-icon(2);
+  }
+
+}
+
+.nav-bar__icon--day {
+  display: none;
+
+  @include screen-md{
+    @include menu-icon(3);
+  }
+
+}
+
+.nav-bar__icon--week {
+  display: none;
+
+  @include screen-md{
+    @include menu-icon(4);
+  }
+}
+
+.nav-bar__icon{
+  border-radius: 5px;
+  background: $color-blue-light;
+  color: $color-blue;
+  margin-left: 1rem;
+}
+
+.nav-bar__icon--selected{
+  background: $color-blue;
+  color: $color-white;
+}
+
+.nav-bar__icon--unselected{
+  background: $color-blue-light;
+  color: $color-blue;
+}
+
+.nav-bar__dropdown__icon {
+  order: 1;
+  margin-left: 1.6rem;
+  font-size: 24px;
+  color: $color-gray;
+  position: relative;
+
+  @include screen-md{
+    display: none;
+  }
+
+}
+
+.nav-bar__dropdown__list{
+  position: absolute;
+  background: $color-purple-light;
+  overflow: visible;
+  top: 56px;
+  left: -200px;
+  width: 60%;
+  height: 100vh;
+  border-right: 1px solid $color-gray;
+
+  @include screen-sm{
+    left: -300px;
+    width: 40%;
+  }
+
+  @include screen-md{
+    display: none;
+  }
+}
+
+.nav-bar__dropdown__list--show {
+  transition: 1s;
+  transform: translate(200px, 0);
+
+  @include screen-sm{
+    transform: translate(300px, 0);
+  }
+
+}
+
+.nav-bar__dropdown__list--hidden {
+  transition: 1s;
+  transform: translate(-200px, 0);
+
+  @include screen-sm{
+    transform: translate(-300px, 0);
+  }
+}
+
+.nav-bar__dropdown__list__item{
+  height: 10%;
+  font-size: 1.6rem;
+  color: $color-gray-dark;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  * {
+    display: inline;
+    margin-left: 1.6rem;
+  }
+}
+
+.nav-bar__dropdown__list__item--selected{
+  background: $color-purple;
+  color: $color-white;
+}
+
+.nav-bar__dropdown__list__item--unselected{
+  background: $color-purple-light;
+  color: $color-purple;
 }
 
