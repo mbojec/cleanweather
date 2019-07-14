@@ -2,7 +2,7 @@ require('../resources/style/main.scss');
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
 
-class Master extends Component{
+class ShortTermForecast extends Component{
 
   constructor(props) {
     super(props);
@@ -19,6 +19,7 @@ class Master extends Component{
 
   render() {
     return(
+      <div className={'col-xs-12 col-md-4 col-xl-3'}>
         <div className={'master'}>
           <div className={'decoration--top'}/>
           <div className={'row master__button__group'}>
@@ -28,9 +29,11 @@ class Master extends Component{
             <div className={'col-xs-2 col-sm-3'}/>
           </div>
           <div className={'decoration--bottom'}/>
+          <h2>ShortTermForecast</h2>
         </div>
+      </div>
     )
   }
 }
 
-export {Master}
+export {ShortTermForecast}

@@ -2,20 +2,30 @@ require('../resources/style/main.scss');
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {Navigation} from './navigation'
-import {Master} from './master'
+import {CurrentWeather} from './currentWeather'
+import {ShortTermForecast} from './shortTermForecast'
+import {LongTermForecast} from './longTermForecast'
+import {Search} from './search'
+import {NotFound} from './notFound'
+
+import {HashRouter, Route, Switch} from 'react-router-dom';
 
 class App extends Component {render() {
   return (
-    <div className={'main'}>
-      <div className={'row'}>
-        <div className={'col-xs-12 col-md-1'}>
+    <HashRouter>
+      <div className={'main'}>
+        <div className={'row'}>
           <Navigation/>
-        </div>
-        <div className={'col-xs-12 col-md-4 col-xl-3'}>
-          <Master/>
+            <Switch>
+              <Route exact path='/' component={CurrentWeather} />
+              <Route exact path='/shortTerm' component={ShortTermForecast} />
+              <Route exact path='/longTerm' component={LongTermForecast} />
+              <Route exact path='/search' component={Search} />
+              <Route path='*' component={NotFound} />
+            </Switch>
         </div>
       </div>
-    </div>
+    </HashRouter>
   )}}
 
 ReactDOM.render(<App/>, document.getElementById("app"));
