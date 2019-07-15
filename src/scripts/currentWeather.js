@@ -1,6 +1,8 @@
 require('../resources/style/main.scss');
 import React, {Component} from "react";
 import {TemperatureBar} from '../resources/svg/temperatureBar'
+import {Map} from "./map";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 class CurrentWeather extends Component{
 
@@ -47,17 +49,14 @@ class CurrentWeather extends Component{
             </div>
         </div>
         <div className={'current__master col-xs-12 col-md-4 col-xl-3'}>
-          <div className={'decoration--top'}/>
           <div className={'row'}>
             <div className={'col-xs-12 temperature'}>
               <TemperatureBar/>
               <p className={'temperature__value'}>{this.state.temperature_value + String.fromCharCode(176) + 'C'}</p>
             </div>
           </div>
-          <div className={'decoration--bottom'}/>
         </div>
         <div className={'col-xs-12 col-md-7 col-xl-7'}>
-          {/*<h2>Detail</h2>*/}
         </div>
       </>
     )

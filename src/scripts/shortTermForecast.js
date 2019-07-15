@@ -31,13 +31,11 @@ class ShortTermForecast extends Component {
           </div>
         </div>
         <div className={'short-term__master col-xs-12 col-md-4 col-xl-3'}>
-          <div className={'decoration--top'}/>
           <div className={'row'}>
             <div className={'short-term__location col-xs-12'}>
               <div>Master</div>
             </div>
           </div>
-          <div className={'decoration--bottom'}/>
         </div>
         <div className={'col-xs-12 col-md-7 col-xl-7'}>
           <h2>Detail</h2>

@@ -44,9 +44,12 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "@urbica/react-map-gl": "^1.8.0",
+    "mapbox-gl": "^1.1.0",
     "precss": "^4.0.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-mapbox-gl": "^4.5.1",
     "react-router-dom": "^5.0.1",
     "whatwg-fetch": "^3.0.0"
   }

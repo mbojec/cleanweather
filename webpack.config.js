@@ -48,6 +48,11 @@ module.exports = function (env) {
         }
     };
 
+    const css = {
+        test: /\.css/,
+        use: ['style-loader', 'css-loader']
+    };
+
     const scss = {
         test: /\.scss$/,
         use: [
@@ -125,6 +130,7 @@ module.exports = function (env) {
     config.module.rules.push(images);
     config.module.rules.push(fonts);
     config.module.rules.push(svg);
+    config.module.rules.push(css);
 
     const Clean = require(
         'clean-webpack-plugin'

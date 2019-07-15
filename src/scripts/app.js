@@ -7,15 +7,21 @@ import {ShortTermForecast} from './shortTermForecast'
 import {LongTermForecast} from './longTermForecast'
 import {Search} from './search'
 import {NotFound} from './notFound'
+import {Map} from "./map";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 import {HashRouter, Route, Switch} from 'react-router-dom';
 
 class App extends Component {render() {
   return (
-    <HashRouter>
-      <div className={'main'}>
-        <div className={'row'}>
-          <Navigation/>
+    <div className={'app'}>
+      <div className={'map'}>
+        <Map/>
+      </div>
+      <HashRouter>
+        <div className={'main'}>
+          <div className={'row'}>
+            <Navigation/>
             <Switch>
               <Route exact path='/' component={CurrentWeather} />
               <Route exact path='/shortTerm' component={ShortTermForecast} />
@@ -23,9 +29,10 @@ class App extends Component {render() {
               <Route exact path='/search' component={Search} />
               <Route path='*' component={NotFound} />
             </Switch>
+          </div>
         </div>
-      </div>
-    </HashRouter>
+      </HashRouter>
+    </div>
   )}}
 
 ReactDOM.render(<App/>, document.getElementById("app"));

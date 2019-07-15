@@ -6,10 +6,10 @@
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  background-color: $color-white;
+  background-color: $color-light-1;
   color: $color-gray-light;
   //box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-  border-bottom: 1px solid $color-gray-light;
+  border-bottom: 1px solid $color-light-3;
   position: relative;
 
 
@@ -22,9 +22,9 @@
     height: 90vh;
   }
 
-  @include screen-lg{
-    height: 80vh;
-  }
+  //@include screen-lg{
+  //  height: 80vh;
+  //}
 }
 
 
@@ -43,7 +43,7 @@
   order: 3;
   margin-right: 1.6rem;
   font-size: 24px;
-  color: $color-gray;
+  color: $color-light-5;
   position: relative;
 
   @include screen-md{
@@ -71,16 +71,16 @@
 
 .nav-bar__icon__search--selected{
   @include screen-md{
-    background: $color-purple;
-    color: $color-white;
+    background: $color-light-3;
+    color: $color-light-1;
   }
 
 }
 
 .nav-bar__icon__search--unselected{
   @include screen-md{
-    background: $color-purple-light;
-    color: $color-purple;
+    background: $color-light-3;
+    color: $color-light-5;
   }
 
 }
@@ -124,20 +124,20 @@
 }
 
 .nav-bar__icon--selected{
-  background: $color-blue;
-  color: $color-white;
+  background: $color-light-3;
+  color: $color-light-1;
 }
 
 .nav-bar__icon--unselected{
-  background: $color-blue-light;
-  color: $color-blue;
+  background: $color-light-3;
+  color: $color-light-5;
 }
 
 .nav-bar__dropdown__icon {
   order: 1;
   margin-left: 1.6rem;
   font-size: 24px;
-  color: $color-gray;
+  color: $color-light-5;
   position: relative;
 
   @include screen-md{
@@ -148,13 +148,13 @@
 
 .nav-bar__dropdown__list{
   position: absolute;
-  background: $color-purple-light;
+  background: $color-light-1;
   overflow: visible;
   top: 56px;
   left: -200px;
   width: 60%;
   height: 100vh;
-  border-right: 1px solid $color-gray;
+  border-right: 1px solid $color-light-3;
   z-index: 2;
 
   @include screen-sm{
@@ -201,20 +201,20 @@
 }
 
 .nav-bar__dropdown__list__item--selected{
-  background: $color-purple;
-  color: $color-white;
+  background: $color-light-1;
+  color: $color-light-5;
 
   a {
-    color: $color-white;
+    color: $color-light-5;
   }
 }
 
 .nav-bar__dropdown__list__item--unselected{
-  background: $color-purple-light;
-  color: $color-purple;
+  background: $color-light-5;
+  color: $color-light-1;
 
   a {
-    color: $color-purple;
+    color: $color-light-1;
   }
 }
 
