@@ -50,6 +50,7 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-mapbox-gl": "^4.5.1",
+    "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "whatwg-fetch": "^3.0.0"
   }
