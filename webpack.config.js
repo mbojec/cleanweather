@@ -1,6 +1,6 @@
 const path = require("path");
 const entryPath = "src";
-const entryFile = "app.js";
+const entryFile = "index.js";
 const Html = require('html-webpack-plugin');
 const MiniCSS = require("mini-css-extract-plugin");
 const Compression = require("compression-webpack-plugin");
@@ -140,7 +140,7 @@ module.exports = function (env) {
 
     if(isProd) {
         config.plugins.push( new MiniCSS(
-            { filename: 'main.[chunkhash].css' } )
+            { filename: '_main.scss.[chunkhash].css' } )
             // { filename: 'main.css' } )
         )
     }

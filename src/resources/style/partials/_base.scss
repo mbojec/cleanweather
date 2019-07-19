@@ -8,11 +8,11 @@ html, body {
   font-family: $font-roboto;
 }
 
-body {
-  height: 100vh;
-  width: 100vw;
-  background: $color-white;
-}
+//body {
+  //height: 100vh;
+  //width: 100vw;
+  //background: $color-white;
+//}
 
 .wrapper{
   max-width: $screen-breakpoint-xl;
@@ -31,22 +31,22 @@ a {
   text-decoration: none;
 }
 
-#app{
-  width: 100%;
-  height: 100%;
+//#app{
+//  width: 100%;
+//  height: 100%;
+//
+//  @include screen-md{
+//    display: flex;
+//    justify-content: center;
+//    align-items: center;
+//  }
+//}
 
-  @include screen-md{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-.app{
-  height: 100vh;
-  width: 100vw;
-  position: relative;
-}
+//.app{
+//  height: 100vh;
+//  width: 100vw;
+//  position: relative;
+//}
 
 .map{
   display: none;

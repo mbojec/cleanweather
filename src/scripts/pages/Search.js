@@ -1,4 +1,4 @@
-require('../resources/style/main.scss');
+require('../../resources/style/main.scss');
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
 
