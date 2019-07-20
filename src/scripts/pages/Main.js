@@ -10,8 +10,7 @@ class Main extends Component{
     return(
       <div>
         <Navigation/>
-        <div>
-          <MainMap/>
+        <div className={'main'}>
         </div>
       </div>
     )

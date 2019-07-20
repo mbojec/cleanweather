@@ -8,12 +8,6 @@ html, body {
   font-family: $font-roboto;
 }
 
-//body {
-  //height: 100vh;
-  //width: 100vw;
-  //background: $color-white;
-//}
-
 .wrapper{
   max-width: $screen-breakpoint-xl;
   margin-left: auto;
@@ -31,52 +25,10 @@ a {
   text-decoration: none;
 }
 
-//#app{
-//  width: 100%;
-//  height: 100%;
-//
-//  @include screen-md{
-//    display: flex;
-//    justify-content: center;
-//    align-items: center;
-//  }
-//}
-
-//.app{
-//  height: 100vh;
-//  width: 100vw;
-//  position: relative;
-//}
-
 .map{
   display: none;
   @include screen-md{
     display: inline-block;
     position: absolute;
   }
-}
-
-.main {
-  width: 100%;
-  height: 100%;
-  background: $color-light-1;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  @include screen-md{
-    max-width: $screen-breakpoint-xl;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    height: 90%;
-    border-radius: 20px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-  }
-
-  //@include screen-lg{
-  //  width: 90%;
-  //  height: 90%;
-  //}
 }

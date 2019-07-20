@@ -10,10 +10,8 @@
   padding: 0 1.6rem 0 1.6rem;
   width: 100vw;
   height: 47px;
-  background: transparent;
+  background: $color-dark-4;
   align-items: center;
-  z-index: 2;
-  position: absolute;
   p {
     flex-grow: 1;
     color: white;
@@ -49,6 +47,7 @@
   width: 70%;
   white-space: nowrap;
   @extend %center;
+  position: relative;
 
   @include screen-md{
     width: 80%;
@@ -61,17 +60,18 @@
     height: 30px;
     font-size: 18px;
     font-family: $font-roboto;
+    outline: none;
   }
 }
 
 .navigation__app-bar__search-field__icon {
   width: 15%;
-  height: 30px;
+  height: 100%;
   background: white;
-  text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   border-bottom-left-radius: 25px;
   border-top-left-radius: 25px;
+  @extend %center;
 
   @include screen-md{
     width: 10%;
@@ -80,9 +80,10 @@
 
 .navigation__app-bar__search-field__icon__location {
   width: 10%;
-  text-align: center;
+  height: 100%;
   font-size: 15px;
   border-radius: 0 25px 25px 0;
+  @extend %center;
 }
 
 .navigation__app-bar__search-field {
@@ -95,4 +96,38 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 0;
+  position: relative;
 }
+
+.navigation__app-bar__search-field__query-list{
+  position: absolute;
+  top: 43px;
+  list-style-type: none;
+  left: -10px;
+  li {
+    padding: 0.5rem 0 0.5rem 1rem;
+    color: white;
+    font-size: 14px;
+
+    @include screen-sm{
+      font-size: 16px;
+
+    }
+
+    @include screen-md{
+      font-size: 18px;
+
+    }
+
+    @include screen-lg{
+      font-size: 20px;
+
+    }
+
+    &:hover{
+      background: $color-dark-4;
+      cursor: default;
+    }
+  }
+}
+
