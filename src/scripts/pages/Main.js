@@ -11,6 +11,39 @@ class Main extends Component{
       <div>
         <Navigation/>
         <div className={'main'}>
+          <div className={'row'}>
+            <div className={'col-xs-12 col-md-6 col-lg-4'}>
+              <div className={'card'}></div>
+            </div>
+            <div className={'col-xs-12 col-md-6 col-lg-4'}>
+              <div className={'card'}></div>
+            </div>
+            <div className={'col-xs-12 col-md-6 col-lg-4'}>
+              <div className={'card'}></div>
+            </div>
+            <div className={'col-xs-12 col-md-6 col-lg-4'}>
+              <div className={'card'}></div>
+            </div>
+            <div className={'col-xs-12 col-md-6 col-lg-4'}>
+              <div className={'card'}></div>
+            </div>
+            <div className={'col-xs-12 col-md-6 col-lg-4'}>
+              <div className={'card'}></div>
+            </div>
+            <div className={'col-xs-12 col-md-6 col-lg-4'}>
+              <div className={'card'}>
+                <MainMap/>
+              </div>
+            </div>
+            <div className={'col-xs-12 col-md-6 col-lg-4'}>
+              <div className={'card'}></div>
+            </div>
+            <div className={'col-xs-12 col-md-6 col-lg-4'}>
+              <div className={'card'}>
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )

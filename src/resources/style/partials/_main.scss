@@ -1,5 +1,23 @@
 .main {
   width: 100vw;
-  height: calc(100vh - 47px);
   background: $color-dark-3;
+}
+
+.card {
+  background: $color-dark-4;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  height: 45vh;
+
+  @include screen-sm{
+    height: 40vh;
+  }
+
+  @include screen-md{
+    height: 35vh;
+  }
+
+  @include screen-lg{
+    height: 30vh;
+  }
 }

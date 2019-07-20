@@ -14,18 +14,16 @@ class MainMap extends Component{
       viewport: {
         latitude: 51.12893,
         longitude: 16.98705,
-        zoom: 12,
+        zoom: 14,
       },
-      width: window.innerWidth,
-      height: window.innerHeight
     }
   }
   render() {
     return(
       <Map
         style="mapbox://styles/mapbox/dark-v9"
-        containerStyle={{height: window.innerHeight, width: window.innerWidth}}
-        center={[16.98705, 51.12893]}
+        containerStyle={{height: '100%', width: '100%'}}
+        center={[16.9870, 51.1289]}
       />
     )
   }
