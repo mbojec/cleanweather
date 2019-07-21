@@ -38,6 +38,9 @@ class Navigation extends Component{
     getCurrentLocation();
   };
 
+  setOpacity(index){
+    return (1.0 - ((index +1) * 0.08))
+  }
 
   render() {
     return (
@@ -52,7 +55,7 @@ class Navigation extends Component{
             <form className={'navigation__app-bar__search-field__form'}>
               <input placeholder={'Znajdź miejscowość'} type="text" autoComplete="off" name='searchQuery' value={this.state.searchQuery} onChange={e => this.handleChange(e)}/>
               <ul className={'navigation__app-bar__search-field__query-list'}>
-                {this.state.queryArray && this.state.queryArray.length !==0 && this.state.queryArray.map((singleElement, index) => <li key={index}>{singleElement.place_name}</li>)}
+                {this.state.queryArray && this.state.queryArray.length !==0 && this.state.queryArray.map((singleElement, index) => <li key={index} style={{opacity: this.setOpacity(index)}}>{singleElement.place_name}</li>)}
               </ul>
             </form>
             <div className={'navigation__app-bar__search-field__icon__location'} onClick={event => this.displayLocation()}>

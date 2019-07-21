@@ -18,11 +18,15 @@ class MainMap extends Component{
       },
     }
   }
+
+  handleStyleLoad = map => (map.resize());
+
   render() {
     return(
       <Map
         style="mapbox://styles/mapbox/dark-v9"
         containerStyle={{height: '100%', width: '100%'}}
+        onStyleLoad={this.handleStyleLoad}
         center={[16.9870, 51.1289]}
       />
     )
