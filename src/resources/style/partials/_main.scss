@@ -21,3 +21,30 @@
     height: 30vh;
   }
 }
+
+.card__data {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.8rem 1.6rem;
+}
+
+.card__data__label {
+  align-self: flex-start;
+  font-size: 16px;
+  color: $color-dark-1;
+}
+
+.card__data__content {
+  padding-top: 0.5rem;
+  flex-grow: 2;
+  width: 100%;
+}
+
+.card__data__content__weather-desc{
+  color: white;
+  font-size: 18px;
+  padding-left: 0;
+}
