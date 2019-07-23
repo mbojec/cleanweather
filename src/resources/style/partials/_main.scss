@@ -31,6 +31,16 @@
   padding: 0.8rem 1.6rem;
 }
 
+.card__data__list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.8rem 1.6rem;
+  height: 100%;
+}
+
 .card__data__label {
   align-self: flex-start;
   font-size: 16px;
@@ -57,4 +67,41 @@
   color: white;
   font-size: 18px;
   padding-left: 0;
+}
+
+.card__data__list__item{
+  width: 100%;
+  flex-grow: 1;
+}
+
+.card__data__list__item__container{
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+}
+
+.card__data__list__item__label{
+  flex-grow: 1;
+  font-size: 24px;
+  color: $color-dark-1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.card__data__list__item__icon{
+  flex-grow: 1;
+}
+
+.card__data__list__item__icon--moon{
+  flex-grow: 2;
+}
+
+.card__data__list__item__data{
+  flex-grow: 1;
+  font-size: 24px;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

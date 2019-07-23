@@ -7,34 +7,29 @@ import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 class Compass  extends Component{
 
   getDirectionString(degrees){
-    // switch(degrees) {
-    //   case degrees > 337 && degrees <359:
-    //     return 'N';
-    //   case degrees >= 0 && degrees <23:
-    //     return 'N';
-    //   case degrees > 22 && degrees <68:
-    //     return 'NE';
-    //   case degrees > 67 && degrees <113:
-    //     return 'E';
-    //   case degrees > 112 && degrees <158:
-    //     return 'SE';
-    //   case degrees > 157 && degrees <203:
-    //     return 'S';
-    //   case degrees > 202 && degrees <248:
-    //     return 'SW';
-    //   case degrees > 247 && degrees <293:
-    //     return 'W';
-    //   case degrees > 292 && degrees <328:
-    //     return 'NW';
-    //   default:
-    //     return null;
-    // }
     if(degrees > 337 && degrees <359 || degrees >= 0 && degrees <23){
+      return 'N';
+    } else if (degrees > 22 && degrees <68){
+      return 'NE';
+    } else if (degrees > 67 && degrees <113){
+      return 'E';
+    } else if (degrees > 112 && degrees <158){
+      return 'SE';
+    } else if (degrees > 157 && degrees <203){
+      return 'S';
+    } else if (degrees > 202 && degrees <248){
+      return 'SW';
+    } else if (degrees > 247 && degrees <293){
+      return 'W';
+    } else if (degrees > 292 && degrees <328){
+      return 'NW';
+    } else {
       return 'N';
     }
   }
 
   componentDidMount() {
+
     am4core.useTheme(am4themes_dark);
 
     let chart = am4core.create("chartdiv5", am4charts.GaugeChart);

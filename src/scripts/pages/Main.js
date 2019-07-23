@@ -10,6 +10,10 @@ import {Temperature2} from "../components/temperature2";
 import {Compass} from "../components/compas";
 import {SolidGauge} from "../components/solid-gauge";
 import {Pressure} from "../components/pressure";
+import {Uv} from "../components/uv";
+import {Sunrise} from "../components/sunrise";
+import {Sunset} from "../components/sunset";
+import {Moonphase} from "../components/moonphase";
 
 class Main extends Component{
 
@@ -60,7 +64,10 @@ class Main extends Component{
             <div className={'col-xs-12 col-md-6 col-lg-4'}>
               <div className={'card'}>
                 <div className={'card card__data'}>
-
+                  <div className={'card__data__label'}>Uv index</div>
+                  <div className={'card__data__content'}>
+                    <Uv/>
+                  </div>
                 </div>
               </div>
             </div>
@@ -98,8 +105,11 @@ class Main extends Component{
             </div>
             <div className={'col-xs-12 col-md-6 col-lg-4'}>
               <div className={'card'}>
-                <div className={'card card__data'}>
-                </div>
+                  <div className={'card__data__list'}>
+                      <div className={'card__data__list__item'}><Sunrise/></div>
+                      <div className={'card__data__list__item'}><Sunset/></div>
+                      <div className={'card__data__list__item'}><Moonphase/></div>
+                  </div>
               </div>
             </div>
             <div className={'col-xs-12 col-md-6 col-lg-4'}>
