@@ -37,6 +37,16 @@
   color: $color-dark-1;
 }
 
+.card__data__labels {
+  width: 100%;
+  align-self: flex-start;
+  font-size: 16px;
+  color: $color-dark-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .card__data__content {
   padding-top: 0.5rem;
   flex-grow: 2;

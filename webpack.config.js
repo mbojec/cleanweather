@@ -42,7 +42,7 @@ module.exports = function (env) {
                     }]
                 ],
                 plugins: [
-                    'syntax-dynamic-import'
+                    '@babel/plugin-syntax-dynamic-import'
                 ]
             }
         }

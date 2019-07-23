@@ -43,6 +43,7 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "@amcharts/amcharts4": "^4.5.8",
     "@deck.gl/mapbox": "latest",
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
@@ -50,6 +51,7 @@
     "@urbica/react-map-gl": "^1.8.0",
     "chart.js": "^2.8.0",
     "deck.gl": "^7.1.10",
+    "jsdom": "^13.2.0",
     "mapbox-gl": "^0.54.0",
     "precss": "^4.0.0",
     "react": "^16.8.4",
@@ -61,6 +63,7 @@
     "react-router-dom": "^5.0.1",
     "recharts": "^1.6.2",
     "redux": "^4.0.4",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.0.0",
+    "xmldom": "^0.1.27"
   }
 }
