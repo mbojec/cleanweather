@@ -5,13 +5,16 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 import React, {Component} from "react";
 
+let label;
+let hand;
+let chart;
 
 class Pressure extends Component{
 
   componentDidMount() {
     am4core.useTheme(am4themes_dark);
 
-    let chart = am4core.create("chartdiv22", am4charts.GaugeChart);
+    chart = am4core.create("chartdiv22", am4charts.GaugeChart);
     chart.innerRadius = am4core.percent(90);
 
     let axis = chart.xAxes.push(new am4charts.ValueAxis());
@@ -53,38 +56,39 @@ class Pressure extends Component{
     // range1.axisFill.fillOpacity = 1;
     // range1.axisFill.fill = colorSet.getIndex(2);
 
-    let label = chart.radarContainer.createChild(am4core.Label);
+    label = chart.radarContainer.createChild(am4core.Label);
     label.isMeasured = false;
     label.fontSize = 35;
     label.x = am4core.percent(50);
     label.y = am4core.percent(100);
     label.horizontalCenter = "middle";
     label.verticalCenter = "bottom";
-    label.text = `1100 hpa`;
+    label.text = `${this.props.value} hpa`;
 
-    let hand = chart.hands.push(new am4charts.ClockHand());
+    hand = chart.hands.push(new am4charts.ClockHand());
     hand.axis = axis2;
     hand.innerRadius = am4core.percent(60);
     hand.radius = am4core.percent(75);
     hand.startWidth = 15;
     hand.pin.disabled = true;
-    hand.value = 1100;
+    hand.value = this.props.value;
 
-    hand.events.on("propertychanged", function(ev) {
-      range0.endValue = ev.target.value;
-      // range1.value = ev.target.value;
-      axis2.invalidate();
-    });
+    // hand.events.on("propertychanged", function(ev) {
+    //   range0.endValue = ev.target.value;
+    //   // range1.value = ev.target.value;
+    //   axis2.invalidate();
+    // });
 
-    // setInterval(function() {
-    //   let value = 30;
-    //   label.text = value + `${String.fromCharCode(176)}C`;
-    //   let animation = new am4core.Animation(hand, {
-    //     property: "value",
-    //     to: value
-    //   }, 1000, am4core.ease.cubicOut).start();
-    // }, 3000);
+  }
 
+  componentDidUpdate(oldProps) {
+    if (oldProps.value !== this.props.value) {
+      label.text = `${this.props.value} hpa`;
+      let animation = new am4core.Animation(hand, {
+        property: "value",
+        to: this.props.value
+      }, 3000, am4core.ease.cubicOut).start();
+    }
   }
 
   componentWillUnmount() {

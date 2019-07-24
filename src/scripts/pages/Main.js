@@ -17,15 +17,32 @@ import {Moonphase} from "../components/moonphase";
 
 class Main extends Component{
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      uvValue: 0,
+      tempValue: 0,
+      pressureValue: 0,
+      solidValue: 0,
+      wind: 0
+    };
+  }
+
   getForecast(){
 
     fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/6e2c02f548604e02d65da8602f3c0c6e/51.128951699999995,16.9871287`,)
       .then(res => res.json())
-      .then(data => console.log(data));
+      .then(data => this.updateState(data));
+
   }
 
   componentDidMount() {
-    // this.getForecast();
+    this.getForecast();
+  }
+
+  updateState(data){
+    console.log(data);
+    this.setState({uvValue: 8, tempValue: 28, pressureValue: 1100, solidValue: 80, wind: 20})
   }
 
   render() {
@@ -46,7 +63,7 @@ class Main extends Component{
                 <div className={'card card__data'}>
                   <div className={'card__data__label'}>Temperature</div>
                   <div className={'card__data__content'}>
-                    <Temperature2/>
+                    <Temperature2 value={this.state.tempValue}/>
                   </div>
                 </div>
               </div>
@@ -56,7 +73,7 @@ class Main extends Component{
                 <div className={'card card__data'}>
                   <div className={'card__data__label'}>Pressure</div>
                   <div className={'card__data__content'}>
-                    <Pressure/>
+                    <Pressure value={this.state.pressureValue}/>
                   </div>
                 </div>
               </div>
@@ -66,7 +83,7 @@ class Main extends Component{
                 <div className={'card card__data'}>
                   <div className={'card__data__label'}>Uv index</div>
                   <div className={'card__data__content'}>
-                    <Uv/>
+                    <Uv value={this.state.uvValue}/>
                   </div>
                 </div>
               </div>
@@ -80,7 +97,7 @@ class Main extends Component{
                     <div>Precip probalbility</div>
                   </div>
                   <div className={'card__data__content'}>
-                    <SolidGauge/>
+                    <SolidGauge value={this.state.solidValue}/>
                   </div>
                 </div>
               </div>
@@ -93,7 +110,7 @@ class Main extends Component{
                     <div>Wind gust</div>
                   </div>
                   <div className={'card__data__content'}>
-                    <WindSpeed/>
+                    <WindSpeed value={this.state.wind}  value2={this.state.wind}/>
                   </div>
                 </div>
               </div>
@@ -117,7 +134,7 @@ class Main extends Component{
                 <div className={'card card__data'}>
                   <div className={'card__data__label'}>Wind direction</div>
                   <div className={'card__data__content'}>
-                    <Compass/>
+                    <Compass value={this.state.wind}/>
                   </div>
                 </div>
               </div>

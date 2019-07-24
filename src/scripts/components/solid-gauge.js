@@ -3,24 +3,30 @@ import React, {Component} from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+
+let chart;
+let series1;
+let series2;
 
 class SolidGauge extends Component{
 
   componentDidMount() {
     am4core.useTheme(am4themes_dark);
-    let chart = am4core.create("chartdiv9", am4charts.RadarChart);
+    am4core.useTheme(am4themes_animated);
+    chart = am4core.create("chartdiv9", am4charts.RadarChart);
 
     chart.data = [{
       "category": "Precip Probability",
-      "value": 80,
+      "value": this.props.value,
       "full": 100
     }, {
       "category": "Cloud Cover",
-      "value": 35,
+      "value": this.props.value,
       "full": 100
     }, {
       "category": "Humidity",
-      "value": 92,
+      "value": this.props.value,
       "full": 100
     }];
 
@@ -48,7 +54,7 @@ class SolidGauge extends Component{
     valueAxis.strictMinMax = true;
 
 // Create series
-    let series1 = chart.series.push(new am4charts.RadarColumnSeries());
+    series1 = chart.series.push(new am4charts.RadarColumnSeries());
     series1.dataFields.valueX = "full";
     series1.dataFields.categoryY = "category";
     series1.clustered = false;
@@ -57,20 +63,43 @@ class SolidGauge extends Component{
     series1.columns.template.cornerRadiusTopLeft = 20;
     series1.columns.template.strokeWidth = 0;
     series1.columns.template.radarColumn.cornerRadius = 20;
+    series1.defaultState.transitionDuration = 5000;
+    series1.hiddenState.transitionDuration = 5000;
 
-    let series2 = chart.series.push(new am4charts.RadarColumnSeries());
+    series2 = chart.series.push(new am4charts.RadarColumnSeries());
     series2.dataFields.valueX = "value";
     series2.dataFields.categoryY = "category";
     series2.clustered = false;
     series2.columns.template.strokeWidth = 0;
     series2.columns.template.tooltipText = "{category}: [bold]{value}[/]";
     series2.columns.template.radarColumn.cornerRadius = 20;
+    series2.defaultState.transitionDuration = 5000;
+    series2.hiddenState.transitionDuration = 5000;
 
     series2.columns.template.adapter.add("fill", function(fill, target) {
       return chart.colors.getIndex(target.dataItem.index);
     });
 
     chart.cursor = new am4charts.RadarCursor();
+
+  }
+
+  componentDidUpdate(oldProps) {
+    if (oldProps.value !== this.props.value) {
+      chart.data = [{
+        "category": "Precip Probability",
+        "value": this.props.value,
+        "full": 100
+      }, {
+        "category": "Cloud Cover",
+        "value": this.props.value,
+        "full": 100
+      }, {
+        "category": "Humidity",
+        "value": this.props.value,
+        "full": 100
+      }];
+    }
   }
 
   componentWillUnmount() {

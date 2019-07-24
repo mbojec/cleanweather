@@ -39,7 +39,7 @@ class Navigation extends Component{
   };
 
   setOpacity(index){
-    return (1.0 - ((index +1) * 0.08))
+    return (1.0 - ((index +1) * 0.05))
   }
 
   render() {

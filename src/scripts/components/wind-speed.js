@@ -4,13 +4,18 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 
+let label;
+let hand;
+let label2;
+let hand2;
+let chart;
 
 class WindSpeed extends Component{
 
   componentDidMount() {
     am4core.useTheme(am4themes_dark);
 
-    let chart = am4core.create("chartdiv2", am4charts.GaugeChart);
+    chart = am4core.create("chartdiv2", am4charts.GaugeChart);
     chart.hiddenState.properties.opacity = 0;
 
     let axis = chart.xAxes.push(new am4charts.ValueAxis());
@@ -54,107 +59,55 @@ class WindSpeed extends Component{
     axis2.setStateOnChildren = true;
     axis2.renderer.hiddenState.properties.endAngle = 180;
 
-    let hand = chart.hands.push(new am4charts.ClockHand());
+    hand = chart.hands.push(new am4charts.ClockHand());
     hand.fill = axis.renderer.line.stroke;
     hand.stroke = axis.renderer.line.stroke;
     hand.axis = axis;
     hand.pin.radius = 10;
     hand.startWidth = 10;
-    hand.value = 5;
+    hand.value = this.props.value;
 
-    let hand2 = chart.hands.push(new am4charts.ClockHand());
+    hand2 = chart.hands.push(new am4charts.ClockHand());
     hand2.fill = axis2.renderer.line.stroke;
     hand2.stroke = axis2.renderer.line.stroke;
     hand2.axis = axis2;
     hand2.pin.radius = 5;
     hand2.startWidth = 5;
-    hand2.value = 20;
-    //
-    // setInterval(function() {
-    //   hand.showValue(Math.random() * 16, 1000, am4core.ease.cubicOut);
-    //   label.text = Math.round(hand.value).toString();
-    //   hand2.showValue(Math.random() * 16, 1000, am4core.ease.cubicOut);
-    //   label2.text = Math.round(hand2.value).toString();
-    // }, 2000);
-
-    // let legend = new am4charts.Legend();
-    // legend.isMeasured = false;
-    // legend.y = am4core.percent(10);
-    // legend.x = am4core.percent(2);
-    // legend.verticalCenter = "bottom";
-    // legend.horizontalCenter = 'middle';
-    // legend.fontSize = 10;
-    // legend.parent = chart.chartContainer;
-    // legend.data = [{
-    //   // "name": "Wind speed",
-    //   "fill": chart.colors.getIndex(0)
-    // }];
-    //
-    // let legend2 = new am4charts.Legend();
-    // legend2.isMeasured = false;
-    // legend2.y = am4core.percent(10);
-    // legend2.x = am4core.percent(100);
-    // legend2.verticalCenter = "bottom";
-    // legend2.horizontalCenter = 'middle';
-    // legend2.fontSize = 10;
-    // legend2.parent = chart.chartContainer;
-    // legend2.data = [{
-    //   // "name": "Wind gust",
-    //   "fill": chart.colors.getIndex(3)
-    // }];
-
-    // legend.itemContainers.template.events.on("hit", function(ev) {
-    //   let index = ev.target.dataItem.index;
-    //
-    //   if (!ev.target.isActive) {
-    //     chart.hands.getIndex(index).hide();
-    //     chart.xAxes.getIndex(index).hide();
-    //     labelList.getIndex(index).hide();
-    //   }
-    //   else {
-    //     chart.hands.getIndex(index).show();
-    //     chart.xAxes.getIndex(index).show();
-    //     labelList.getIndex(index).show();
-    //   }
-    // });
-    //
-    // legend2.itemContainers.template.events.on("hit", function(ev) {
-    //   let index = ev.target.dataItem.index;
-    //
-    //   if (!ev.target.isActive) {
-    //     chart.hands.getIndex(index).hide();
-    //     chart.xAxes.getIndex(index).hide();
-    //     labelList.getIndex(index).hide();
-    //   }
-    //   else {
-    //     chart.hands.getIndex(index).show();
-    //     chart.xAxes.getIndex(index).show();
-    //     labelList.getIndex(index).show();
-    //   }
-    // });
+    hand2.value = this.props.value2;
 
     let labelList = new am4core.ListTemplate(new am4core.Label());
     labelList.template.isMeasured = false;
-    // labelList.template.background.strokeWidth = 2;
     labelList.template.fontSize = 15;
-    // labelList.template.padding(10, 15, 10, 15);
     labelList.template.y = am4core.percent(-5);
     labelList.template.horizontalCenter = "middle";
     //
-    let label = labelList.create();
+    label = labelList.create();
     label.parent = chart.chartContainer;
     label.x = am4core.percent(3);
-    // label.background.stroke = chart.colors.getIndex(0);
     label.fill = chart.colors.getIndex(0);
     label.text = "0 m/s";
 
-    let label2 = labelList.create();
+    label2 = labelList.create();
     label2.parent = chart.chartContainer;
     label2.x = am4core.percent(97);
-    // label2.background.stroke = chart.colors.getIndex(3);
     label2.fill = chart.colors.getIndex(3);
     label2.text = "0 m/s";
 
+  }
+
+  componentDidUpdate(oldProps) {
+    if (oldProps.value !== this.props.value) {
+      label.text = `${this.props.value} m/s`;
+      label2.text = `${this.props.value} m/s`;
+      let animation = new am4core.Animation(hand, {
+        property: "value",
+        to: this.props.value
+      }, 3000, am4core.ease.cubicOut).start();
+      let animation2 = new am4core.Animation(hand2, {
+        property: "value",
+        to: this.props.value2
+      }, 3000, am4core.ease.cubicOut).start();
+    }
   }
 
   componentWillUnmount() {
