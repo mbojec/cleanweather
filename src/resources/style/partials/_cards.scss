@@ -17,6 +17,25 @@
   }
 }
 
+.card--short-term{
+  background: $color-dark-4;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  height: 45vh;
+
+  @include screen-sm{
+    height: 55vh;
+  }
+
+  @include screen-md{
+    height: 50vh;
+  }
+
+  @include screen-lg{
+    height: 45vh;
+  }
+}
+
 .card__data {
   height: 100%;
   display: flex;

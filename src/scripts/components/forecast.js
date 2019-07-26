@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import ForecastLayout from './forecast-layout'
+import ShortTermForecastLayout from './short-term-forecast-layout'
 
 class Forecast extends Component{
 
@@ -51,7 +52,7 @@ class Forecast extends Component{
   render() {
     let forecastLayout = null;
     if(this.state.forecast.data !== undefined && this.state.forecast.status === 200){
-      forecastLayout = <div key={this.state.forecast.data.longitude}><ForecastLayout forecast={this.state.forecast.data}/></div> //dlaczego trzeba uzyc key ?
+      forecastLayout = <div key={this.state.forecast.data.longitude}><ShortTermForecastLayout forecast={this.state.forecast.data}/></div> //dlaczego trzeba uzyc key ?
     }
     return(
       <div>

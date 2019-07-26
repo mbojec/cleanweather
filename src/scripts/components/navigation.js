@@ -59,7 +59,6 @@ class Navigation extends Component{
         latitude: queryParams[0][1],
         longitude:queryParams[1][1]
       };
-      console.log(queryPosition.longitude);
       // do reverse geocoding and update navbar
     }
   }
