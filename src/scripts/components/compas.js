@@ -109,7 +109,7 @@ class Compass  extends Component{
     let labelList = new am4core.ListTemplate(new am4core.Label());
     labelList.template.isMeasured = false;
     labelList.template.fontSize = 35;
-    labelList.template.y = am4core.percent(60);
+    labelList.template.y = am4core.percent(65);
     labelList.template.horizontalCenter = "middle";
     labelList.template.verticalCenter = "bottom";
 
@@ -118,26 +118,29 @@ class Compass  extends Component{
     label.x = am4core.percent(50);
     label.text = `${this.getDirectionString(0)}`;
 
-  }
-
-  componentDidUpdate(oldProps) {
-    if (oldProps.value !== this.props.value) {
-      label.text = `${this.getDirectionString(this.props.value)}`;
-      let animation = new am4core.Animation(hand, {
-        property: "value",
-        to: this.props.value
-      }, 3000, am4core.ease.cubicOut).start();
-    }
+    label.text = `${this.getDirectionString(this.props.value)}`;
+    let animation = new am4core.Animation(hand, {
+      property: "value",
+      to: this.props.value
+    }, 3000, am4core.ease.cubicOut).start();
   }
 
   componentWillUnmount() {
-    if (this.chart) {
-      this.chart.dispose();
+    if (chart) {
+      chart.dispose();
     }
   }
 
   render() {
-    return (<div id="chartdiv5" style={{ width: "100%", height: "100%" }}></div>
+    return (
+      <>
+        <div className={'card card__data'}>
+          <div className={'card__data__label'}>Wind direction</div>
+          <div className={'card__data__content'}>
+            <div id="chartdiv5" style={{ width: "100%", height: "100%" }}></div>
+          </div>
+        </div>
+      </>
     );
   }
 }

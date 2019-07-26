@@ -3,13 +3,32 @@ import React, {Component} from "react";
 class Moonphase extends Component{
 
   render() {
+
+    const styleContainer={
+      display: 'flex',
+      flexWrap: 'nowrap',
+      height: '100%'
+    };
+    const styleListItemLabel = {
+      flexGrow: 1,
+      fontSize: '24px',
+      color: '#C7C7C7',
+      display: 'flex',
+      justifyContent: 'flex-start',
+      alignItems: 'center'
+    };
+    const styleListItemIconMoon = {
+      flexGrow: 2
+    };
+
+
     return(
-      <div className={'card__data__list__item__container'}>
-        <div className={'card__data__list__item__label'}>Moon phase</div>
-        <div className={'card__data__list__item__icon--moon'}></div>
+      <div style={styleContainer}>
+        <div style={styleListItemLabel}>Moon phase</div>
+        <div style={styleListItemIconMoon}></div>
       </div>
     )
   }
 }
 
-export {Moonphase}
+export default Moonphase

@@ -4,6 +4,7 @@ const entryFile = "index.js";
 const Html = require('html-webpack-plugin');
 const MiniCSS = require("mini-css-extract-plugin");
 const Compression = require("compression-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function (env) {
     let isDev = !!env.dev;
@@ -14,7 +15,8 @@ module.exports = function (env) {
 
     config.output = {
         filename: isDev ? "out.js" : "out.[chunkhash].js",
-        path: path.resolve(__dirname, `${entryPath}/build`)
+        path: path.resolve(__dirname, `${entryPath}/build`),
+        publicPath: '/'
     };
 
     config.mode = isProd? "production" : "development";
@@ -167,13 +169,20 @@ module.exports = function (env) {
         );
     }
 
+    // config.plugins.push(
+    //   new HtmlWebpackPlugin({
+    //       template: `out.js`
+    //   })
+    // );
+
     if(isDev) {
         config.devServer = {
             contentBase: path.join(__dirname, `./${entryPath}`),
             port: 3001,
             compress: true,
             progress: true,
-            overlay: true
+            overlay: true,
+            historyApiFallback: true,
         }
     }
 

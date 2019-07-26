@@ -2,6 +2,14 @@ require('../../resources/style/main.scss');
 import React, {Component} from "react";
 import MainMap from "./map";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import {Temperature2} from "./temperature2";
+import {Pressure} from "./pressure";
+import {Uv} from "./uv";
+import {SolidGauge} from "./solid-gauge";
+import {WindSpeed} from "./wind-speed";
+import {Compass} from "./compas";
+import Data from "./data"
+import {CurrentWeatherDesc} from "./current-weather-desc";
 
 class ForecastLayout extends Component{
 
@@ -9,7 +17,8 @@ class ForecastLayout extends Component{
     super(props);
     this.state = {
       forecast: this.props.forecast
-    }
+    };
+    console.log(this.state.forecast)
   }
 
   render() {
@@ -18,68 +27,32 @@ class ForecastLayout extends Component{
         <div className={'row'}>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              {/*<div className={'card card__data'}>*/}
-              {/*<div className={'card__data__label'}>Current forecast</div>*/}
-              {/*<div className={'card__data__content'}>*/}
-              {/*</div>*/}
-              {/*</div>*/}
+              <CurrentWeatherDesc value={this.state.forecast.currently.summary} timeZone = {this.state.forecast.timezone}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              {/*<div className={'card card__data'}>*/}
-              {/*<div className={'card__data__label'}>Temperature</div>*/}
-              {/*<div className={'card__data__content'}>*/}
-              {/*  <Temperature2 value={this.state.tempValue}/>*/}
-              {/*</div>*/}
-              {/*</div>*/}
+                <Temperature2 value={Math.round(this.state.forecast.currently.temperature)}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              {/*<div className={'card card__data'}>*/}
-              {/*  <div className={'card__data__label'}>Pressure</div>*/}
-              {/*  <div className={'card__data__content'}>*/}
-              {/*    <Pressure value={this.state.pressureValue}/>*/}
-              {/*  </div>*/}
-              {/*</div>*/}
+              <Pressure value={Math.round(this.state.forecast.currently.pressure)}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              {/*<div className={'card card__data'}>*/}
-              {/*  <div className={'card__data__label'}>Uv index</div>*/}
-              {/*  <div className={'card__data__content'}>*/}
-              {/*    <Uv value={this.state.uvValue}/>*/}
-              {/*  </div>*/}
-              {/*</div>*/}
+              <Uv value={this.state.forecast.currently.uvIndex}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              {/*<div className={'card card__data'}>*/}
-              {/*<div className={'card__data__labels'}>*/}
-              {/*  <div>Humidity</div>*/}
-              {/*  <div>Cloud Cover</div>*/}
-              {/*  <div>Precip probalbility</div>*/}
-              {/*</div>*/}
-              {/*<div className={'card__data__content'}>*/}
-              {/*  <SolidGauge value={this.state.solidValue}/>*/}
-              {/*</div>*/}
-              {/*</div>*/}
+                <SolidGauge cloud_value={Math.round((this.state.forecast.currently.cloudCover * 100))} precip_value={Math.round((this.state.forecast.currently.precipProbability * 100))} humidity_value={Math.round((this.state.forecast.currently.humidity * 100))}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              {/*<div className={'card card__data'}>*/}
-              {/*<div className={'card__data__labels'}>*/}
-              {/*  <div>Wind speed</div>*/}
-              {/*  <div>Wind gust</div>*/}
-              {/*</div>*/}
-              {/*<div className={'card__data__content'}>*/}
-              {/*  <WindSpeed value={this.state.wind}  value2={this.state.wind}/>*/}
-              {/*</div>*/}
-              {/*</div>*/}
+                <WindSpeed windSpeedValue={this.state.forecast.currently.windSpeed}  windGustValue={this.state.forecast.currently.windGust}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
@@ -89,21 +62,12 @@ class ForecastLayout extends Component{
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              {/*<div className={'card__data__list'}>*/}
-              {/*  <div className={'card__data__list__item'}><Sunrise/></div>*/}
-              {/*  <div className={'card__data__list__item'}><Sunset/></div>*/}
-              {/*  <div className={'card__data__list__item'}><Moonphase/></div>*/}
-              {/*</div>*/}
+              {<Data sunriseValue={this.state.forecast.daily.data[0].sunriseTime * 1000} sunsetValue={this.state.forecast.daily.data[0].sunsetTime * 1000}/>}
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              {/*<div className={'card card__data'}>*/}
-              {/*  <div className={'card__data__label'}>Wind direction</div>*/}
-              {/*  <div className={'card__data__content'}>*/}
-              {/*    <Compass value={this.state.wind}/>*/}
-              {/*  </div>*/}
-              {/*</div>*/}
+                  <Compass value={this.state.forecast.currently.windBearing}/>
             </div>
           </div>
         </div>

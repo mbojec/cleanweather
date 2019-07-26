@@ -16,7 +16,7 @@ class Forecast extends Component{
   }
 
   getForecast(queryPosition){
-    axios.get(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/6e2c02f548604e02d65da8602f3c0c6e/${queryPosition.latitude},${queryPosition.longitude}`,)
+    axios.get(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/6e2c02f548604e02d65da8602f3c0c6e/${queryPosition.latitude},${queryPosition.longitude}?units=si`,)
       .then(data => this.setState({queryPosition: queryPosition,forecast: data}));
   }
 

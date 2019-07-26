@@ -2,6 +2,7 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+require('../../resources/style/main.scss');
 
 import React, {Component} from "react";
 
@@ -14,7 +15,7 @@ class Temperature2 extends Component{
   componentDidMount() {
     am4core.useTheme(am4themes_dark);
 
-    chart = am4core.create("chartdiv11", am4charts.GaugeChart);
+    chart = am4core.create("temperature", am4charts.GaugeChart);
     chart.innerRadius = am4core.percent(90);
 
     let axis = chart.xAxes.push(new am4charts.ValueAxis());
@@ -22,7 +23,7 @@ class Temperature2 extends Component{
     axis.max = 50;
     axis.strictMinMax = true;
     axis.renderer.radius = am4core.percent(89);
-    axis.renderer.inside = true;
+    axis.renderer.inside = false;
     axis.renderer.line.strokeOpacity = 1;
     axis.renderer.ticks.template.strokeOpacity = 1;
     axis.renderer.ticks.template.length = 5;
@@ -57,7 +58,7 @@ class Temperature2 extends Component{
     label.y = am4core.percent(100);
     label.horizontalCenter = "middle";
     label.verticalCenter = "bottom";
-    label.text = `${this.props.value}${String.fromCharCode(176)}C`;
+    label.text = `0 ${String.fromCharCode(176)}C`;
 
     hand = chart.hands.push(new am4charts.ClockHand());
     hand.axis = axis2;
@@ -65,32 +66,36 @@ class Temperature2 extends Component{
     hand.radius = am4core.percent(60);
     hand.startWidth = 10;
     hand.pin.disabled = true;
-    hand.value = this.props.value;
+    hand.value = 0;
 
     hand.events.on("propertychanged", function(ev) {
       range0.endValue = ev.target.value;
       axis2.invalidate();
     });
+    label.text = `${this.props.value}${String.fromCharCode(176)}C`;
+    let animation = new am4core.Animation(hand, {
+      property: "value",
+      to: this.props.value
+    }, 3000, am4core.ease.cubicOut).start();
   }
 
-  componentDidUpdate(oldProps) {
-    if (oldProps.value !== this.props.value) {
-      label.text = `${this.props.value}${String.fromCharCode(176)}C`;
-      let animation = new am4core.Animation(hand, {
-        property: "value",
-        to: this.props.value
-      }, 3000, am4core.ease.cubicOut).start();
-    }
-  }
 
   componentWillUnmount() {
-    if (this.chart) {
-      this.chart.dispose();
+    if (chart) {
+      chart.dispose();
     }
   }
 
   render() {
-    return (<div id="chartdiv11" style={{ width: "100%", height: "100%" }}></div>
+    return (
+      <>
+        <div className={'card__data'}>
+          <div className={'card__data__label'}>Temperature</div>
+          <div className={'card__data__content'}>
+            <div id="temperature" style={{ width: "100%", height: "100%" }}></div>
+          </div>
+        </div>
+      </>
     );
   }
 

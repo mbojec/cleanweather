@@ -5,13 +5,14 @@ import { faLocationArrow } from '@fortawesome/free-solid-svg-icons'
 import { faSearchLocation} from "@fortawesome/free-solid-svg-icons";
 import {faBars} from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
 class Navigation extends Component{
 
   constructor(props){
     super(props);
     this.state = {
-      searchQuery: '',
+      searchQuery: 'Wrocław, Dolnośląskie, Poland',
       queryArray: [],
     }
   }
@@ -47,6 +48,21 @@ class Navigation extends Component{
     this.props.history.push({pathname:'/search',search: `?lat=${position[1]}&lng=${position[0]}`})
   }
 
+  componentDidMount() {
+    if(this.props.history.location.pathname === '/search'){
+      const query = new URLSearchParams(this.props.history.location.search);
+      let queryParams = [];
+      for (let param of query.entries()) {
+        queryParams.push(param)
+      }
+      let queryPosition = {
+        latitude: queryParams[0][1],
+        longitude:queryParams[1][1]
+      };
+      console.log(queryPosition.longitude);
+      // do reverse geocoding and update navbar
+    }
+  }
 
   render() {
     return (

@@ -15,7 +15,7 @@ class WindSpeed extends Component{
   componentDidMount() {
     am4core.useTheme(am4themes_dark);
 
-    chart = am4core.create("chartdiv2", am4charts.GaugeChart);
+    chart = am4core.create("wind", am4charts.GaugeChart);
     chart.hiddenState.properties.opacity = 0;
 
     let axis = chart.xAxes.push(new am4charts.ValueAxis());
@@ -65,7 +65,7 @@ class WindSpeed extends Component{
     hand.axis = axis;
     hand.pin.radius = 10;
     hand.startWidth = 10;
-    hand.value = this.props.value;
+    hand.value = 0
 
     hand2 = chart.hands.push(new am4charts.ClockHand());
     hand2.fill = axis2.renderer.line.stroke;
@@ -73,7 +73,7 @@ class WindSpeed extends Component{
     hand2.axis = axis2;
     hand2.pin.radius = 5;
     hand2.startWidth = 5;
-    hand2.value = this.props.value2;
+    hand2.value = 0;
 
     let labelList = new am4core.ListTemplate(new am4core.Label());
     labelList.template.isMeasured = false;
@@ -83,42 +83,51 @@ class WindSpeed extends Component{
     //
     label = labelList.create();
     label.parent = chart.chartContainer;
-    label.x = am4core.percent(3);
+    label.x = am4core.percent(4);
     label.fill = chart.colors.getIndex(0);
     label.text = "0 m/s";
 
     label2 = labelList.create();
     label2.parent = chart.chartContainer;
-    label2.x = am4core.percent(97);
+    label2.x = am4core.percent(96);
     label2.fill = chart.colors.getIndex(3);
     label2.text = "0 m/s";
 
+    label.text = `${this.props.windSpeedValue} m/s`;
+    label2.text = `${this.props.windGustValue} m/s`;
+    let animation = new am4core.Animation(hand, {
+      property: "value",
+      to: this.props.windSpeedValue
+    }, 3000, am4core.ease.cubicOut).start();
+    let animation2 = new am4core.Animation(hand2, {
+      property: "value",
+      to: this.props.windGustValue
+    }, 3000, am4core.ease.cubicOut).start();
+
   }
 
-  componentDidUpdate(oldProps) {
-    if (oldProps.value !== this.props.value) {
-      label.text = `${this.props.value} m/s`;
-      label2.text = `${this.props.value} m/s`;
-      let animation = new am4core.Animation(hand, {
-        property: "value",
-        to: this.props.value
-      }, 3000, am4core.ease.cubicOut).start();
-      let animation2 = new am4core.Animation(hand2, {
-        property: "value",
-        to: this.props.value2
-      }, 3000, am4core.ease.cubicOut).start();
-    }
-  }
 
   componentWillUnmount() {
-    if (this.chart) {
-      this.chart.dispose();
+    if (chart) {
+      chart.dispose();
     }
   }
 
-  render() {
-    return (<div id="chartdiv2" style={{ width: "100%", height: "100%" }}></div>
-    );
+
+  render(){
+    return(
+      <>
+        <div className={'card card__data'}>
+        <div className={'card__data__labels'}>
+          <div>Wind speed</div>
+          <div>Wind gust</div>
+        </div>
+        <div className={'card__data__content'}>
+          <div id="wind" style={{ width: "100%", height: "100%" }}></div>
+        </div>
+        </div>
+      </>
+    )
   }
 
 }

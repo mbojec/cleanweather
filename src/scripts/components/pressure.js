@@ -14,7 +14,7 @@ class Pressure extends Component{
   componentDidMount() {
     am4core.useTheme(am4themes_dark);
 
-    chart = am4core.create("chartdiv22", am4charts.GaugeChart);
+    chart = am4core.create("pressure", am4charts.GaugeChart);
     chart.innerRadius = am4core.percent(90);
 
     let axis = chart.xAxes.push(new am4charts.ValueAxis());
@@ -22,17 +22,15 @@ class Pressure extends Component{
     axis.max = 1300;
     axis.strictMinMax = true;
     axis.renderer.radius = am4core.percent(89);
-    // axis.renderer.inside = true;
     axis.renderer.line.strokeOpacity = 1;
     axis.renderer.ticks.template.strokeOpacity = 1;
     axis.renderer.ticks.template.length = 5;
     axis.renderer.grid.template.disabled = true;
     axis.renderer.labels.template.radius = 35;
+    axis.renderer.minGridDistance = 100;
     axis.renderer.labels.template.adapter.add("text", function(text) {
       return `${text} hPa`;
     });
-
-    let colorSet = new am4core.ColorSet();
 
     let axis2 = chart.xAxes.push(new am4charts.ValueAxis());
     axis2.min = 0;
@@ -50,12 +48,6 @@ class Pressure extends Component{
     range0.axisFill.fill = am4core.color("#007bff");
     range0.axisFill.zIndex = -1;
 
-    // let range1 = axis2.axisRanges.create();
-    // range1.value = 50;
-    // range1.endValue = 100;
-    // range1.axisFill.fillOpacity = 1;
-    // range1.axisFill.fill = colorSet.getIndex(2);
-
     label = chart.radarContainer.createChild(am4core.Label);
     label.isMeasured = false;
     label.fontSize = 35;
@@ -63,7 +55,7 @@ class Pressure extends Component{
     label.y = am4core.percent(100);
     label.horizontalCenter = "middle";
     label.verticalCenter = "bottom";
-    label.text = `${this.props.value} hpa`;
+    label.text = `0 hpa`;
 
     hand = chart.hands.push(new am4charts.ClockHand());
     hand.axis = axis2;
@@ -71,34 +63,38 @@ class Pressure extends Component{
     hand.radius = am4core.percent(75);
     hand.startWidth = 15;
     hand.pin.disabled = true;
-    hand.value = this.props.value;
+    hand.value = 0;
 
     hand.events.on("propertychanged", function(ev) {
       range0.endValue = ev.target.value;
       axis2.invalidate();
     });
 
+    label.text = `${this.props.value} hpa`;
+    let animation = new am4core.Animation(hand, {
+      property: "value",
+      to: this.props.value
+    }, 3000, am4core.ease.cubicOut).start();
   }
 
-  componentDidUpdate(oldProps) {
-    if (oldProps.value !== this.props.value) {
-      label.text = `${this.props.value} hpa`;
-      let animation = new am4core.Animation(hand, {
-        property: "value",
-        to: this.props.value
-      }, 3000, am4core.ease.cubicOut).start();
-    }
-  }
 
   componentWillUnmount() {
-    if (this.chart) {
-      this.chart.dispose();
+    if (chart) {
+      chart.dispose();
     }
   }
 
   render() {
-    return (<div id="chartdiv22" style={{ width: "100%", height: "100%" }}></div>
-    );
+    return(
+      <>
+        <div className={'card card__data'}>
+          <div className={'card__data__label'}>Pressure</div>
+          <div className={'card__data__content'}>
+            <div id="pressure" style={{ width: "100%", height: "100%" }}></div>
+          </div>
+        </div>
+      </>
+    )
   }
 
 }

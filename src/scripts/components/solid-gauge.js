@@ -14,19 +14,19 @@ class SolidGauge extends Component{
   componentDidMount() {
     am4core.useTheme(am4themes_dark);
     am4core.useTheme(am4themes_animated);
-    chart = am4core.create("chartdiv9", am4charts.RadarChart);
+    chart = am4core.create("cloud_humidity_percip", am4charts.RadarChart);
 
     chart.data = [{
       "category": "Precip Probability",
-      "value": this.props.value,
+      "value": this.props.precip_value,
       "full": 100
     }, {
       "category": "Cloud Cover",
-      "value": this.props.value,
+      "value": this.props.cloud_value,
       "full": 100
     }, {
       "category": "Humidity",
-      "value": this.props.value,
+      "value": this.props.humidity_value,
       "full": 100
     }];
 
@@ -83,33 +83,50 @@ class SolidGauge extends Component{
     chart.cursor = new am4charts.RadarCursor();
 
   }
-
-  componentDidUpdate(oldProps) {
-    if (oldProps.value !== this.props.value) {
-      chart.data = [{
-        "category": "Precip Probability",
-        "value": this.props.value,
-        "full": 100
-      }, {
-        "category": "Cloud Cover",
-        "value": this.props.value,
-        "full": 100
-      }, {
-        "category": "Humidity",
-        "value": this.props.value,
-        "full": 100
-      }];
-    }
-  }
+  //
+  // componentDidUpdate(oldProps) {
+  //   if (oldProps.value !== this.props.value) {
+  //     chart.data = [{
+  //       "category": "Precip Probability",
+  //       "value": this.props.value,
+  //       "full": 100
+  //     }, {
+  //       "category": "Cloud Cover",
+  //       "value": this.props.value,
+  //       "full": 100
+  //     }, {
+  //       "category": "Humidity",
+  //       "value": this.props.value,
+  //       "full": 100
+  //     }];
+  //   }
+  // }
 
   componentWillUnmount() {
-    if (this.chart) {
-      this.chart.dispose();
+    if (chart) {
+      chart.dispose();
     }
   }
 
+  // render() {
+  //   return (<div id="cloud_humidity_percip" style={{ width: "100%", height: "100%" }}></div>
+  //   );
+  // }
+
   render() {
-    return (<div id="chartdiv9" style={{ width: "100%", height: "100%" }}></div>
+    return (
+      <>
+        <div className={'card card__data'}>
+        <div className={'card__data__labels'}>
+          <div>Humidity</div>
+          <div>Cloud Cover</div>
+          <div>Precip probalbility</div>
+        </div>
+        <div className={'card__data__content'}>
+          <div id="cloud_humidity_percip" style={{ width: "100%", height: "100%" }}></div>
+        </div>
+        </div>
+      </>
     );
   }
 }
