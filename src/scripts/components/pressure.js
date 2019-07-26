@@ -73,11 +73,10 @@ class Pressure extends Component{
     hand.pin.disabled = true;
     hand.value = this.props.value;
 
-    // hand.events.on("propertychanged", function(ev) {
-    //   range0.endValue = ev.target.value;
-    //   // range1.value = ev.target.value;
-    //   axis2.invalidate();
-    // });
+    hand.events.on("propertychanged", function(ev) {
+      range0.endValue = ev.target.value;
+      axis2.invalidate();
+    });
 
   }
 

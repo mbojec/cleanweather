@@ -52,7 +52,7 @@ class Navigation extends Component{
             <div className={'navigation__app-bar__search-field__icon'}>
               <FontAwesomeIcon icon={faSearchLocation}/>
             </div>
-            <form className={'navigation__app-bar__search-field__form'}>
+            <form className={'navigation__app-bar__search-field__form'} onSubmit={e => { e.preventDefault();}}>
               <input placeholder={'Znajdź miejscowość'} type="text" autoComplete="off" name='searchQuery' value={this.state.searchQuery} onChange={e => this.handleChange(e)}/>
               <ul className={'navigation__app-bar__search-field__query-list'}>
                 {this.state.queryArray && this.state.queryArray.length !==0 && this.state.queryArray.map((singleElement, index) => <li key={index} style={{opacity: this.setOpacity(index)}}>{singleElement.place_name}</li>)}

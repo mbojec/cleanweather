@@ -46,15 +46,9 @@ class Temperature2 extends Component{
     let range0 = axis2.axisRanges.create();
     range0.value = -50;
     range0.endValue = 50;
-    range0.axisFill.fillOpacity = 0.5;
+    range0.axisFill.fillOpacity = 1;
     range0.axisFill.fill = am4core.color("#007bff");
     range0.axisFill.zIndex = -1;
-
-    // let range1 = axis2.axisRanges.create();
-    // range1.value = 50;
-    // range1.endValue = 100;
-    // range1.axisFill.fillOpacity = 1;
-    // range1.axisFill.fill = colorSet.getIndex(2);
 
     label = chart.radarContainer.createChild(am4core.Label);
     label.isMeasured = false;
@@ -73,21 +67,10 @@ class Temperature2 extends Component{
     hand.pin.disabled = true;
     hand.value = this.props.value;
 
-    // hand.events.on("propertychanged", function(ev) {
-    //   range0.endValue = ev.target.value;
-    //   // range1.value = ev.target.value;
-    //   axis2.invalidate();
-    // });
-
-    // setInterval(function() {
-    //   let value = 30;
-    //   label.text = value + `${String.fromCharCode(176)}C`;
-    //   let animation = new am4core.Animation(hand, {
-    //     property: "value",
-    //     to: value
-    //   }, 1000, am4core.ease.cubicOut).start();
-    // }, 3000);
-
+    hand.events.on("propertychanged", function(ev) {
+      range0.endValue = ev.target.value;
+      axis2.invalidate();
+    });
   }
 
   componentDidUpdate(oldProps) {
