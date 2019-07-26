@@ -11,13 +11,11 @@ class MainMap extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      viewport: {
-        latitude: 51.12893,
-        longitude: 16.98705,
-        zoom: 14,
-      },
-    }
+      latitude: this.props.latitude,
+      longitude: this.props.longitude
+    };
   }
+
 
   handleStyleLoad = map => (map.resize());
 
@@ -27,7 +25,7 @@ class MainMap extends Component{
         style="mapbox://styles/mapbox/dark-v9"
         containerStyle={{height: '100%', width: '100%'}}
         onStyleLoad={this.handleStyleLoad}
-        center={[16.9870, 51.1289]}
+        center={[this.state.longitude, this.state.latitude]}
       />
     )
   }
@@ -35,5 +33,5 @@ class MainMap extends Component{
 
 }
 
-export {MainMap}
+export default MainMap
 
