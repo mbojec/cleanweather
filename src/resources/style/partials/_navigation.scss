@@ -9,37 +9,43 @@
 .navigation__app-bar{
   padding: 0 1.6rem 0 1.6rem;
   width: 100vw;
-  height: 47px;
+  height: 94px;
   background: $color-dark-4;
   align-items: center;
+
+  @include screen-sm{
+    height: 47px;
+  }
+
+
   p {
     flex-grow: 1;
     color: white;
-    font-size: 22px;
+    font-size: 2.2rem;
   }
+
 }
 
 .navigation__app-bar__title {
   @extend %center;
   color: white;
-  display: none;
-
   @include screen-sm{
-    display: unset;
-
+    justify-content: flex-start;
   }
+
 }
 
-.navigation__app-bar__title--short {
-  @extend %center;
+.navigation__app-bar__hamburger-icon{
   color: white;
-  @include screen-sm{
+  font-size: 2.2rem;
+  @include screen-md{
     display: none;
   }
+
 }
 
 .navigation__app-bar__title {
-  font-size: 22px;
+  font-size: 2.2rem;
 }
 
 .navigation__app-bar__search-field__form {
@@ -86,7 +92,11 @@
   @extend %center;
 }
 
-.navigation__app-bar__search-field {
+.navigation__app-bar__search{
+
+}
+
+.navigation__app-bar__search-field{
   border-radius: 25px;
   height: 30px;
   background: white;
@@ -97,6 +107,18 @@
   align-items: center;
   padding: 0 0;
   position: relative;
+
+  @include screen-sm{
+    justify-content: flex-start;
+  }
+
+  @include screen-md{
+    max-width: 60%;
+  }
+
+  @include screen-lg{
+    max-width: 50%;
+  }
 }
 
 .navigation__app-bar__search-field__query-list{
