@@ -3,13 +3,7 @@ import React, {Component} from "react";
 import MainMap from "./map";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {Temperature} from "./temperature";
-import {Pressure} from "./pressure";
-import {Uv} from "./uv";
-import {SolidGauge} from "./solid-gauge";
 import {WindShortTerm} from "./wind-short-term";
-import {Compass} from "./compas";
-import Data from "./data"
-import {CurrentWeatherDesc} from "./current-weather-desc";
 import {HumidityPrecipCloudShortTerm} from './humidity-precip-cloud-short-term'
 import {PressureShortTerm} from "./pressure-short-term";
 
