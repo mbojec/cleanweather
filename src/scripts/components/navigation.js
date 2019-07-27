@@ -14,6 +14,7 @@ class Navigation extends Component{
     this.state = {
       searchQuery: 'Wrocław, Dolnośląskie, Poland',
       queryArray: [],
+      viewSelected: 'current'
     }
   }
 
@@ -29,6 +30,10 @@ class Navigation extends Component{
         .then(res => res.json())
         .then(data => this.setState({queryArray: data.features}));
     }
+  }
+
+  handleViewChange(view){
+    this.setState({...this.state, viewSelected: view})
   }
 
   navigateToCurrentLocation = () =>{
@@ -71,7 +76,7 @@ class Navigation extends Component{
             <FontAwesomeIcon icon={faBars}/>
           </div>
           <p className={'col-xs-10 col-sm-4 col-md-3 navigation__app-bar__title'}>Clear Weather</p>
-          <div className={'col-xs-12 col-sm-7 col-md-9 navigation__app-bar__search'}>
+          <div className={'col-xs-12 col-sm-7 col-md-5 col-lg-6 navigation__app-bar__search'}>
             <div className={'navigation__app-bar__search-field'}>
               <div className={'navigation__app-bar__search-field__icon'}>
                 <FontAwesomeIcon icon={faSearchLocation}/>
@@ -86,6 +91,11 @@ class Navigation extends Component{
                 <FontAwesomeIcon icon={faLocationArrow}/>
               </div>
             </div>
+          </div>
+          <div className={'col-md-4 col-lg-3 navigation__app-bar__buttons-panel'}>
+            <div onClick={event => this.handleViewChange('current')} className={`navigation__app-bar__buttons-panel__button ${this.state.viewSelected === 'current'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>Current</div>
+            <div onClick={event => this.handleViewChange('shortTerm')} className={`navigation__app-bar__buttons-panel__button ${this.state.viewSelected === 'shortTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>12h</div>
+            <div onClick={event => this.handleViewChange('longTerm')} className={`navigation__app-bar__buttons-panel__button ${this.state.viewSelected === 'longTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>7 day's</div>
           </div>
         </div>
       </>
