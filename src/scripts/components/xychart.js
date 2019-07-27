@@ -12,6 +12,22 @@ class XYChart extends Component{
     am4core.useTheme(am4themes_animated);
 
     let seriesArray = [];
+
+    if(this.props.columnSeries > 0){
+      for(let i =0; i < this.props.columnSeries; i++ ){
+        let columnSerie = new am4charts.ColumnSeries();
+        columnSerie.dataFields.dateX = "date";
+        columnSerie.dataFields.valueY = "value";
+        columnSerie.tooltipText = "{valueY.value}";
+        columnSerie.strokeWidth = 2;
+        columnSerie.data = this.props.columnSeriesArray[i].data;
+        columnSerie.name = this.props.columnSeriesArray[i].name;
+        columnSerie.columns.template.propertyFields.fillOpacity = "fillOpacity";
+        columnSerie.tooltip.label.textAlign = "middle";
+        seriesArray.push(columnSerie);
+      }
+    }
+
     if(this.props.lineSeries > 0){
       for(let i =0; i < this.props.lineSeries; i++ ){
         let lineSerie = new am4charts.LineSeries();
@@ -29,21 +45,6 @@ class XYChart extends Component{
         bullet.circle.fill = am4core.color("#fff");
 
         seriesArray.push(lineSerie);
-      }
-    }
-
-    if(this.props.columnSeries > 0){
-      for(let i =0; i < this.props.columnSeries; i++ ){
-        let columnSerie = new am4charts.ColumnSeries();
-        columnSerie.dataFields.dateX = "date";
-        columnSerie.dataFields.valueY = "value";
-        columnSerie.tooltipText = "{valueY.value}";
-        columnSerie.strokeWidth = 2;
-        columnSerie.data = this.props.columnSeriesArray[i].data;
-        columnSerie.name = this.props.columnSeriesArray[i].name;
-        columnSerie.columns.template.propertyFields.fillOpacity = "fillOpacity";
-        columnSerie.tooltip.label.textAlign = "middle";
-        seriesArray.push(columnSerie);
       }
     }
 
