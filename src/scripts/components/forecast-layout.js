@@ -27,7 +27,7 @@ class ForecastLayout extends Component{
         <div className={'row'}>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              <CurrentWeatherDesc value={this.state.forecast.currently.summary} timeZone = {this.state.forecast.timezone}/>
+              <CurrentWeatherDesc value={this.state.forecast.currently.summary} timeZone = {this.state.forecast.timezone} weatherIcon={this.state.forecast.currently.icon}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
