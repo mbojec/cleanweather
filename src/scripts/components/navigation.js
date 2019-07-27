@@ -6,21 +6,15 @@ import { faSearchLocation} from "@fortawesome/free-solid-svg-icons";
 import {faBars} from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import { connect } from 'react-redux';
+
 
 class Navigation extends Component{
 
-  constructor(props){
-    super(props);
-    this.state = {
-      searchQuery: 'Wrocław, Dolnośląskie, Poland',
-      queryArray: [],
-      viewSelected: 'current'
-    }
-  }
-
   handleChange(e){
     e.preventDefault();
-    this.setState({[e.target.name]: e.target.value});
+    // this.setState({[e.target.name]: e.target.value});
+    this.props.onChangeSearchQuery(e.target.value);
     this.displayList(e.target.value)
   }
 
@@ -28,12 +22,9 @@ class Navigation extends Component{
     if(query.length > 0){
       fetch(`https://cors-anywhere.herokuapp.com/https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?access_token=pk.eyJ1IjoibWJvamVjIiwiYSI6ImNqcmxwdWN2NDAwNmk0M3Nid2k2MWlwZXUifQ.mNFwxA0Zu5cA7HmHvlwBCg&cachebuster=1563562981406&autocomplete=true&types=place&locality&postcode&district&country&region&limit=10`)
         .then(res => res.json())
-        .then(data => this.setState({queryArray: data.features}));
-    }
-  }
+        .then(data => this.props.onChangeQueryArray(data.features));
 
-  handleViewChange(view){
-    this.setState({...this.state, viewSelected: view})
+    }
   }
 
   navigateToCurrentLocation = () =>{
@@ -49,7 +40,8 @@ class Navigation extends Component{
   };
 
   navigateToQueryLocation(cityName,position){
-    this.setState({searchQuery: cityName,queryArray: []});
+    this.props.onChangeSearchQuery(cityName);
+    this.props.onCleanQueryArray();
     this.props.history.push({pathname:'/search',search: `?lat=${position[1]}&lng=${position[0]}`})
   }
 
@@ -82,9 +74,9 @@ class Navigation extends Component{
                 <FontAwesomeIcon icon={faSearchLocation}/>
               </div>
               <form className={'navigation__app-bar__search-field__form'} onSubmit={e => { e.preventDefault();}}>
-                <input placeholder={'Znajdź miejscowość'} type="text" autoComplete="off" name='searchQuery' value={this.state.searchQuery} onChange={e => this.handleChange(e)}/>
+                <input placeholder={'Znajdź miejscowość'} type="text" autoComplete="off" name='searchQuery' value={this.props.searchQuery} onChange={e => this.handleChange(e)}/>
                 <ul className={'navigation__app-bar__search-field__query-list'}>
-                  {this.state.queryArray && this.state.queryArray.length !==0 && this.state.queryArray.map((singleElement, index) => <li key={index} onClick={event => this.navigateToQueryLocation(singleElement.place_name,singleElement.center)}>{singleElement.place_name}</li>)}
+                  {this.props.queryArray && this.props.queryArray.length !==0 && this.props.queryArray.map((singleElement, index) => <li key={index} onClick={() => this.navigateToQueryLocation(singleElement.place_name,singleElement.center)}>{singleElement.place_name}</li>)}
                 </ul>
               </form>
               <div className={'navigation__app-bar__search-field__icon__location'} onClick={event => this.navigateToCurrentLocation()}>
@@ -93,9 +85,9 @@ class Navigation extends Component{
             </div>
           </div>
           <div className={'col-md-4 col-lg-3 navigation__app-bar__buttons-panel'}>
-            <div onClick={event => this.handleViewChange('current')} className={`navigation__app-bar__buttons-panel__button ${this.state.viewSelected === 'current'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>Current</div>
-            <div onClick={event => this.handleViewChange('shortTerm')} className={`navigation__app-bar__buttons-panel__button ${this.state.viewSelected === 'shortTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>12h</div>
-            <div onClick={event => this.handleViewChange('longTerm')} className={`navigation__app-bar__buttons-panel__button ${this.state.viewSelected === 'longTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>7 day's</div>
+            <div onClick={() => this.props.onChangeView('current')} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'current'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>Current</div>
+            <div onClick={() => this.props.onChangeView('shortTerm')} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'shortTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>12h</div>
+            <div onClick={() => this.props.onChangeView('longTerm')} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'longTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>7 day's</div>
           </div>
         </div>
       </>
@@ -103,5 +95,23 @@ class Navigation extends Component{
   }
 }
 
-export default withRouter(Navigation)
+const mapStateToProps = state => {
+  return {
+    screenView: state.stateView,
+    searchQuery: state.searchQuery,
+    queryArray: state.queryArray
+
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onChangeView: (screen) => dispatch({type: 'CHANGE_VIEW', value: screen}),
+    onChangeSearchQuery: (searchQuery) => dispatch({type: 'CHANGE_SEARCH_QUERY', value: searchQuery}),
+    onChangeQueryArray: (query) => dispatch({type: 'CHANGE_QUERY', value: query}),
+    onCleanQueryArray: () => dispatch({type: 'CLEAN_QUERY'}),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps) (withRouter(Navigation))
 
