@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import {XYChart} from "./xychart";
 
 
-class DailyTemperature extends Component{
+class LongTermTemperature extends Component{
 
   createDayData(array){
     let dataArray = [];
@@ -38,7 +38,7 @@ class DailyTemperature extends Component{
         <div className={'card__data'}>
           <div className={'card__data__label'}>Temperature</div>
           <div className={'card__data__content'}>
-            <XYChart divId={'temperature-short-term'} valueAxisDesc={`Temperature(${String.fromCharCode(176)}C)`} lineSeries={2} lineSeriesArray={temperatureLineSeries}/>
+            <XYChart divId={'temperature'} valueAxisDesc={`Temperature(${String.fromCharCode(176)}C)`} lineSeries={2} lineSeriesArray={temperatureLineSeries}/>
           </div>
         </div>
       </>
@@ -47,4 +47,4 @@ class DailyTemperature extends Component{
 
 }
 
-export {DailyTemperature}
+export {LongTermTemperature}

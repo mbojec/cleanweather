@@ -9,7 +9,7 @@ let label;
 let hand;
 let chart;
 
-class Pressure extends Component{
+class PressureGauge extends Component{
 
   componentDidMount() {
     am4core.useTheme(am4themes_dark);
@@ -99,4 +99,4 @@ class Pressure extends Component{
 
 }
 
-export {Pressure}
+export {PressureGauge}

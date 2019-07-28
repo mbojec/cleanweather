@@ -14,7 +14,7 @@ import SnowIcon from '../../resources/svg/icon-snow'
 import HailIcon from '../../resources/svg/icon-hail'
 
 
-class CurrentWeatherDesc extends Component{
+class WeatherDesc extends Component{
 
   getIcon(weatherIcon){
     // console.log('weather desc' + weatherDesc);
@@ -85,4 +85,4 @@ class CurrentWeatherDesc extends Component{
   }
 }
 
-export {CurrentWeatherDesc}
+export {WeatherDesc}

@@ -2,7 +2,7 @@ require('../../resources/style/main.scss');
 import React, {Component} from "react";
 import {XYChart} from "./xychart";
 
-class WindShortTerm extends Component{
+class WindChart extends Component{
 
   createWindSpeedData(array){
     let dataArray = [];
@@ -38,7 +38,7 @@ class WindShortTerm extends Component{
         <div className={'card__data'}>
           <div className={'card__data__label'}>Wind</div>
           <div className={'card__data__content'}>
-            <XYChart divId={'wind-short-term'} valueAxisDesc={`Wind speed (m/s)`} lineSeries={2} lineSeriesArray={windLineSeries}/>
+            <XYChart divId={'wind'} valueAxisDesc={`Wind speed (m/s)`} lineSeries={2} lineSeriesArray={windLineSeries}/>
           </div>
         </div>
       </>
@@ -47,4 +47,4 @@ class WindShortTerm extends Component{
 
 }
 
-export {WindShortTerm}
+export {WindChart}

@@ -9,7 +9,7 @@ let chart;
 let series1;
 let series2;
 
-class SolidGauge extends Component{
+class HumidityPrecipCloudGauge extends Component{
 
   componentDidMount() {
     am4core.useTheme(am4themes_dark);
@@ -41,7 +41,6 @@ class SolidGauge extends Component{
     categoryAxis.renderer.grid.template.location = 0;
     categoryAxis.renderer.grid.template.strokeOpacity = 0;
     categoryAxis.renderer.labels.template.horizontalCenter = "right";
-    // categoryAxis.renderer.labels.template.fontWeight = 50;
     categoryAxis.renderer.labels.template.adapter.add("fill", function(fill, target) {
       return (target.dataItem.index >= 0) ? chart.colors.getIndex(target.dataItem.index) : fill;
     });
@@ -83,35 +82,12 @@ class SolidGauge extends Component{
     chart.cursor = new am4charts.RadarCursor();
 
   }
-  //
-  // componentDidUpdate(oldProps) {
-  //   if (oldProps.value !== this.props.value) {
-  //     chart.data = [{
-  //       "category": "Precip Probability",
-  //       "value": this.props.value,
-  //       "full": 100
-  //     }, {
-  //       "category": "Cloud Cover",
-  //       "value": this.props.value,
-  //       "full": 100
-  //     }, {
-  //       "category": "Humidity",
-  //       "value": this.props.value,
-  //       "full": 100
-  //     }];
-  //   }
-  // }
 
   componentWillUnmount() {
     if (chart) {
       chart.dispose();
     }
   }
-
-  // render() {
-  //   return (<div id="cloud_humidity_percip" style={{ width: "100%", height: "100%" }}></div>
-  //   );
-  // }
 
   render() {
     return (
@@ -131,4 +107,4 @@ class SolidGauge extends Component{
   }
 }
 
-export {SolidGauge}
+export {HumidityPrecipCloudGauge}

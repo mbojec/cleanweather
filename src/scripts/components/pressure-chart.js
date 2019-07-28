@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import {XYChart} from "./xychart";
 
 
-class PressureShortTerm extends Component{
+class PressureChart extends Component{
 
   createData(array){
     let dataArray = [];
@@ -16,7 +16,7 @@ class PressureShortTerm extends Component{
   render() {
     let pressureLineSeries = [
       {
-        name: 'Pressure',
+        name: 'PressureGauge',
         data: this.createData(this.props.value),
       }
     ];
@@ -26,7 +26,7 @@ class PressureShortTerm extends Component{
         <div className={'card__data'}>
           <div className={'card__data__label'}>Pressure</div>
           <div className={'card__data__content'}>
-            <XYChart divId={'pressure-short-term'} valueAxisDesc={`Pressure (hPa)`} lineSeries={1} lineSeriesArray={pressureLineSeries}/>
+            <XYChart divId={'pressure'} valueAxisDesc={`Pressure (hPa)`} lineSeries={1} lineSeriesArray={pressureLineSeries}/>
           </div>
         </div>
       </>
@@ -35,4 +35,4 @@ class PressureShortTerm extends Component{
 
 }
 
-export {PressureShortTerm}
+export {PressureChart}

@@ -4,7 +4,7 @@ import Sunset from "./sunset";
 import Sunrise from "./sunrise";
 import Moonphase from "./moonphase";
 
-class Data extends Component{
+class WeatherData extends Component{
 
   render() {
     const styleList = {
@@ -34,4 +34,4 @@ class Data extends Component{
   }
 }
 
-export default Data
+export default WeatherData

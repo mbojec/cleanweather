@@ -9,7 +9,7 @@ let label;
 let hand;
 let chart;
 
-class Compass  extends Component{
+class WindDirectionGauge  extends Component{
 
   getDirectionString(degrees){
     if(degrees > 337 && degrees <359 || degrees >= 0 && degrees <23){
@@ -37,7 +37,7 @@ class Compass  extends Component{
 
     am4core.useTheme(am4themes_dark);
 
-    chart = am4core.create("chartdiv5", am4charts.GaugeChart);
+    chart = am4core.create("wind-direction", am4charts.GaugeChart);
     chart.hiddenState.properties.opacity = 0;
 
     chart.startAngle = 0;
@@ -137,7 +137,7 @@ class Compass  extends Component{
         <div className={'card card__data'}>
           <div className={'card__data__label'}>Wind direction</div>
           <div className={'card__data__content'}>
-            <div id="chartdiv5" style={{ width: "100%", height: "100%" }}></div>
+            <div id="wind-direction" style={{ width: "100%", height: "100%" }}></div>
           </div>
         </div>
       </>
@@ -145,4 +145,4 @@ class Compass  extends Component{
   }
 }
 
-export {Compass}
+export {WindDirectionGauge}

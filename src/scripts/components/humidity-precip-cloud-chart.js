@@ -2,7 +2,7 @@ require('../../resources/style/main.scss');
 import React, {Component} from "react";
 import {XYChart} from "./xychart";
 
-class HumidityPrecipCloudShortTerm extends Component{
+class HumidityPrecipCloudChart extends Component{
 
   createCloudData(array){
     let dataArray = [];
@@ -57,7 +57,7 @@ class HumidityPrecipCloudShortTerm extends Component{
             <div>Precip probalbility</div>
           </div>
           <div className={'card__data__content'}>
-            <XYChart valueAxisMin={0} valueAxisMax={100} divId={'humidity-precip-cloud-short-term'} valueAxisDesc={`Probability (%)`} lineSeries={2} lineSeriesArray={precipCloudLineSeries} columnSeries={1} columnSeriesArray={humidityColumnSeries}/>
+            <XYChart valueAxisMin={0} valueAxisMax={100} divId={'humidity-precip-cloud'} valueAxisDesc={`Probability (%)`} lineSeries={2} lineSeriesArray={precipCloudLineSeries} columnSeries={1} columnSeriesArray={humidityColumnSeries}/>
           </div>
         </div>
       </>
@@ -66,4 +66,4 @@ class HumidityPrecipCloudShortTerm extends Component{
 
 }
 
-export {HumidityPrecipCloudShortTerm}
+export {HumidityPrecipCloudChart}

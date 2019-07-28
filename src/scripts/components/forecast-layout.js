@@ -2,14 +2,14 @@ require('../../resources/style/main.scss');
 import React, {Component} from "react";
 import MainMap from "./map";
 import 'mapbox-gl/dist/mapbox-gl.css';
-import {Temperature2} from "./temperature2";
-import {Pressure} from "./pressure";
-import {Uv} from "./uv";
-import {SolidGauge} from "./solid-gauge";
-import {WindSpeed} from "./wind-speed";
-import {Compass} from "./compas";
-import Data from "./data"
-import {CurrentWeatherDesc} from "./current-weather-desc";
+import {TemperatureGauge} from "./temperature-gauge";
+import {PressureGauge} from "./pressure-gauge";
+import {UvGauge} from "./uv-gauge";
+import {HumidityPrecipCloudGauge} from "./humidity-precip-cloud-gauge";
+import {WindGauge} from "./wind-gauge";
+import {WindDirectionGauge} from "./wind-direction-gauge";
+import WeatherData from "./weather-data"
+import {WeatherDesc} from "./weather-desc";
 
 class ForecastLayout extends Component{
 
@@ -27,32 +27,32 @@ class ForecastLayout extends Component{
         <div className={'row'}>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              <CurrentWeatherDesc value={this.state.forecast.currently.summary} timeZone = {this.state.forecast.timezone} weatherIcon={this.state.forecast.currently.icon}/>
+              <WeatherDesc value={this.state.forecast.currently.summary} timeZone = {this.state.forecast.timezone} weatherIcon={this.state.forecast.currently.icon}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-                <Temperature2 value={Math.round(this.state.forecast.currently.temperature)}/>
+                <TemperatureGauge value={Math.round(this.state.forecast.currently.temperature)}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              <Pressure value={Math.round(this.state.forecast.currently.pressure)}/>
+              <PressureGauge value={Math.round(this.state.forecast.currently.pressure)}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              <Uv value={this.state.forecast.currently.uvIndex}/>
+              <UvGauge value={this.state.forecast.currently.uvIndex}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-                <SolidGauge cloud_value={Math.round((this.state.forecast.currently.cloudCover * 100))} precip_value={Math.round((this.state.forecast.currently.precipProbability * 100))} humidity_value={Math.round((this.state.forecast.currently.humidity * 100))}/>
+                <HumidityPrecipCloudGauge cloud_value={Math.round((this.state.forecast.currently.cloudCover * 100))} precip_value={Math.round((this.state.forecast.currently.precipProbability * 100))} humidity_value={Math.round((this.state.forecast.currently.humidity * 100))}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-                <WindSpeed windSpeedValue={this.state.forecast.currently.windSpeed}  windGustValue={this.state.forecast.currently.windGust}/>
+                <WindGauge windSpeedValue={this.state.forecast.currently.windSpeed} windGustValue={this.state.forecast.currently.windGust}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
@@ -62,12 +62,12 @@ class ForecastLayout extends Component{
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              {<Data sunriseValue={this.state.forecast.daily.data[0].sunriseTime * 1000} sunsetValue={this.state.forecast.daily.data[0].sunsetTime * 1000}/>}
+              {<WeatherData sunriseValue={this.state.forecast.daily.data[0].sunriseTime * 1000} sunsetValue={this.state.forecast.daily.data[0].sunsetTime * 1000}/>}
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-                  <Compass value={this.state.forecast.currently.windBearing}/>
+              <WindDirectionGauge value={this.state.forecast.currently.windBearing}/>
             </div>
           </div>
         </div>

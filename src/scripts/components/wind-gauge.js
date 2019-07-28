@@ -10,7 +10,7 @@ let label2;
 let hand2;
 let chart;
 
-class WindSpeed extends Component{
+class WindGauge extends Component{
 
   componentDidMount() {
     am4core.useTheme(am4themes_dark);
@@ -23,10 +23,7 @@ class WindSpeed extends Component{
     axis.max = 25;
     axis.strictMinMax = true;
     axis.renderer.inside = true;
-    //axis.renderer.ticks.template.inside = true;
-    //axis.stroke = chart.colors.getIndex(3);
     axis.renderer.radius = am4core.percent(97);
-    //axis.renderer.radius = 80;
 
     axis.renderer.line.strokeOpacity = 1;
     axis.renderer.line.strokeWidth = 5;
@@ -132,4 +129,4 @@ class WindSpeed extends Component{
 
 }
 
-export {WindSpeed}
+export {WindGauge}
