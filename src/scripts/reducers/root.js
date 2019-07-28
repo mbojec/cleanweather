@@ -1,7 +1,8 @@
 const initialState = {
   searchQuery: 'Wrocław, Dolnośląskie, Poland',
   queryArray: [],
-  stateView: 'current'
+  stateView: 'current',
+  drawerIsOpen: false
 };
 
 const reducer = ( state = initialState, action ) => {
@@ -25,6 +26,11 @@ const reducer = ( state = initialState, action ) => {
       return {
         ...state,
         queryArray: []
+      };
+    case 'OPEN/CLOSE_DRAWER':
+      return {
+        ...state,
+        drawerIsOpen: action.value
       }
   }
   return state;

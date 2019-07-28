@@ -13,7 +13,6 @@ class Navigation extends Component{
 
   handleChange(e){
     e.preventDefault();
-    // this.setState({[e.target.name]: e.target.value});
     this.props.onChangeSearchQuery(e.target.value);
     this.displayList(e.target.value)
   }
@@ -61,10 +60,12 @@ class Navigation extends Component{
   }
 
   render() {
+    console.log('drawer state: ' + this.props.drawerIsOpen);
+
     return (
       <>
         <div className={'navigation__app-bar row'}>
-          <div className={'navigation__app-bar__hamburger-icon col-xs-1 col-sm-1'}>
+          <div className={'navigation__app-bar__hamburger-icon col-xs-1 col-sm-1'} onClick={() => this.props.onChangeDrawerState(!this.props.drawerIsOpen)}>
             <FontAwesomeIcon icon={faBars}/>
           </div>
           <p className={'col-xs-10 col-sm-4 col-md-3 navigation__app-bar__title'}>Clear Weather</p>
@@ -89,6 +90,13 @@ class Navigation extends Component{
             <div onClick={() => this.props.onChangeView('shortTerm')} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'shortTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>12h</div>
             <div onClick={() => this.props.onChangeView('longTerm')} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'longTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>7 day's</div>
           </div>
+          <div className={`navigation__app-bar__drawer ${this.props.drawerIsOpen? 'navigation__app-bar__drawer--show':'navigation__app-bar__drawer--hide'}`}>
+            <div className={'navigation__app-bar__drawer__list'}>
+              <div onClick={() => this.props.onChangeView('current')}  className={`navigation__app-bar__drawer__item ${this.props.screenView === 'current'&&'navigation__app-bar__drawer__item--clicked'}`}>Current</div>
+              <div onClick={() => this.props.onChangeView('shortTerm')} className={`navigation__app-bar__drawer__item ${this.props.screenView === 'shortTerm'&&'navigation__app-bar__drawer__item--clicked'}`}>12h</div>
+              <div onClick={() => this.props.onChangeView('longTerm')} className={`navigation__app-bar__drawer__item ${this.props.screenView === 'longTerm'&&'navigation__app-bar__drawer__item--clicked'}`}>7 day's</div>
+            </div>
+          </div>
         </div>
       </>
     )
@@ -99,7 +107,8 @@ const mapStateToProps = state => {
   return {
     screenView: state.stateView,
     searchQuery: state.searchQuery,
-    queryArray: state.queryArray
+    queryArray: state.queryArray,
+    drawerIsOpen: state.drawerIsOpen
 
   }
 };
@@ -110,6 +119,7 @@ const mapDispatchToProps = dispatch => {
     onChangeSearchQuery: (searchQuery) => dispatch({type: 'CHANGE_SEARCH_QUERY', value: searchQuery}),
     onChangeQueryArray: (query) => dispatch({type: 'CHANGE_QUERY', value: query}),
     onCleanQueryArray: () => dispatch({type: 'CLEAN_QUERY'}),
+    onChangeDrawerState: (state) => dispatch({type: 'OPEN/CLOSE_DRAWER', value: state})
   }
 };
 

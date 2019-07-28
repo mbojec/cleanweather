@@ -12,6 +12,7 @@
   height: 94px;
   background: $color-dark-4;
   align-items: center;
+  position: relative;
 
   @include screen-sm{
     height: 47px;
@@ -42,6 +43,58 @@
     display: none;
   }
 
+}
+
+.navigation__app-bar__drawer{
+  position: absolute;
+  top: 96px;
+  left: -240px;
+  width: 240px;
+  height: 100px;
+  margin-left: -1.6rem;
+  z-index: 2;
+  
+  @include screen-md{
+    display: none;
+  }
+}
+
+.navigation__app-bar__drawer--show{
+  transition: 1s;
+  transform: translate(255px, 0);
+}
+
+.navigation__app-bar__drawer--hide{
+  transition: 1s;
+  transform: translate(-240px, 0);
+}
+
+.navigation__app-bar__drawer__list{
+  background: $color-dark-3;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.navigation__app-bar__drawer__item{
+  text-align: center;
+  width: 100%;
+  font-size: 16px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1.6rem;
+  color: $color-dark-1;
+  background: $color-dark-4;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.navigation__app-bar__drawer__item--clicked{
+  color: white;
+  box-shadow: inset 0 0 15px $color-dark-4;
+  background: $color-dark-3;
 }
 
 .navigation__app-bar__title {
@@ -195,7 +248,7 @@
 
 .navigation__app-bar__buttons-panel__button--clicked{
   color: white;
-  box-shadow: unset;
+  box-shadow: inset 0 0 15px $color-dark-4;
   background: $color-dark-3;
 }
 
