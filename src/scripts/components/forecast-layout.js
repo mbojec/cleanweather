@@ -13,13 +13,6 @@ import {WeatherDesc} from "./weather-desc";
 
 class ForecastLayout extends Component{
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      forecast: this.props.forecast
-    };
-    console.log(this.state.forecast)
-  }
 
   render() {
     return(
@@ -27,47 +20,47 @@ class ForecastLayout extends Component{
         <div className={'row'}>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              <WeatherDesc value={this.state.forecast.currently.summary} timeZone = {this.state.forecast.timezone} weatherIcon={this.state.forecast.currently.icon}/>
+              <WeatherDesc value={this.props.forecast.currently.summary} timeZone = {this.props.forecast.timezone} weatherIcon={this.props.forecast.currently.icon}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-                <TemperatureGauge value={Math.round(this.state.forecast.currently.temperature)}/>
+                <TemperatureGauge value={Math.round(this.props.forecast.currently.temperature)}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              <PressureGauge value={Math.round(this.state.forecast.currently.pressure)}/>
+              <PressureGauge value={Math.round(this.props.forecast.currently.pressure)}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              <UvGauge value={this.state.forecast.currently.uvIndex}/>
+              <UvGauge value={this.props.forecast.currently.uvIndex}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-                <HumidityPrecipCloudGauge cloud_value={Math.round((this.state.forecast.currently.cloudCover * 100))} precip_value={Math.round((this.state.forecast.currently.precipProbability * 100))} humidity_value={Math.round((this.state.forecast.currently.humidity * 100))}/>
+                <HumidityPrecipCloudGauge cloud_value={Math.round((this.props.forecast.currently.cloudCover * 100))} precip_value={Math.round((this.props.forecast.currently.precipProbability * 100))} humidity_value={Math.round((this.props.forecast.currently.humidity * 100))}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-                <WindGauge windSpeedValue={this.state.forecast.currently.windSpeed} windGustValue={this.state.forecast.currently.windGust}/>
+                <WindGauge windSpeedValue={this.props.forecast.currently.windSpeed} windGustValue={this.props.forecast.currently.windGust}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              <MainMap longitude={this.state.forecast.longitude} latitude={this.state.forecast.latitude}/>
+              <MainMap longitude={this.props.forecast.longitude} latitude={this.props.forecast.latitude}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              {<WeatherData sunriseValue={this.state.forecast.daily.data[0].sunriseTime * 1000} sunsetValue={this.state.forecast.daily.data[0].sunsetTime * 1000}/>}
+              {<WeatherData sunriseValue={this.props.forecast.daily.data[0].sunriseTime * 1000} sunsetValue={this.props.forecast.daily.data[0].sunsetTime * 1000}/>}
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              <WindDirectionGauge value={this.state.forecast.currently.windBearing}/>
+              <WindDirectionGauge value={this.props.forecast.currently.windBearing}/>
             </div>
           </div>
         </div>

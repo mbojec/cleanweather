@@ -5,8 +5,14 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import App from './app';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
-import reducer from './reducers/root'
+import navigationReducer from './reducers/navigation'
+import forecastReducer from './reducers/forecast'
 
-const store = createStore(reducer);
+const rootReducer = combineReducers({
+  navigation: navigationReducer,
+  forecast: forecastReducer
+});
+
+const store = createStore(rootReducer);
 
 ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById("app"));

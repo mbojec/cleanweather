@@ -60,7 +60,7 @@ class Navigation extends Component{
   }
 
   render() {
-    console.log('drawer state: ' + this.props.drawerIsOpen);
+    console.log('drawer state: ' + this.props.queryArray);
 
     return (
       <>
@@ -105,11 +105,10 @@ class Navigation extends Component{
 
 const mapStateToProps = state => {
   return {
-    screenView: state.stateView,
-    searchQuery: state.searchQuery,
-    queryArray: state.queryArray,
-    drawerIsOpen: state.drawerIsOpen
-
+    screenView: state.navigation.stateView,
+    searchQuery: state.navigation.searchQuery,
+    queryArray: state.navigation.queryArray,
+    drawerIsOpen: state.navigation.drawerIsOpen
   }
 };
 

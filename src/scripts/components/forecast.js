@@ -9,18 +9,15 @@ import { connect } from 'react-redux';
 
 class Forecast extends Component{
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      queryPosition:{},
-      forecast: {}
-    }
-  }
-
   getForecast(queryPosition){
     axios.get(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/6e2c02f548604e02d65da8602f3c0c6e/${queryPosition.latitude},${queryPosition.longitude}?units=si`,)
-      .then(data => this.setState({queryPosition: queryPosition,forecast: data}));
+      .then(data => {
+        this.props.onAddForecast(data);
+        this.props.onAddQueryPosition(queryPosition);
+      });
   }
+
+
 
   componentDidMount() {
     let queryPosition;
@@ -61,7 +58,7 @@ class Forecast extends Component{
         longitude:queryParams[1][1]
       };
     }
-    if(this.state.queryPosition.latitude !== queryPosition.latitude && this.state.queryPosition.longitude !== queryPosition.longitude){
+    if(this.props.queryPosition.latitude !== queryPosition.latitude && this.props.queryPosition.longitude !== queryPosition.longitude){
       this.getForecast(queryPosition);
     }
   }
@@ -84,13 +81,13 @@ class Forecast extends Component{
 
   render() {
     let forecastLayout = null;
-    if(this.state.forecast.data !== undefined && this.state.forecast.status === 200){
+    if(this.props.forecast.data !== undefined && this.props.forecast.status === 200){
       if(this.props.screenView === 'current'){
-        forecastLayout = <div key={`current ${this.state.forecast.data.longitude}`}><ForecastLayout forecast={this.state.forecast.data}/></div> //dlaczego trzeba uzyc key ?
+        forecastLayout = <div key={`current ${this.props.forecast.data.longitude}`}><ForecastLayout forecast={this.props.forecast.data}/></div> //dlaczego trzeba uzyc key ?
       } else if(this.props.screenView === 'shortTerm'){
-        forecastLayout = <div key={`shortTerm ${this.state.forecast.data.longitude}`}><ShortLongTermForecastLayout forecast={this.hourForecast(this.state.forecast.data.hourly.data)} daily={false}/></div> //dlaczego trzeba uzyc key ?
+        forecastLayout = <div key={`shortTerm ${this.props.forecast.data.longitude}`}><ShortLongTermForecastLayout forecast={this.hourForecast(this.props.forecast.data.hourly.data)} daily={false}/></div> //dlaczego trzeba uzyc key ?
       } else if(this.props.screenView === 'longTerm'){
-        forecastLayout = <div key={`longTerm ${this.state.forecast.data.longitude}`}><ShortLongTermForecastLayout forecast={this.dailyForecast(this.state.forecast.data.daily.data)} daily={true}/></div> //dlaczego trzeba uzyc key ?
+        forecastLayout = <div key={`longTerm ${this.props.forecast.data.longitude}`}><ShortLongTermForecastLayout forecast={this.dailyForecast(this.props.forecast.data.daily.data)} daily={true}/></div> //dlaczego trzeba uzyc key ?
       } else {
         forecastLayout = null;
       }
@@ -105,12 +102,17 @@ class Forecast extends Component{
 
 const mapStateToProps = state => {
   return {
-    screenView: state.stateView,
+    forecast: state.forecast.forecast,
+    queryPosition: state.forecast.queryPosition,
+    screenView: state.navigation.stateView,
+    searchQuery: state.navigation.searchQuery,
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    onAddForecast: (forecast) => dispatch({type: 'ADD_FORECAST', value: forecast}),
+    onAddQueryPosition: (position) => dispatch({type: 'ADD_POSITION', value: position}),
   }
 };
 
