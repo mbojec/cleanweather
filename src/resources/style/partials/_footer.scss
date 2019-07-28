@@ -1,0 +1,59 @@
+.footer{
+  height: 20vh;
+  width: 100vw;
+  background: $color-dark-3;
+}
+
+.footer__dark_sky_info{
+  font-size: 20px;
+
+  a{
+    color: $color-dark-1;
+  }
+
+}
+
+%logo{
+  margin: 0.8rem 1.6rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.footer__contact_container{
+  font-size: 20px;
+  color: $color-dark-1;
+}
+
+.footer__contact_container__label{
+  font-size: 20px;
+  color: $color-dark-1;
+}
+
+.footer__contact_container__email{
+  font-size: 24px;
+  @extend %logo;
+}
+
+.footer__contact_container__email__logo{
+  font-size: 33px;
+  margin-right: 1.6rem;
+}
+
+.footer__contact_container__email__address{
+  font-size: 16px;
+}
+
+.footer__contact_container__github{
+  margin-left: 1.6rem;
+  color: $color-dark-1;
+  font-size: 16px;
+}
+
+.footer__contact_container__github{
+  font-size: 16px;
+  @extend %logo;
+}
+
