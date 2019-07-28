@@ -48,7 +48,7 @@ class TemperatureGauge extends Component{
     range0.value = -50;
     range0.endValue = 50;
     range0.axisFill.fillOpacity = 1;
-    range0.axisFill.fill = am4core.color("#007bff");
+    range0.axisFill.fill = am4core.color("#dc3545");
     range0.axisFill.zIndex = -1;
 
     label = chart.radarContainer.createChild(am4core.Label);

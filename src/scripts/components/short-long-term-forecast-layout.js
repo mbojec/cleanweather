@@ -5,7 +5,7 @@ import {TemperatureChart} from "./temperature-chart";
 import {WindChart} from "./wind-chart";
 import {HumidityPrecipCloudChart} from './humidity-precip-cloud-chart'
 import {PressureChart} from "./pressure-chart";
-import {LongTermTemperature} from "./long-term-temperature";
+import {TemperatureLongTermCharts} from "./temperature-long-term-charts";
 
 class ShortLongTermForecastLayout extends Component{
 
@@ -15,7 +15,7 @@ class ShortLongTermForecastLayout extends Component{
         <div className={'row'}>
           <div className={'col-xs-12 col-lg-6'}>
             <div className={'card--short-term'}>
-              {this.props.daily ? <LongTermTemperature value={this.props.forecast}/> :<TemperatureChart value={this.props.forecast}/>}
+              {this.props.daily ? <TemperatureLongTermCharts value={this.props.forecast}/> :<TemperatureChart value={this.props.forecast}/>}
             </div>
           </div>
           <div className={'col-xs-12 col-lg-6'}>

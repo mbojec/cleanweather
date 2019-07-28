@@ -32,13 +32,14 @@ class WindChart extends Component{
       }
     ];
 
+    let colorArray = ['#20c997', "#17a2b8"];
 
     return (
       <>
         <div className={'card__data'}>
           <div className={'card__data__label'}>Wind</div>
           <div className={'card__data__content'}>
-            <XYChart divId={'wind'} valueAxisDesc={`Wind speed (m/s)`} lineSeries={2} lineSeriesArray={windLineSeries}/>
+            <XYChart divId={'wind'} valueAxisDesc={`Wind speed (m/s)`} lineSeries={2} lineSeriesArray={windLineSeries} colorArray={colorArray}/>
           </div>
         </div>
       </>

@@ -21,12 +21,14 @@ class PressureChart extends Component{
       }
     ];
 
+    let colorArray = ["#007bff"];
+
     return (
       <>
         <div className={'card__data'}>
           <div className={'card__data__label'}>Pressure</div>
           <div className={'card__data__content'}>
-            <XYChart divId={'pressure'} valueAxisDesc={`Pressure (hPa)`} lineSeries={1} lineSeriesArray={pressureLineSeries}/>
+            <XYChart divId={'pressure'} valueAxisDesc={`Pressure (hPa)`} lineSeries={1} lineSeriesArray={pressureLineSeries} colorArray={colorArray}/>
           </div>
         </div>
       </>

@@ -48,6 +48,8 @@ class HumidityPrecipCloudChart extends Component{
       }
     ];
 
+    let colorArray = ["#007bff", "#ffc107", "#6c757d"];
+
     return (
       <>
         <div className={'card__data'}>
@@ -57,7 +59,7 @@ class HumidityPrecipCloudChart extends Component{
             <div>Precip probalbility</div>
           </div>
           <div className={'card__data__content'}>
-            <XYChart valueAxisMin={0} valueAxisMax={100} divId={'humidity-precip-cloud'} valueAxisDesc={`Probability (%)`} lineSeries={2} lineSeriesArray={precipCloudLineSeries} columnSeries={1} columnSeriesArray={humidityColumnSeries}/>
+            <XYChart valueAxisMin={0} valueAxisMax={100} divId={'humidity-precip-cloud'} valueAxisDesc={`Probability (%)`} lineSeries={2} lineSeriesArray={precipCloudLineSeries} columnSeries={1} columnSeriesArray={humidityColumnSeries} colorArray={colorArray}/>
           </div>
         </div>
       </>

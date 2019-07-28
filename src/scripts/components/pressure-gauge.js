@@ -44,7 +44,7 @@ class PressureGauge extends Component{
     let range0 = axis2.axisRanges.create();
     range0.value = 0;
     range0.endValue = 1300;
-    range0.axisFill.fillOpacity = 0.5;
+    range0.axisFill.fillOpacity = 1;
     range0.axisFill.fill = am4core.color("#007bff");
     range0.axisFill.zIndex = -1;
 

@@ -36,6 +36,12 @@ class HumidityPrecipCloudGauge extends Component{
 
     chart.numberFormatter.numberFormat = "#.#'%'";
 
+    chart.colors.list = [
+      am4core.color("#ffc107"),
+      am4core.color("#6c757d"),
+      am4core.color("#007bff"),
+    ];
+
     let categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
     categoryAxis.dataFields.category = "category";
     categoryAxis.renderer.grid.template.location = 0;

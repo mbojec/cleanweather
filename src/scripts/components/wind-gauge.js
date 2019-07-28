@@ -18,6 +18,11 @@ class WindGauge extends Component{
     chart = am4core.create("wind", am4charts.GaugeChart);
     chart.hiddenState.properties.opacity = 0;
 
+    chart.colors.list = [
+      am4core.color('#20c997'),
+      am4core.color("#17a2b8"),
+    ];
+
     let axis = chart.xAxes.push(new am4charts.ValueAxis());
     axis.min = 0;
     axis.max = 25;

@@ -51,12 +51,12 @@ class XYChart extends Component{
     let chart = am4core.create(this.props.divId, am4charts.XYChart);
     chart.paddingRight = 10;
     chart.cursor = new am4charts.XYCursor();
+    //
+    let colorList = chart.colors.list = [];
+    for(let i =0; i < this.props.colorArray.length;i++ ){
+      colorList.push(am4core.color(this.props.colorArray[i]))
+    }
 
-    chart.colors.list = [
-      am4core.color("#845EC2"),
-      am4core.color("#845A02"),
-      am4core.color("#115A02"),
-    ];
     chart.legend = new am4charts.Legend();
     chart.legend.useDefaultMarker = true;
     chart.legend.labels.template.text = "[bold {color}]{name}[/]";
