@@ -8,7 +8,7 @@ class PressureChart extends Component{
   createData(array){
     let dataArray = [];
     for(let i = 0; i<this.props.value.length; i++){
-      dataArray.push({date: (array[i].time * 1000), value: array[i].pressure})
+      dataArray.push({date: (array[i].time * 1000), value: array[i].pressure, unit: `hPa`})
     }
     return dataArray;
   }

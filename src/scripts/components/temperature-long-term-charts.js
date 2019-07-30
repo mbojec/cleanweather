@@ -8,7 +8,7 @@ class TemperatureLongTermCharts extends Component{
   createDayData(array){
     let dataArray = [];
     for(let i = 0; i<this.props.value.length; i++){
-      dataArray.push({date: (array[i].time * 1000), value: array[i].temperatureHigh})
+      dataArray.push({date: (array[i].time * 1000), value: array[i].temperatureHigh, unit: `${String.fromCharCode(176)}C`})
     }
     return dataArray;
   }
@@ -16,7 +16,7 @@ class TemperatureLongTermCharts extends Component{
   createNightData(array){
     let dataArray = [];
     for(let i = 0; i<this.props.value.length; i++){
-      dataArray.push({date: (array[i].time * 1000), value: array[i].temperatureLow})
+      dataArray.push({date: (array[i].time * 1000), value: array[i].temperatureLow, unit: `${String.fromCharCode(176)}C`})
     }
     return dataArray;
   }

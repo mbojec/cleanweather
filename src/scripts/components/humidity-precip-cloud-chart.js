@@ -7,7 +7,7 @@ class HumidityPrecipCloudChart extends Component{
   createCloudData(array){
     let dataArray = [];
     for(let i = 0; i<this.props.value.length; i++){
-      dataArray.push({date: (array[i].time * 1000), value: (array[i].cloudCover * 100)})
+      dataArray.push({date: (array[i].time * 1000), value: (array[i].cloudCover * 100), unit: `%`})
     }
     return dataArray;
   }
@@ -15,7 +15,7 @@ class HumidityPrecipCloudChart extends Component{
   createPrecipData(array){
     let dataArray = [];
     for(let i = 0; i<this.props.value.length; i++){
-      dataArray.push({date: (array[i].time * 1000), value: (array[i].precipProbability * 100)})
+      dataArray.push({date: (array[i].time * 1000), value: (array[i].precipProbability * 100), unit: `%`})
     }
     return dataArray;
   }
@@ -23,7 +23,7 @@ class HumidityPrecipCloudChart extends Component{
   createHumidityData(array){
     let dataArray = [];
     for(let i = 0; i<this.props.value.length; i++){
-      dataArray.push({date: (array[i].time * 1000), value: (array[i].humidity * 100), fillOpacity: array[i].humidity});
+      dataArray.push({date: (array[i].time * 1000), value: (array[i].humidity * 100), fillOpacity: array[i].humidity, unit: `%`});
     }
     return dataArray;
   }

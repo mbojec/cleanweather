@@ -8,7 +8,7 @@ class TemperatureChart extends Component{
   createData(array){
     let dataArray = [];
     for(let i = 0; i<this.props.value.length; i++){
-      dataArray.push({date: (array[i].time * 1000), value: array[i].temperature})
+      dataArray.push({date: (array[i].time * 1000), value: array[i].temperature, unit: `${String.fromCharCode(176)}C`})
     }
     return dataArray;
   }

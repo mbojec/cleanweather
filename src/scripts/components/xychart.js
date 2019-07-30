@@ -18,7 +18,7 @@ class XYChart extends Component{
         let columnSerie = new am4charts.ColumnSeries();
         columnSerie.dataFields.dateX = "date";
         columnSerie.dataFields.valueY = "value";
-        columnSerie.tooltipText = "{valueY.value}";
+        columnSerie.tooltipText = "[#fff font-size: 15px]{name}: [#fff font-size: 15px]{valueY.value} [#fff font-size: 15px]{unit}";
         columnSerie.strokeWidth = 2;
         columnSerie.data = this.props.columnSeriesArray[i].data;
         columnSerie.name = this.props.columnSeriesArray[i].name;
@@ -33,7 +33,7 @@ class XYChart extends Component{
         let lineSerie = new am4charts.LineSeries();
         lineSerie.dataFields.dateX = "date";
         lineSerie.dataFields.valueY = "value";
-        lineSerie.tooltipText = "{valueY.value}";
+        lineSerie.tooltipText =  "[#fff font-size: 15px]{name}: [#fff font-size: 15px]{valueY.value} [#fff font-size: 15px]{unit}";
         lineSerie.strokeWidth = 2;
         lineSerie.minBulletDistance = 15;
         lineSerie.data = this.props.lineSeriesArray[i].data;
@@ -43,7 +43,6 @@ class XYChart extends Component{
         bullet.circle.strokeWidth = 2;
         bullet.circle.radius = 4;
         bullet.circle.fill = am4core.color("#fff");
-
         seriesArray.push(lineSerie);
       }
     }

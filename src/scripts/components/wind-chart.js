@@ -7,7 +7,7 @@ class WindChart extends Component{
   createWindSpeedData(array){
     let dataArray = [];
     for(let i = 0; i<this.props.value.length; i++){
-      dataArray.push({date: (array[i].time * 1000), value: array[i].windSpeed})
+      dataArray.push({date: (array[i].time * 1000), value: array[i].windSpeed, unit: `m/s`})
     }
     return dataArray;
   }
@@ -15,7 +15,7 @@ class WindChart extends Component{
   createWindGustData(array){
     let dataArray = [];
     for(let i = 0; i<this.props.value.length; i++){
-      dataArray.push({date: (array[i].time * 1000), value: array[i].windGust})
+      dataArray.push({date: (array[i].time * 1000), value: array[i].windGust, unit: `m/s`})
     }
     return dataArray;
   }
@@ -39,7 +39,7 @@ class WindChart extends Component{
         <div className={'card__data'}>
           <div className={'card__data__label'}>Wind</div>
           <div className={'card__data__content'}>
-            <XYChart divId={'wind'} valueAxisDesc={`Wind speed (m/s)`} lineSeries={2} lineSeriesArray={windLineSeries} colorArray={colorArray}/>
+            <XYChart divId={'wind'} valueAxisDesc={`Speed (m/s)`} lineSeries={2} lineSeriesArray={windLineSeries} colorArray={colorArray}/>
           </div>
         </div>
       </>
