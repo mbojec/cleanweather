@@ -3,6 +3,18 @@
   flex-wrap: wrap;
 }
 
+.row--scrollable{
+  height: 22vh;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  overflow: hidden;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 100vw;
+  overflow-x: scroll;
+}
+
 @for $i from 1 through 12 {
   .col-xs-#{$i} {
     padding: 0.5rem;

@@ -6,12 +6,14 @@ import {WindChart} from "./wind-chart";
 import {HumidityPrecipCloudChart} from './humidity-precip-cloud-chart'
 import {PressureChart} from "./pressure-chart";
 import {TemperatureLongTermCharts} from "./temperature-long-term-charts";
+import {WeatherDescLongShortTermList} from "./weather-desc-long-short-term-list";
 
 class ShortLongTermForecastLayout extends Component{
 
   render() {
     return(
       <div className={'main'}>
+        <div className={'row--scrollable'}><WeatherDescLongShortTermList value={this.props.forecast} daily={this.props.daily}/></div>
         <div className={'row'}>
           <div className={'col-xs-12 col-lg-6'}>
             <div className={'card--short-term'}>
