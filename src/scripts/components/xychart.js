@@ -86,6 +86,57 @@ class XYChart extends Component{
     this.chart = chart;
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(prevProps);
+    console.log(this.props);
+    if(prevProps !== this.props){
+      console.log('update');
+    }
+    let updateSeriesArray = [];
+    if(this.props.columnSeries > 0){
+      for(let i =0; i < this.props.columnSeries; i++ ){
+        let columnSerie = new am4charts.ColumnSeries();
+        columnSerie.dataFields.dateX = "date";
+        columnSerie.dataFields.valueY = "value";
+        columnSerie.tooltipText = "[#fff font-size: 15px]{name}: [#fff font-size: 15px]{valueY.value} [#fff font-size: 15px]{unit}";
+        columnSerie.strokeWidth = 2;
+        columnSerie.data = this.props.columnSeriesArray[i].data;
+        columnSerie.name = this.props.columnSeriesArray[i].name;
+        columnSerie.columns.template.propertyFields.fillOpacity = "fillOpacity";
+        columnSerie.tooltip.label.textAlign = "middle";
+        updateSeriesArray.push(columnSerie);
+      }
+    }
+
+    if(this.props.lineSeries > 0){
+      for(let i =0; i < this.props.lineSeries; i++ ){
+        let lineSerie = new am4charts.LineSeries();
+        lineSerie.dataFields.dateX = "date";
+        lineSerie.dataFields.valueY = "value";
+        lineSerie.tooltipText =  "[#fff font-size: 15px]{name}: [#fff font-size: 15px]{valueY.value} [#fff font-size: 15px]{unit}";
+        lineSerie.strokeWidth = 2;
+        lineSerie.minBulletDistance = 15;
+        lineSerie.data = this.props.lineSeriesArray[i].data;
+        lineSerie.name = this.props.lineSeriesArray[i].name;
+
+        let bullet = lineSerie.bullets.push(new am4charts.CircleBullet());
+        bullet.circle.strokeWidth = 2;
+        bullet.circle.radius = 4;
+        bullet.circle.fill = am4core.color("#fff");
+        updateSeriesArray.push(lineSerie);
+      }
+    }
+    this.chart.series.clear();
+    let colorList = this.chart.colors.list = [];
+    for(let i =0; i < this.props.colorArray.length;i++ ){
+      colorList.push(am4core.color(this.props.colorArray[i]))
+    }
+
+    for(let i =0; i < updateSeriesArray.length; i++){
+      this.chart.series.push(updateSeriesArray[i]);
+    }
+  }
+
   componentWillUnmount() {
     if (this.chart) {
       this.chart.dispose();

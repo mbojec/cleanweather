@@ -15,26 +15,26 @@ class ShortLongTermForecastLayout extends Component{
   render() {
     return(
       <>
-        <div className={'row--scrollable'}><WeatherDescLongShortTermList value={this.props.daily ? this.props.dailyForecast : this.props.hourForecast} daily={this.props.daily}/></div>
+        <div className={'row--scrollable'}><WeatherDescLongShortTermList value={this.props.forecast} daily={this.props.screenView !== 'shortTerm'}/></div>
         <div className={'row'}>
           <div className={'col-xs-12 col-lg-6'}>
             <div className={'card--short-term'}>
-              {this.props.daily ? <TemperatureLongTermCharts value={this.props.dailyForecast}/> :<TemperatureChart value={this.props.hourForecast}/>}
+              <TemperatureChart value={this.props.forecast } screen={this.props.screenView}/>
             </div>
           </div>
           <div className={'col-xs-12 col-lg-6'}>
             <div className={'card--short-term'}>
-              <WindChart value={this.props.daily ? this.props.dailyForecast : this.props.hourForecast}/>
+              <WindChart value={this.props.forecast }/>
             </div>
           </div>
           <div className={'col-xs-12 col-lg-6'}>
             <div className={'card--short-term'}>
-              <HumidityPrecipCloudChart value={this.props.daily ? this.props.dailyForecast : this.props.hourForecast}/>
+              <HumidityPrecipCloudChart value={this.props.forecast }/>
             </div>
           </div>
           <div className={'col-xs-12 col-lg-6'}>
             <div className={'card--short-term'}>
-              <PressureChart value={this.props.daily ? this.props.dailyForecast : this.props.hourForecast}/>
+              <PressureChart value={this.props.forecast }/>
             </div>
           </div>
         </div>
@@ -45,9 +45,8 @@ class ShortLongTermForecastLayout extends Component{
 
 const mapStateToProps = state => {
   return {
-    forecast: state.forecast.forecast,
-    hourForecast: state.forecast.hourForecast,
-    dailyForecast: state.forecast.dailyForecast
+    forecast: state.forecast.displayForecast,
+    screenView: state.navigation.stateView,
   }
 };
 

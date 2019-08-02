@@ -39,6 +39,7 @@ class Navigation extends Component{
   };
 
   navigateToQueryLocation(cityName,position){
+    this.props.onChangeView('current');
     this.props.onChangeSearchQuery(cityName);
     this.props.onCleanQueryArray();
     this.props.history.push({pathname:'/search',search: `?lat=${position[1]}&lng=${position[0]}`})
@@ -60,8 +61,6 @@ class Navigation extends Component{
   }
 
   render() {
-    console.log('drawer state: ' + this.props.queryArray);
-
     return (
       <>
         <div className={'navigation__app-bar row'}>
@@ -86,9 +85,9 @@ class Navigation extends Component{
             </div>
           </div>
           <div className={'col-md-4 col-lg-3 navigation__app-bar__buttons-panel'}>
-            <div onClick={() => this.props.onChangeView('current')} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'current'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>Current</div>
-            <div onClick={() => this.props.onChangeView('shortTerm')} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'shortTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>12h</div>
-            <div onClick={() => this.props.onChangeView('longTerm')} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'longTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>7 day's</div>
+            <div onClick={() => {this.props.onChangeView('current'); this.props.onShowCurrentForecast(); }} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'current'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>Current</div>
+            <div onClick={() => {this.props.onChangeView('shortTerm'); this.props.onShowHourForecast();}} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'shortTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>12h</div>
+            <div onClick={() => {this.props.onChangeView('longTerm'); this.props.onShowDailyForecast();}} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'longTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>7 day's</div>
           </div>
           <div className={`navigation__app-bar__drawer ${this.props.drawerIsOpen? 'navigation__app-bar__drawer--show':'navigation__app-bar__drawer--hide'}`}>
             <div className={'navigation__app-bar__drawer__list'}>
@@ -118,7 +117,10 @@ const mapDispatchToProps = dispatch => {
     onChangeSearchQuery: (searchQuery) => dispatch({type: 'CHANGE_SEARCH_QUERY', value: searchQuery}),
     onChangeQueryArray: (query) => dispatch({type: 'CHANGE_QUERY', value: query}),
     onCleanQueryArray: () => dispatch({type: 'CLEAN_QUERY'}),
-    onChangeDrawerState: (state) => dispatch({type: 'OPEN/CLOSE_DRAWER', value: state})
+    onChangeDrawerState: (state) => dispatch({type: 'OPEN/CLOSE_DRAWER', value: state}),
+    onShowCurrentForecast: () => dispatch({type:'SHOW_CURRENT_FORECAST'}),
+    onShowHourForecast: () => dispatch({type:'SHOW_HOUR_FORECAST'}),
+    onShowDailyForecast: () => dispatch({type:'SHOW_DAILY_FORECAST'}),
   }
 };
 

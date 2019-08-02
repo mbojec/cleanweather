@@ -63,32 +63,14 @@ class Forecast extends Component{
     }
   }
 
-  hourForecast(array){
-    let shortTermForecastArray = [];
-    for(let i = 0; i < 12; i++){
-      shortTermForecastArray.push(array[i]);
-    }
-    return shortTermForecastArray;
-  }
-
-  dailyForecast(array){
-    let shortTermForecastArray = [];
-    for(let i = 0; i < array.length; i++){
-      shortTermForecastArray.push(array[i]);
-    }
-    return shortTermForecastArray;
-  }
-
   render() {
     let forecastLayout = null;
     if(this.props.forecast.data !== undefined && this.props.forecast.status === 200){
       if(this.props.screenView === 'current'){
         forecastLayout = <div key={`current ${this.props.forecast.data.longitude}`}><ForecastLayout/></div> //dlaczego trzeba uzyc key ?
-      } else if(this.props.screenView === 'shortTerm'){
-        forecastLayout = <div key={`shortTerm ${this.props.forecast.data.longitude}`}><ShortLongTermForecastLayout daily={false}/></div> //dlaczego trzeba uzyc key ?
-      } else if(this.props.screenView === 'longTerm'){
-        forecastLayout = <div key={`longTerm ${this.props.forecast.data.longitude}`}><ShortLongTermForecastLayout daily={true}/></div> //dlaczego trzeba uzyc key ?
-      } else {
+      } else if(this.props.screenView === 'shortTerm' || this.props.screenView === 'longTerm'){
+        forecastLayout = <div key={`shortTerm ${this.props.forecast.data.longitude}`}><ShortLongTermForecastLayout/></div> //dlaczego trzeba uzyc key ?
+      }  else {
         forecastLayout = null;
       }
     }

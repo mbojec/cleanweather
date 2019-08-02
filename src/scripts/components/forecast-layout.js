@@ -16,7 +16,6 @@ class ForecastLayout extends Component{
 
 
   render() {
-    console.log((this.props.forecast));
     return(
       <>
         <div className={'row'}>
@@ -74,7 +73,7 @@ class ForecastLayout extends Component{
 const mapStateToProps = state => {
   return {
     forecast: state.forecast.forecast,
-    currentForecast: state.forecast.currentForecast,
+    currentForecast: state.forecast.displayForecast,
   }
 };
 
