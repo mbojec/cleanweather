@@ -9,7 +9,6 @@ class XYChart extends Component{
 
   componentDidMount() {
     am4core.useTheme(am4themes_dark);
-    am4core.useTheme(am4themes_animated);
 
     let seriesArray = [];
 
@@ -50,7 +49,7 @@ class XYChart extends Component{
     let chart = am4core.create(this.props.divId, am4charts.XYChart);
     chart.paddingRight = 10;
     chart.cursor = new am4charts.XYCursor();
-    //
+
     let colorList = chart.colors.list = [];
     for(let i =0; i < this.props.colorArray.length;i++ ){
       colorList.push(am4core.color(this.props.colorArray[i]))

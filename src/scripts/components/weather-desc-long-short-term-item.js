@@ -67,6 +67,7 @@ class WeatherDescLongShortTermItem extends Component{
       justifyContent: 'center',
       alignItems:'center',
       fontSize: '80px',
+      height:'50%'
     };
 
     let date = new Date(this.props.time);

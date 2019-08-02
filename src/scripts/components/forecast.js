@@ -83,17 +83,17 @@ class Forecast extends Component{
     let forecastLayout = null;
     if(this.props.forecast.data !== undefined && this.props.forecast.status === 200){
       if(this.props.screenView === 'current'){
-        forecastLayout = <div key={`current ${this.props.forecast.data.longitude}`}><ForecastLayout forecast={this.props.forecast.data}/></div> //dlaczego trzeba uzyc key ?
+        forecastLayout = <div key={`current ${this.props.forecast.data.longitude}`}><ForecastLayout/></div> //dlaczego trzeba uzyc key ?
       } else if(this.props.screenView === 'shortTerm'){
-        forecastLayout = <div key={`shortTerm ${this.props.forecast.data.longitude}`}><ShortLongTermForecastLayout forecast={this.hourForecast(this.props.forecast.data.hourly.data)} daily={false}/></div> //dlaczego trzeba uzyc key ?
+        forecastLayout = <div key={`shortTerm ${this.props.forecast.data.longitude}`}><ShortLongTermForecastLayout daily={false}/></div> //dlaczego trzeba uzyc key ?
       } else if(this.props.screenView === 'longTerm'){
-        forecastLayout = <div key={`longTerm ${this.props.forecast.data.longitude}`}><ShortLongTermForecastLayout forecast={this.dailyForecast(this.props.forecast.data.daily.data)} daily={true}/></div> //dlaczego trzeba uzyc key ?
+        forecastLayout = <div key={`longTerm ${this.props.forecast.data.longitude}`}><ShortLongTermForecastLayout daily={true}/></div> //dlaczego trzeba uzyc key ?
       } else {
         forecastLayout = null;
       }
     }
     return(
-      <div>
+      <div className={'main'}>
         {forecastLayout}
       </div>
     )
