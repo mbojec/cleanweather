@@ -4,55 +4,55 @@
   background: $color-dark-3;
 }
 
-.footer__dark_sky_info{
+.footer__dark-sky-info{
   font-size: 20px;
-
+  @extend %center;
   a{
     color: $color-dark-1;
+  }
+
+
+  @include screen-sm{
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 
 }
 
 %logo{
   margin: 0.8rem 1.6rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
+  @extend %center;
   justify-content: flex-start;
 }
 
-.footer__contact_container{
+.footer__contact-container{
   font-size: 20px;
   color: $color-dark-1;
 }
 
-.footer__contact_container__label{
-  font-size: 20px;
-  color: $color-dark-1;
+.footer__contact-container__label{
+  text-align: center;
+  @include screen-sm{
+    text-align: unset;
+  }
 }
 
-.footer__contact_container__email{
-  font-size: 24px;
+.footer__contact-container__email{
   @extend %logo;
 }
 
-.footer__contact_container__email__logo{
-  font-size: 33px;
+.footer__contact-container__email__logo{
+  font-size: 24px;
   margin-right: 1.6rem;
 }
 
-.footer__contact_container__email__address{
+.footer__contact-container__email__address{
   font-size: 16px;
 }
 
-.footer__contact_container__github{
+.footer__contact-container__github{
   margin-left: 1.6rem;
   color: $color-dark-1;
-  font-size: 16px;
-}
-
-.footer__contact_container__github{
   font-size: 16px;
   @extend %logo;
 }
