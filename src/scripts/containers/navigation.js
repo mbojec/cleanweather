@@ -91,9 +91,9 @@ class Navigation extends Component{
           </div>
           <div className={`navigation__app-bar__drawer ${this.props.drawerIsOpen? 'navigation__app-bar__drawer--show':'navigation__app-bar__drawer--hide'}`}>
             <div className={'navigation__app-bar__drawer__list'}>
-              <div onClick={() => this.props.onChangeView('current')}  className={`navigation__app-bar__drawer__item ${this.props.screenView === 'current'&&'navigation__app-bar__drawer__item--clicked'}`}>Current</div>
-              <div onClick={() => this.props.onChangeView('shortTerm')} className={`navigation__app-bar__drawer__item ${this.props.screenView === 'shortTerm'&&'navigation__app-bar__drawer__item--clicked'}`}>12h</div>
-              <div onClick={() => this.props.onChangeView('longTerm')} className={`navigation__app-bar__drawer__item ${this.props.screenView === 'longTerm'&&'navigation__app-bar__drawer__item--clicked'}`}>7 day's</div>
+              <div onClick={() => {this.props.onChangeView('current'); this.props.onShowCurrentForecast(); this.props.onChangeDrawerState(false)}}  className={`navigation__app-bar__drawer__item ${this.props.screenView === 'current'&&'navigation__app-bar__drawer__item--clicked'}`}>Current</div>
+              <div onClick={() => {this.props.onChangeView('shortTerm'); this.props.onShowHourForecast(); this.props.onChangeDrawerState(false)}} className={`navigation__app-bar__drawer__item ${this.props.screenView === 'shortTerm'&&'navigation__app-bar__drawer__item--clicked'}`}>12h</div>
+              <div onClick={() => {this.props.onChangeView('longTerm'); this.props.onShowDailyForecast(); this.props.onChangeDrawerState(false)}} className={`navigation__app-bar__drawer__item ${this.props.screenView === 'longTerm'&&'navigation__app-bar__drawer__item--clicked'}`}>7 day's</div>
             </div>
           </div>
         </div>
