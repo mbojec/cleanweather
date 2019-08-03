@@ -5,6 +5,7 @@ const Html = require('html-webpack-plugin');
 const MiniCSS = require("mini-css-extract-plugin");
 const Compression = require("compression-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = function (env) {
     let isDev = !!env.dev;
@@ -168,6 +169,11 @@ module.exports = function (env) {
             new Clean(['build'])
         );
     }
+
+    config.plugins.push(
+      new Dotenv()
+    );
+
 
     // config.plugins.push(
     //   new HtmlWebpackPlugin({

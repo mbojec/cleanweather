@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 class Forecast extends Component{
 
   getForecast(queryPosition){
-    axios.get(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/6e2c02f548604e02d65da8602f3c0c6e/${queryPosition.latitude},${queryPosition.longitude}?units=si`,)
+    axios.get(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${process.env.REACT_APP_DARKSKY_API_KEY}/${queryPosition.latitude},${queryPosition.longitude}?units=si`,)
       .then(data => {
         this.props.onAddForecast(data);
         this.props.onAddQueryPosition(queryPosition);
