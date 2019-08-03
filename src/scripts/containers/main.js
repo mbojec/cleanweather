@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import Forecast from "../components/forecast";
-import {NotFound} from "./not-found";
+import {NotFound} from "./notFound";
 
 class Main extends Component{
 

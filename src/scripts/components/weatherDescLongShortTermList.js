@@ -1,6 +1,6 @@
 require('../../resources/style/main.scss');
 import React, {Component} from "react";
-import {WeatherDescLongShortTermItem} from "./weather-desc-long-short-term-item";
+import {WeatherDescLongShortTermItem} from "./weatherDescLongShortTermItem";
 
 class WeatherDescLongShortTermList extends Component{
 

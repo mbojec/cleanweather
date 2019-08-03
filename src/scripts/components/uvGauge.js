@@ -4,16 +4,11 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 
-let label;
-let hand;
-let chart;
-
 class UvGauge extends Component{
 
   componentDidMount() {
-    console.log('component');
     am4core.useTheme(am4themes_dark);
-    chart = am4core.create("uv", am4charts.GaugeChart);
+    let chart = am4core.create("uv", am4charts.GaugeChart);
     chart.innerRadius = am4core.percent(90);
 
     let axis = chart.xAxes.push(new am4charts.ValueAxis());
@@ -75,7 +70,7 @@ class UvGauge extends Component{
     range4.axisFill.fill = am4core.color("#6610f2");
     range4.axisFill.zIndex = -1;
 
-    label = chart.radarContainer.createChild(am4core.Label);
+    let label = chart.radarContainer.createChild(am4core.Label);
     label.isMeasured = false;
     label.fontSize = 45;
     label.x = am4core.percent(50);
@@ -84,7 +79,7 @@ class UvGauge extends Component{
     label.verticalCenter = "bottom";
     label.text = `0`;
 
-    hand = chart.hands.push(new am4charts.ClockHand());
+    let hand = chart.hands.push(new am4charts.ClockHand());
     hand.axis = axis2;
     hand.innerRadius = am4core.percent(45);
     hand.radius = am4core.percent(60);
@@ -97,11 +92,13 @@ class UvGauge extends Component{
       property: "value",
       to: this.props.value
     }, 3000, am4core.ease.cubicOut).start();
+
+    this.chart = chart;
   }
 
   componentWillUnmount() {
-    if (chart) {
-     chart.dispose();
+    if (this.chart) {
+     this.chart.dispose();
     }
   }
 

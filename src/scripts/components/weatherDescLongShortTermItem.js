@@ -74,7 +74,7 @@ class WeatherDescLongShortTermItem extends Component{
 
     return(
       <div className={'card--flat'}>
-        <div style={timeStampStyle}>{this.props.daily? date.toDateString() : date.toLocaleTimeString()}</div>
+        <div style={timeStampStyle}>{this.props.daily? date.toLocaleDateString(['en-US'], {day: '2-digit', weekday:'short',month: 'short'}) : date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: true})}</div>
         <div style={iconStyle}>{this.getIcon(this.props.weatherIcon)}</div>
         <div style={weatherDescStyle}>{this.props.value}</div>
       </div>

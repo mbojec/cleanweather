@@ -3,8 +3,8 @@ import React, {Component} from "react";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import ForecastLayout from './forecast-layout'
-import ShortLongTermForecastLayout from './short-long-term-forecast-layout'
+import ForecastLayout from './forecastLayout'
+import ShortLongTermForecastLayout from './shortLongTermForecastLayout'
 import { connect } from 'react-redux';
 
 class Forecast extends Component{

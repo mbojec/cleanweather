@@ -32,3 +32,13 @@ a {
     position: absolute;
   }
 }
+
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+  color: transparent;
+}
+

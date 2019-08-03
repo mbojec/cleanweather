@@ -7,11 +7,8 @@ import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 
 class XYChart extends Component{
 
-  componentDidMount() {
-    am4core.useTheme(am4themes_dark);
-
-    let seriesArray = [];
-
+  createSeries(){
+    let array = [];
     if(this.props.columnSeries > 0){
       for(let i =0; i < this.props.columnSeries; i++ ){
         let columnSerie = new am4charts.ColumnSeries();
@@ -23,7 +20,7 @@ class XYChart extends Component{
         columnSerie.name = this.props.columnSeriesArray[i].name;
         columnSerie.columns.template.propertyFields.fillOpacity = "fillOpacity";
         columnSerie.tooltip.label.textAlign = "middle";
-        seriesArray.push(columnSerie);
+        array.push(columnSerie);
       }
     }
 
@@ -42,18 +39,26 @@ class XYChart extends Component{
         bullet.circle.strokeWidth = 2;
         bullet.circle.radius = 4;
         bullet.circle.fill = am4core.color("#fff");
-        seriesArray.push(lineSerie);
+        array.push(lineSerie);
       }
     }
 
+    return array;
+  }
+
+  componentDidMount() {
+    am4core.useTheme(am4themes_dark);
+
+    let seriesArray = this.createSeries();
     let chart = am4core.create(this.props.divId, am4charts.XYChart);
     chart.paddingRight = 10;
     chart.cursor = new am4charts.XYCursor();
 
-    let colorList = chart.colors.list = [];
+    let colorList = [];
     for(let i =0; i < this.props.colorArray.length;i++ ){
       colorList.push(am4core.color(this.props.colorArray[i]))
     }
+    chart.colors.list  = colorList;
 
     chart.legend = new am4charts.Legend();
     chart.legend.useDefaultMarker = true;
@@ -87,53 +92,17 @@ class XYChart extends Component{
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log(prevProps);
-    console.log(this.props);
     if(prevProps !== this.props){
-      console.log('update');
-    }
-    let updateSeriesArray = [];
-    if(this.props.columnSeries > 0){
-      for(let i =0; i < this.props.columnSeries; i++ ){
-        let columnSerie = new am4charts.ColumnSeries();
-        columnSerie.dataFields.dateX = "date";
-        columnSerie.dataFields.valueY = "value";
-        columnSerie.tooltipText = "[#fff font-size: 15px]{name}: [#fff font-size: 15px]{valueY.value} [#fff font-size: 15px]{unit}";
-        columnSerie.strokeWidth = 2;
-        columnSerie.data = this.props.columnSeriesArray[i].data;
-        columnSerie.name = this.props.columnSeriesArray[i].name;
-        columnSerie.columns.template.propertyFields.fillOpacity = "fillOpacity";
-        columnSerie.tooltip.label.textAlign = "middle";
-        updateSeriesArray.push(columnSerie);
+      let updateSeriesArray = this.createSeries();
+      this.chart.series.clear();
+      let colorList  = [];
+      for(let i =0; i < this.props.colorArray.length;i++ ){
+        colorList.push(am4core.color(this.props.colorArray[i]))
       }
-    }
-
-    if(this.props.lineSeries > 0){
-      for(let i =0; i < this.props.lineSeries; i++ ){
-        let lineSerie = new am4charts.LineSeries();
-        lineSerie.dataFields.dateX = "date";
-        lineSerie.dataFields.valueY = "value";
-        lineSerie.tooltipText =  "[#fff font-size: 15px]{name}: [#fff font-size: 15px]{valueY.value} [#fff font-size: 15px]{unit}";
-        lineSerie.strokeWidth = 2;
-        lineSerie.minBulletDistance = 15;
-        lineSerie.data = this.props.lineSeriesArray[i].data;
-        lineSerie.name = this.props.lineSeriesArray[i].name;
-
-        let bullet = lineSerie.bullets.push(new am4charts.CircleBullet());
-        bullet.circle.strokeWidth = 2;
-        bullet.circle.radius = 4;
-        bullet.circle.fill = am4core.color("#fff");
-        updateSeriesArray.push(lineSerie);
+      this.chart.colors.list  = colorList;
+      for(let i =0; i < updateSeriesArray.length; i++){
+        this.chart.series.push(updateSeriesArray[i]);
       }
-    }
-    this.chart.series.clear();
-    let colorList = this.chart.colors.list = [];
-    for(let i =0; i < this.props.colorArray.length;i++ ){
-      colorList.push(am4core.color(this.props.colorArray[i]))
-    }
-
-    for(let i =0; i < updateSeriesArray.length; i++){
-      this.chart.series.push(updateSeriesArray[i]);
     }
   }
 

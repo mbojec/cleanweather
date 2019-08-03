@@ -2,14 +2,14 @@ require('../../resources/style/main.scss');
 import React, {Component} from "react";
 import MainMap from "./map";
 import 'mapbox-gl/dist/mapbox-gl.css';
-import {TemperatureGauge} from "./temperature-gauge";
-import {PressureGauge} from "./pressure-gauge";
-import {UvGauge} from "./uv-gauge";
-import {HumidityPrecipCloudGauge} from "./humidity-precip-cloud-gauge";
-import {WindGauge} from "./wind-gauge";
-import {WindDirectionGauge} from "./wind-direction-gauge";
-import WeatherData from "./weather-data"
-import {WeatherDesc} from "./weather-desc";
+import {TemperatureGauge} from "./temperatureGauge";
+import {PressureGauge} from "./pressureGauge";
+import {UvGauge} from "./uvGauge";
+import {HumidityPrecipCloudGauge} from "./humidityPrecipCloudGauge";
+import {WindGauge} from "./windGauge";
+import {WindDirectionGauge} from "./windDirectionGauge";
+import WeatherData from "./weatherData"
+import {WeatherDesc} from "./weatherDesc";
 import { connect } from 'react-redux';
 
 class ForecastLayout extends Component{
