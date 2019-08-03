@@ -6,16 +6,24 @@ require('../../resources/style/main.scss');
 
 import React, {Component} from "react";
 
-let label;
-let hand;
-let chart;
-
 class TemperatureGauge extends Component{
+
+  fontSize(){
+    if(window.innerWidth > 1200){
+      return 40;
+    } else if(window.innerWidth < 1200 && window.innerWidth >= 992){
+      return 25;
+    } else if(window.innerWidth < 992 && window.innerWidth >= 768){
+      return 35;
+    } else {
+      return 30;
+    }
+  }
 
   componentDidMount() {
     am4core.useTheme(am4themes_dark);
 
-    chart = am4core.create("temperature", am4charts.GaugeChart);
+    let chart = am4core.create("temperature", am4charts.GaugeChart);
     chart.innerRadius = am4core.percent(90);
 
     let axis = chart.xAxes.push(new am4charts.ValueAxis());
@@ -51,16 +59,16 @@ class TemperatureGauge extends Component{
     range0.axisFill.fill = am4core.color("#dc3545");
     range0.axisFill.zIndex = -1;
 
-    label = chart.radarContainer.createChild(am4core.Label);
+    let label = chart.radarContainer.createChild(am4core.Label);
     label.isMeasured = false;
-    label.fontSize = 40;
+    label.fontSize = this.fontSize();
     label.x = am4core.percent(50);
     label.y = am4core.percent(100);
     label.horizontalCenter = "middle";
     label.verticalCenter = "bottom";
     label.text = `0 ${String.fromCharCode(176)}C`;
 
-    hand = chart.hands.push(new am4charts.ClockHand());
+    let hand = chart.hands.push(new am4charts.ClockHand());
     hand.axis = axis2;
     hand.innerRadius = am4core.percent(45);
     hand.radius = am4core.percent(60);
@@ -77,12 +85,14 @@ class TemperatureGauge extends Component{
       property: "value",
       to: this.props.value
     }, 3000, am4core.ease.cubicOut).start();
+
+    this.chart = chart;
   }
 
 
   componentWillUnmount() {
-    if (chart) {
-      chart.dispose();
+    if (this.chart) {
+      this.chart.dispose();
     }
   }
 

@@ -16,7 +16,7 @@ class PressureChart extends Component{
   render() {
     let pressureLineSeries = [
       {
-        name: 'PressureGauge',
+        name: 'Pressure',
         data: this.createData(this.props.value),
       }
     ];

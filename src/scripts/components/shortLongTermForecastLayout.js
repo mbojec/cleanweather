@@ -18,22 +18,22 @@ class ShortLongTermForecastLayout extends Component{
         <div className={'row--scrollable'}><WeatherDescLongShortTermList value={this.props.forecast} daily={this.props.screenView !== 'shortTerm'}/></div>
         <div className={'row'}>
           <div className={'col-xs-12 col-lg-6'}>
-            <div className={'card--short-term'}>
+            <div className={'card--large'}>
               <TemperatureChart value={this.props.forecast } screen={this.props.screenView}/>
             </div>
           </div>
           <div className={'col-xs-12 col-lg-6'}>
-            <div className={'card--short-term'}>
+            <div className={'card--large'}>
               <WindChart value={this.props.forecast }/>
             </div>
           </div>
           <div className={'col-xs-12 col-lg-6'}>
-            <div className={'card--short-term'}>
+            <div className={'card--large'}>
               <HumidityPrecipCloudChart value={this.props.forecast }/>
             </div>
           </div>
           <div className={'col-xs-12 col-lg-6'}>
-            <div className={'card--short-term'}>
+            <div className={'card--large'}>
               <PressureChart value={this.props.forecast }/>
             </div>
           </div>

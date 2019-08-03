@@ -4,11 +4,6 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 
-
-let label;
-let hand;
-let chart;
-
 class WindDirectionGauge  extends Component{
 
   getDirectionString(degrees){
@@ -37,7 +32,7 @@ class WindDirectionGauge  extends Component{
 
     am4core.useTheme(am4themes_dark);
 
-    chart = am4core.create("wind-direction", am4charts.GaugeChart);
+    let chart = am4core.create("wind-direction", am4charts.GaugeChart);
     chart.hiddenState.properties.opacity = 0;
 
     chart.startAngle = 0;
@@ -95,7 +90,7 @@ class WindDirectionGauge  extends Component{
     axis.renderer.grid.template.disabled = true;
     axis.renderer.ticks.template.length = 10;
 
-    hand = chart.hands.push(new am4charts.ClockHand());
+    let hand = chart.hands.push(new am4charts.ClockHand());
     hand.fill = axis.renderer.line.stroke;
     hand.stroke = axis.renderer.line.stroke;
     hand.axis = axis;
@@ -109,11 +104,11 @@ class WindDirectionGauge  extends Component{
     let labelList = new am4core.ListTemplate(new am4core.Label());
     labelList.template.isMeasured = false;
     labelList.template.fontSize = 35;
-    labelList.template.y = am4core.percent(65);
+    labelList.template.y = am4core.percent(60);
     labelList.template.horizontalCenter = "middle";
     labelList.template.verticalCenter = "bottom";
 
-    label = labelList.create();
+    let label = labelList.create();
     label.parent = chart.chartContainer;
     label.x = am4core.percent(50);
     label.text = `${this.getDirectionString(0)}`;
@@ -123,11 +118,13 @@ class WindDirectionGauge  extends Component{
       property: "value",
       to: this.props.value
     }, 3000, am4core.ease.cubicOut).start();
+
+    this.chart = chart;
   }
 
   componentWillUnmount() {
-    if (chart) {
-      chart.dispose();
+    if (this.chart) {
+      this.chart.dispose();
     }
   }
 

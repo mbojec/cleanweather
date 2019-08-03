@@ -4,18 +4,12 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 
-let label;
-let hand;
-let label2;
-let hand2;
-let chart;
-
 class WindGauge extends Component{
 
   componentDidMount() {
     am4core.useTheme(am4themes_dark);
 
-    chart = am4core.create("wind", am4charts.GaugeChart);
+    let chart = am4core.create("wind", am4charts.GaugeChart);
     chart.hiddenState.properties.opacity = 0;
 
     chart.colors.list = [
@@ -61,15 +55,15 @@ class WindGauge extends Component{
     axis2.setStateOnChildren = true;
     axis2.renderer.hiddenState.properties.endAngle = 180;
 
-    hand = chart.hands.push(new am4charts.ClockHand());
+    let hand = chart.hands.push(new am4charts.ClockHand());
     hand.fill = axis.renderer.line.stroke;
     hand.stroke = axis.renderer.line.stroke;
     hand.axis = axis;
     hand.pin.radius = 10;
     hand.startWidth = 10;
-    hand.value = 0
+    hand.value = 0;
 
-    hand2 = chart.hands.push(new am4charts.ClockHand());
+    let hand2 = chart.hands.push(new am4charts.ClockHand());
     hand2.fill = axis2.renderer.line.stroke;
     hand2.stroke = axis2.renderer.line.stroke;
     hand2.axis = axis2;
@@ -82,14 +76,14 @@ class WindGauge extends Component{
     labelList.template.fontSize = 15;
     labelList.template.y = am4core.percent(-5);
     labelList.template.horizontalCenter = "middle";
-    //
-    label = labelList.create();
+
+    let label = labelList.create();
     label.parent = chart.chartContainer;
     label.x = am4core.percent(4);
     label.fill = chart.colors.getIndex(0);
     label.text = "0 m/s";
 
-    label2 = labelList.create();
+    let label2 = labelList.create();
     label2.parent = chart.chartContainer;
     label2.x = am4core.percent(96);
     label2.fill = chart.colors.getIndex(3);
@@ -106,12 +100,14 @@ class WindGauge extends Component{
       to: this.props.windGustValue
     }, 3000, am4core.ease.cubicOut).start();
 
+    this.chart = chart
+
   }
 
 
   componentWillUnmount() {
-    if (chart) {
-      chart.dispose();
+    if (this.chart) {
+      this.chart.dispose();
     }
   }
 

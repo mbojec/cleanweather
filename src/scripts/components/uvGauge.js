@@ -15,7 +15,7 @@ class UvGauge extends Component{
     axis.min = 0;
     axis.max = 12;
     axis.strictMinMax = true;
-    axis.renderer.radius = am4core.percent(89);
+    axis.renderer.radius = am4core.percent(98);
     axis.renderer.inside = true;
     axis.renderer.line.strokeOpacity = 1;
     axis.renderer.ticks.template.strokeOpacity = 1;
