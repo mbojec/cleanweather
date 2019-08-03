@@ -3,7 +3,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 
 const Map = ReactMapboxGl({
-  accessToken: "pk.eyJ1IjoibWJvamVjIiwiYSI6ImNqcmxwdWN2NDAwNmk0M3Nid2k2MWlwZXUifQ.mNFwxA0Zu5cA7HmHvlwBCg"
+  accessToken: `${process.env.REACT_APP_MAPBOX_API_KEY}`
 });
 
 class MainMap extends Component{
@@ -25,8 +25,11 @@ class MainMap extends Component{
         style="mapbox://styles/mapbox/dark-v9"
         containerStyle={{height: '100%', width: '100%'}}
         onStyleLoad={this.handleStyleLoad}
-        center={[this.state.longitude, this.state.latitude]}
-      />
+        center={[this.state.longitude, this.state.latitude]}>
+        <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
+          <Feature coordinates={[this.state.longitude, this.state.latitude]} />
+        </Layer>
+      </Map>
     )
   }
 
