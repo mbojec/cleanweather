@@ -3,6 +3,7 @@ import React, {Component} from "react";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import Forecast from "../components/forecast";
+import {NotFound} from "./not-found";
 
 class Main extends Component{
 
@@ -12,6 +13,7 @@ class Main extends Component{
         <Switch>
           <Route exact path={'/'} component={Forecast}/>
           <Route exact path={'/search'} component={Forecast}/>
+          <Route path={'/'} component={NotFound}/>
         </Switch>
       </div>
     )
