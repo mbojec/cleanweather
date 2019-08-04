@@ -244,6 +244,11 @@
   @include screen-lg{
     font-size: 15px;
   }
+
+  &:hover{
+    background: $color-dark-5;
+    cursor: default;
+  }
 }
 
 .navigation__app-bar__buttons-panel__button--clicked{
