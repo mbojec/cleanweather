@@ -21,7 +21,7 @@ class ForecastLayout extends Component{
         <div className={'row'}>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              <WeatherDesc value={this.props.currentForecast.summary} timeZone = {this.props.forecast.data.timezone} weatherIcon={this.props.currentForecast.icon}/>
+              <WeatherDesc value={this.props.currentForecast.summary} weatherIcon={this.props.currentForecast.icon}/>
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
@@ -56,7 +56,7 @@ class ForecastLayout extends Component{
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>
             <div className={'card'}>
-              {<WeatherData sunriseValue={this.props.forecast.data.daily.data[0].sunriseTime * 1000} sunsetValue={this.props.forecast.data.daily.data[0].sunsetTime * 1000}/>}
+              {<WeatherData sunriseValue={this.props.forecast.data.daily.data[0].sunriseTime * 1000} sunsetValue={this.props.forecast.data.daily.data[0].sunsetTime * 1000} timeZone = {this.props.forecast.data.timezone}/>}
             </div>
           </div>
           <div className={'col-xs-12 col-md-6 col-lg-4'}>

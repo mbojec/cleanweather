@@ -2,7 +2,7 @@ require('../../resources/style/main.scss');
 import React, {Component} from "react";
 import Sunset from "./sunset";
 import Sunrise from "./sunrise";
-import Moonphase from "./moonphase";
+import TimeZone from "./timeZone";
 
 class WeatherData extends Component{
 
@@ -27,7 +27,7 @@ class WeatherData extends Component{
         <div style={styleList}>
           <div style={styleItem}><Sunrise value={this.props.sunriseValue}/></div>
           <div style={styleItem}><Sunset value={this.props.sunsetValue}/></div>
-          <div style={styleItem}><Moonphase/></div>
+          <div style={styleItem}><TimeZone value={this.props.timeZone}/></div>
         </div>
       </>
     )

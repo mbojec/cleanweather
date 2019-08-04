@@ -17,7 +17,6 @@ import HailIcon from '../../resources/svg/icon-hail'
 class WeatherDesc extends Component{
 
   getIcon(weatherIcon){
-    // console.log('weather desc' + weatherDesc);
     switch (weatherIcon) {
       case 'clear-day':
         return <ClearDayIcon/>;
@@ -55,11 +54,6 @@ class WeatherDesc extends Component{
       paddingLeft: 0
     };
 
-    const timeZoneStyle = {
-      textAlign: 'end',
-      ...weatherDescStyle
-    };
-
     const iconStyle = {
       display: 'flex',
       justifyContent: 'center',
@@ -72,11 +66,9 @@ class WeatherDesc extends Component{
         <div className={'card card__data'}>
           <div className={'card__data__labels'}>
             <div>Current Forecast</div>
-            <div>Time Zone</div>
           </div>
           <div className={'card__data__content row'}>
             <div style={weatherDescStyle} className={'col-xs-6'}>{this.props.value}</div>
-            <div style={timeZoneStyle} className={'col-xs-6'}>{this.props.timeZone}</div>
             <div style={iconStyle} className={'col-xs-12'}>{this.getIcon(this.props.weatherIcon)}</div>
           </div>
         </div>

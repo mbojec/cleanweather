@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-class Moonphase extends Component{
+class TimeZone extends Component{
 
   render() {
 
@@ -17,18 +17,25 @@ class Moonphase extends Component{
       justifyContent: 'flex-start',
       alignItems: 'center'
     };
-    const styleListItemIconMoon = {
-      flexGrow: 2
+    const styleListItemIcon = {
+      flexGrow: 1
+    };
+    const styleListItemData = {
+      ...styleListItemLabel,
+      color: 'white',
+      justifyContent: 'flex-end',
+
     };
 
 
     return(
       <div style={styleContainer}>
-        <div style={styleListItemLabel}>Moon phase</div>
-        <div style={styleListItemIconMoon}></div>
+        <div style={styleListItemLabel}>Time Zone</div>
+        <div style={styleListItemIcon}></div>
+        <div style={styleListItemData}>{this.props.value}</div>
       </div>
     )
   }
 }
 
-export default Moonphase
+export default TimeZone
