@@ -1,4 +1,4 @@
-#Clear Weather
+# Clear Weather
 
 Clear Weather is a simple single-page web weather app created in React using [_Dark Sky's_](https://darksky.net/poweredby/) forecast API, [_MapBox_](https://www.mapbox.com/) and [_Amcharts_](https://www.amcharts.com/). Dark Sky provides an abundance of data such as the weather summary, precipitation odds, and humidity, so that this info is displayed within the UI. MapBox provides current location data and reverse geocoding for the searched cities, it also displays the map of the City that the forecast is about in the main screen. The data provided by Dark Sky is mostly displayed within gauges and charts providede by Amcarts. The app has 3 main views: the home screen where the  current weather information are displayed separately with the usage ot animate gauges from Amcharts. The second  and the third screen displays information about the forecast for the next 12 hours and 7 days in series of charts. Clear Weather uses react-redux as the main source of data.
 
