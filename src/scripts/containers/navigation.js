@@ -67,7 +67,7 @@ class Navigation extends Component{
           <div className={'navigation__app-bar__hamburger-icon col-xs-1 col-sm-1'} onClick={() => this.props.onChangeDrawerState(!this.props.drawerIsOpen)}>
             <FontAwesomeIcon icon={faBars}/>
           </div>
-          <p className={'col-xs-10 col-sm-4 col-md-3 navigation__app-bar__title'}>Clear Weather</p>
+          <p className={'col-xs-10 col-sm-4 col-md-3 navigation__app-bar__title'}>Clean Weather</p>
           <div className={'col-xs-12 col-sm-7 col-md-5 col-lg-6 navigation__app-bar__search'}>
             <div className={'navigation__app-bar__search-field'}>
               <div className={'navigation__app-bar__search-field__icon'}>

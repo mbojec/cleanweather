@@ -1,59 +1,49 @@
 .footer{
-  height: 20vh;
-  width: 100vw;
-  background: $color-dark-3;
+  width: 100%;
+  color: $color-dark-1;
+
+  $font-roboto: 'Roboto', 'Arial', 'sans-serif';
+  $min_width: 320px;
+  $max_width: 1200px;
+  $min_font: 16px;
+  $max_font: 24px;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
 }
 
-.footer__dark-sky-info{
-  font-size: 20px;
-  @extend %center;
-  a{
-    color: $color-dark-1;
-  }
-
-
-  @include screen-sm{
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-
+.footer > .row{
+  height: $app-footer-height;
 }
 
-%logo{
-  margin: 0.8rem 1.6rem;
-  @extend %center;
+.footer__icons-container{
+  display: flex;
+  flex-flow: row nowrap;
   justify-content: flex-start;
-}
+  align-items: center;
+  padding-top: 0;
 
-.footer__contact-container{
-  font-size: 20px;
-  color: $color-dark-1;
-}
-
-.footer__contact-container__label{
-  text-align: center;
-  @include screen-sm{
-    text-align: unset;
+  a {
+    margin-right: 1rem;
+    color: $color-white;
+    text-decoration: none;
+    flex-grow: 0;
   }
-}
+  span {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
 
-.footer__contact-container__email{
-  @extend %logo;
-}
-
-.footer__contact-container__email__logo{
-  font-size: 24px;
-  margin-right: 1.6rem;
-}
-
-.footer__contact-container__email__address{
-  font-size: 16px;
-}
-
-.footer__contact-container__github{
-  margin-left: 1.6rem;
-  color: $color-dark-1;
-  font-size: 16px;
-  @extend %logo;
+    a{
+      margin-right: 0;
+      font-weight: bold;
+    }
+  }
 }
 

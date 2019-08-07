@@ -1,0 +1,30 @@
+.app {
+  width: 100vw;
+}
+
+.app-header {
+  height: $app-header-height-mobile;
+  background: $color-dark-4;
+  @include screen-sm{
+    height: $app-header-height;
+  }
+}
+
+.app-main{
+  background: $color-dark-3;
+  min-height: calc(100vh - #{$app-header-height-mobile} - #{$app-footer-height});
+
+  @include screen-sm{
+    min-height: calc(100vh - #{$app-header-height} - #{$app-footer-height});
+  }
+}
+
+.app-footer{
+  height: $app-footer-height;
+  background: $color-dark-3;
+}
+
+.not-found{
+  color: white;
+  font-size: 45px;
+}

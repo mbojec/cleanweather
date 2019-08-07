@@ -75,7 +75,7 @@ class Forecast extends Component{
       }
     }
     return(
-      <div className={'main'}>
+      <div>
         {forecastLayout}
       </div>
     )
