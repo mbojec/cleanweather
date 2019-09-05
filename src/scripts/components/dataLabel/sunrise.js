@@ -1,8 +1,12 @@
+require('../../../resources/style/main.scss');
 import React, {Component} from "react";
 
-class TimeZone extends Component{
+class Sunrise extends Component{
+
+
 
   render() {
+    let date = new Date(this.props.value);
 
     const styleContainer={
       display: 'flex',
@@ -27,15 +31,14 @@ class TimeZone extends Component{
 
     };
 
-
     return(
       <div style={styleContainer}>
-        <div style={styleListItemLabel}>Time Zone</div>
+        <div style={styleListItemLabel}>Sunrise</div>
         <div style={styleListItemIcon}></div>
-        <div style={styleListItemData}>{this.props.value}</div>
+        <div style={styleListItemData}>{`${date.getHours()<10? '0'+date.getHours():date.getHours()}:${date.getMinutes() < 10? '0'+date.getMinutes():date.getMinutes()}`}</div>
       </div>
     )
   }
 }
 
-export default TimeZone
+export {Sunrise}

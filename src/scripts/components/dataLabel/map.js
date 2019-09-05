@@ -37,5 +37,5 @@ class MainMap extends Component{
 
 }
 
-export default MainMap
+export {MainMap}
 

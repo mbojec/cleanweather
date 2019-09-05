@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SvgComponent = () => (
+const DayCloudy = () => (
   <svg width="1.17em" height="0.95em" viewBox="0 0 110 110">
     <title>{'day_partly_cloudy'}</title>
     <g fill="none" fillRule="evenodd">
@@ -28,4 +28,4 @@ const SvgComponent = () => (
   </svg>
 )
 
-export default SvgComponent
+export {DayCloudy}

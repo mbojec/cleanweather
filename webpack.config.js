@@ -156,13 +156,13 @@ module.exports = function (env) {
                 : false
         })
     );
-    if(isProd) {
-        config.plugins.push( new Compression({
-                threshold: 0,
-                minRatio: 0.8
-            })
-        );
-    }
+    // if(isProd) {
+    //     config.plugins.push( new Compression({
+    //             threshold: 0,
+    //             minRatio: 0.8
+    //         })
+    //     );
+    // }
 
     if(isProd) {
         config.plugins.push(

@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 
-class Sunset extends Component{
+class TimeZone extends Component{
 
   render() {
-    let date = new Date(this.props.value);
 
     const styleContainer={
       display: 'flex',
@@ -28,14 +27,15 @@ class Sunset extends Component{
 
     };
 
+
     return(
       <div style={styleContainer}>
-        <div style={styleListItemLabel}>Sunset</div>
+        <div style={styleListItemLabel}>Time Zone</div>
         <div style={styleListItemIcon}></div>
-        <div style={styleListItemData}>{`${date.getHours()<10? '0'+date.getHours():date.getHours()}:${date.getMinutes() < 10? '0'+date.getMinutes():date.getMinutes()}`}</div>
+        <div style={styleListItemData}>{this.props.value}</div>
       </div>
     )
   }
 }
 
-export default Sunset
+export {TimeZone}

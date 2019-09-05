@@ -1,8 +1,6 @@
-require('../../resources/style/main.scss');
+require('../../../resources/style/main.scss');
 import React, {Component} from "react";
-import Sunset from "./sunset";
-import Sunrise from "./sunrise";
-import TimeZone from "./timeZone";
+import {Sunset, Sunrise, TimeZone} from "./";
 
 class WeatherData extends Component{
 
@@ -34,4 +32,4 @@ class WeatherData extends Component{
   }
 }
 
-export default WeatherData
+export {WeatherData}

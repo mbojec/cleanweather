@@ -1,9 +1,6 @@
-require('../../resources/style/main.scss');
 import React, {Component} from "react";
 
-class Sunrise extends Component{
-
-
+class Sunset extends Component{
 
   render() {
     let date = new Date(this.props.value);
@@ -33,7 +30,7 @@ class Sunrise extends Component{
 
     return(
       <div style={styleContainer}>
-        <div style={styleListItemLabel}>Sunrise</div>
+        <div style={styleListItemLabel}>Sunset</div>
         <div style={styleListItemIcon}></div>
         <div style={styleListItemData}>{`${date.getHours()<10? '0'+date.getHours():date.getHours()}:${date.getMinutes() < 10? '0'+date.getMinutes():date.getMinutes()}`}</div>
       </div>
@@ -41,4 +38,4 @@ class Sunrise extends Component{
   }
 }
 
-export default Sunrise
+export {Sunset}

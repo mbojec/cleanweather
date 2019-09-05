@@ -1,14 +1,10 @@
 import {connect} from "react-redux";
 
-require('../../resources/style/main.scss');
+require('../../../resources/style/main.scss');
 import React, {Component} from "react";
 import 'mapbox-gl/dist/mapbox-gl.css';
-import {TemperatureChart} from "./temperatureChart";
-import {WindChart} from "./windChart";
-import {HumidityPrecipCloudChart} from './humidityPrecipCloudChart'
-import {PressureChart} from "./pressureChart";
-import {TemperatureLongTermCharts} from "./temperatureLongTermCharts";
-import {WeatherDescLongShortTermList} from "./weatherDescLongShortTermList";
+import {TemperatureChart, WindChart, HumidityPrecipCloudChart, PressureChart} from "../charts";
+import {WeatherDescLongShortTermList} from "../lists";
 
 class ShortLongTermForecastLayout extends Component{
 

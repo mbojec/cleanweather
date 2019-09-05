@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SvgComponent = () => (
+const ClearNight = () => (
   <svg width="1em" height="1em" viewBox="0 0 100 100">
     <title>{'night_clear'}</title>
     <path
@@ -11,4 +11,4 @@ const SvgComponent = () => (
   </svg>
 )
 
-export default SvgComponent
+export {ClearNight}

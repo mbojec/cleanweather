@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Main from './containers/main'
-import Navigation from "./containers/navigation";
-import {Footer} from "./containers/footer";
+import {Footer, Main, Navigation} from "./containers";
 
 class App extends Component {
   render() {

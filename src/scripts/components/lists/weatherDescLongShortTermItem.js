@@ -1,48 +1,36 @@
-require('../../resources/style/main.scss');
+require('../../../resources/style/main.scss');
 import React, {Component} from "react";
-import ClearDayIcon from '../../resources/svg/icon-day-clear'
-import ClearNightIcon from '../../resources/svg/icon-night-clear'
-import CloudyDayIcon from '../../resources/svg/icon-day-partly-clody'
-import CloudyNightIcon from '../../resources/svg/icon-night-partly-cloudy'
-import CloudyIcon from '../../resources/svg/icon-cloudy'
-import RainIcon from '../../resources/svg/icon-rain'
-import WindIcon from '../../resources/svg/icon-wind'
-import ThunderstormIcon from '../../resources/svg/icon-thunderstorm'
-import SleetIcon from '../../resources/svg/icon-sleet'
-import FogIcon from '../../resources/svg/icon-fog'
-import SnowIcon from '../../resources/svg/icon-snow'
-import HailIcon from '../../resources/svg/icon-hail'
+import { Wind, Sleet, NightCloudy, ClearNight, Hail, Fog, DayCloudy, ClearDay, Cloudy, Rain, Snow, Thunderstorm} from '../../../resources/svg'
 
 class WeatherDescLongShortTermItem extends Component{
 
   getIcon(weatherIcon){
-    // console.log('weather desc' + weatherDesc);
     switch (weatherIcon) {
       case 'clear-day':
-        return <ClearDayIcon/>;
+        return <ClearDay/>;
       case 'clear-night':
-        return <ClearNightIcon/>;
+        return <ClearNight/>;
       case 'partly-cloudy-day':
-        return <CloudyDayIcon/>;
+        return <DayCloudy/>;
       case 'partly-cloudy-night':
-        return <CloudyNightIcon/>;
+        return <NightCloudy/>;
       case 'rain':
-        return <RainIcon/>;
+        return <Rain/>;
       case 'snow':
-        return <SnowIcon/>;
+        return <Snow/>;
       case 'sleet':
-        return <SleetIcon/>;
+        return <Sleet/>;
       case 'wind':
-        return <WindIcon/>;
+        return <Wind/>;
       case 'fog':
-        return <FogIcon/>;
+        return <Fog/>;
       case 'cloudy':
-        return <CloudyIcon/>;
+        return <Cloudy/>;
       case 'hail':
-        return <HailIcon/>;
+        return <Hail/>;
       case 'thunderstorm':
-        return <ThunderstormIcon/>;
-      default: return <ClearDayIcon/>;
+        return <Thunderstorm/>;
+      default: return <ClearDay/>;
     }
   }
 
