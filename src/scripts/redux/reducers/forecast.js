@@ -1,7 +1,7 @@
 import { ADD_FORECAST, ADD_POSITION } from "../actions/forecast";
 
 const initialState = {
-  queryPosition:{},
+  queryPosition:{latitude: "51.128958399999995", longitude: "16.9870649"},
   forecast: {},
   currentForecast: {},
   hourForecast: [],
