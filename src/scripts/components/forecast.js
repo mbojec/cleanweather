@@ -3,18 +3,21 @@ import React, {Component} from "react";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import ForecastLayout from './layouts/forecastLayout'
-import ShortLongTermForecastLayout from './layouts/shortLongTermForecastLayout'
+import {ForecastLayout, ShortLongTermForecastLayout} from './layouts'
+// import ShortLongTermForecastLayout from './layouts/shortLongTermForecastLayout'
 import { connect } from 'react-redux';
+import {compose} from "recompose";
+import {withRedux} from "../redux/wrapper";
 
 class Forecast extends Component{
 
   getForecast(queryPosition){
-    axios.get(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${process.env.REACT_APP_DARKSKY_API_KEY}/${queryPosition.latitude},${queryPosition.longitude}?units=si`,)
-      .then(data => {
-        this.props.onAddForecast(data);
-        this.props.onAddQueryPosition(queryPosition);
-      });
+    // axios.get(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${process.env.REACT_APP_DARKSKY_API_KEY}/${queryPosition.latitude},${queryPosition.longitude}?units=si`,)
+    //   .then(data => {
+    //     this.props.onAddForecast(data);
+    //     this.props.onAddQueryPosition(queryPosition);
+    //   });
+    this.props.onFetchForecast(queryPosition);
   }
 
 
@@ -82,20 +85,21 @@ class Forecast extends Component{
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    forecast: state.forecast.forecast,
-    queryPosition: state.forecast.queryPosition,
-    screenView: state.navigation.stateView,
-    searchQuery: state.navigation.searchQuery,
-  }
-};
+// const mapStateToProps = state => {
+//   return {
+//     forecast: state.forecast.forecast,
+//     queryPosition: state.forecast.queryPosition,
+//     screenView: state.navigation.stateView,
+//     searchQuery: state.navigation.searchQuery,
+//   }
+// };
+//
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onAddForecast: (forecast) => dispatch({type: 'ADD_FORECAST', value: forecast}),
+//     onAddQueryPosition: (position) => dispatch({type: 'ADD_POSITION', value: position}),
+//   }
+// };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onAddForecast: (forecast) => dispatch({type: 'ADD_FORECAST', value: forecast}),
-    onAddQueryPosition: (position) => dispatch({type: 'ADD_POSITION', value: position}),
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps) (withRouter(Forecast))
+const forecastHoc = compose(withRedux, withRouter)(Forecast);
+export {forecastHoc as Forecast}

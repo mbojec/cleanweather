@@ -6,22 +6,24 @@ import { faSearchLocation} from "@fortawesome/free-solid-svg-icons";
 import {faBars} from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {compose} from "recompose";
+import {withRedux} from "../redux/wrapper";
 
 
 class Navigation extends Component{
 
   handleChange(e){
     e.preventDefault();
-    this.props.onChangeSearchQuery(e.target.value);
+    this.props.onChangeQueryArray(e.target.value);
     this.displayList(e.target.value)
   }
 
   displayList(query){
     if(query.length > 0){
-      fetch(`https://cors-anywhere.herokuapp.com/https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?access_token=${process.env.REACT_APP_MAPBOX_API_KEY}&autocomplete=true&types=place&locality&postcode&district&country&region&limit=10`)
-        .then(res => res.json())
-        .then(data => this.props.onChangeQueryArray(data.features));
-
+      // fetch(`https://cors-anywhere.herokuapp.com/https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?access_token=${process.env.REACT_APP_MAPBOX_API_KEY}&autocomplete=true&types=place&locality&postcode&district&country&region&limit=10`)
+      //   .then(res => res.json())
+      //   .then(data => this.props.onChangeQueryArray(data.features));
+      this.props.onFetchSearchQuery(query);
     }
   }
 
@@ -101,28 +103,31 @@ class Navigation extends Component{
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    screenView: state.navigation.stateView,
-    searchQuery: state.navigation.searchQuery,
-    queryArray: state.navigation.queryArray,
-    drawerIsOpen: state.navigation.drawerIsOpen
-  }
-};
+// const mapStateToProps = state => {
+//   return {
+//     screenView: state.navigation.stateView,
+//     searchQuery: state.navigation.searchQuery,
+//     queryArray: state.navigation.queryArray,
+//     drawerIsOpen: state.navigation.drawerIsOpen
+//   }
+// };
+//
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onChangeView: (screen) => dispatch({type: 'CHANGE_VIEW', value: screen}),
+//     onChangeSearchQuery: (searchQuery) => dispatch({type: 'CHANGE_SEARCH_QUERY', value: searchQuery}),
+//     onChangeQueryArray: (query) => dispatch({type: 'CHANGE_QUERY', value: query}),
+//     onCleanQueryArray: () => dispatch({type: 'CLEAN_QUERY'}),
+//     onChangeDrawerState: (state) => dispatch({type: 'OPEN/CLOSE_DRAWER', value: state}),
+//     onShowCurrentForecast: () => dispatch({type:'SHOW_CURRENT_FORECAST'}),
+//     onShowHourForecast: () => dispatch({type:'SHOW_HOUR_FORECAST'}),
+//     onShowDailyForecast: () => dispatch({type:'SHOW_DAILY_FORECAST'}),
+//   }
+// };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onChangeView: (screen) => dispatch({type: 'CHANGE_VIEW', value: screen}),
-    onChangeSearchQuery: (searchQuery) => dispatch({type: 'CHANGE_SEARCH_QUERY', value: searchQuery}),
-    onChangeQueryArray: (query) => dispatch({type: 'CHANGE_QUERY', value: query}),
-    onCleanQueryArray: () => dispatch({type: 'CLEAN_QUERY'}),
-    onChangeDrawerState: (state) => dispatch({type: 'OPEN/CLOSE_DRAWER', value: state}),
-    onShowCurrentForecast: () => dispatch({type:'SHOW_CURRENT_FORECAST'}),
-    onShowHourForecast: () => dispatch({type:'SHOW_HOUR_FORECAST'}),
-    onShowDailyForecast: () => dispatch({type:'SHOW_DAILY_FORECAST'}),
-  }
-};
+// const wrappedComponent = connect(mapStateToProps, mapDispatchToProps) (withRouter(Navigation));
+// export {wrappedComponent as Navigation}
 
-const wrappedComponent = connect(mapStateToProps, mapDispatchToProps) (withRouter(Navigation));
-export {wrappedComponent as Navigation}
+const navigationHoc = compose(withRedux, withRouter)(Navigation);
+export {navigationHoc as Navigation}
 
