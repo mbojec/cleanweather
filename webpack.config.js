@@ -34,21 +34,23 @@ module.exports = function (env) {
 
     const js = {
         test: /\.js$/, exclude: /node_modules/,
-        use: {
-            loader: 'babel-loader',
-            options: {
-                presets: [
-                    ["@babel/preset-env", {
-                        targets: {
-                            browsers: isDev ? browsers.dev : browsers.prod
-                        }
-                    }]
-                ],
-                plugins: [
-                    '@babel/plugin-syntax-dynamic-import'
-                ]
-            }
-        }
+        use: [
+            {
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        ["@babel/preset-env", {
+                            targets: {
+                                browsers: isDev ? browsers.dev : browsers.prod
+                            }
+                        }]
+                    ],
+                    plugins: [
+                        '@babel/plugin-syntax-dynamic-import'
+                    ]
+                }
+            }, "eslint-loader"
+        ]
     };
 
     const css = {
