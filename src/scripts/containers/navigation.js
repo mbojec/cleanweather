@@ -1,13 +1,10 @@
 require('../../resources/style/main.scss');
 import React, {Component} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationArrow } from '@fortawesome/free-solid-svg-icons'
-import { faSearchLocation} from "@fortawesome/free-solid-svg-icons";
-import {faBars} from "@fortawesome/free-solid-svg-icons";
+import { faLocationArrow, faSearchLocation, faBars } from '@fortawesome/free-solid-svg-icons'
 import { withRouter } from 'react-router-dom';
 import {compose} from "recompose";
 import {withRedux} from "../redux/wrapper";
-
 
 class Navigation extends Component{
 
@@ -99,6 +96,6 @@ class Navigation extends Component{
     )
   }
 }
-const navigationHoc = compose(withRedux, withRouter)(Navigation);
-export {navigationHoc as Navigation}
+const NavigationHoc = compose(withRedux, withRouter)(Navigation);
+export {NavigationHoc as Navigation}
 
