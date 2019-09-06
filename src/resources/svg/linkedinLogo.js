@@ -10,4 +10,4 @@ const LinkedinLogo = () => (
   </svg>
 );
 
-export default LinkedinLogo
+export {LinkedinLogo}

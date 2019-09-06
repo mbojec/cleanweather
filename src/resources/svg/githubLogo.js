@@ -10,4 +10,4 @@ const GithubLogo = () => (
   </svg>
 );
 
-export default GithubLogo
+export {GithubLogo}

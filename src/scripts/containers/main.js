@@ -1,23 +1,20 @@
 require('../../resources/style/main.scss');
-import React, {Component} from "react";
+import React from "react";
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
-import Forecast from "../components/forecast";
-import {NotFound} from "./notFound";
+import { Route, Switch} from 'react-router-dom';
+import {Forecast} from "../components/forecast";
+import {NotFound} from "./";
 
-class Main extends Component{
+const Main = () => {
+  return(
+    <div>
+      <Switch>
+        <Route exact path={'/'} component={Forecast}/>
+        <Route exact path={'/search'} component={Forecast}/>
+        <Route path={'/'} component={NotFound}/>
+      </Switch>
+    </div>
+  )
+};
 
-  render() {
-    return(
-      <div>
-        <Switch>
-          <Route exact path={'/'} component={Forecast}/>
-          <Route exact path={'/search'} component={Forecast}/>
-          <Route path={'/'} component={NotFound}/>
-        </Switch>
-      </div>
-    )
-  }
-}
-
-export default Main
+export {Main}

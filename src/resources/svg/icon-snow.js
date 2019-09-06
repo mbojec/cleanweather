@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SvgComponent = () => (
+const Snow = () => (
   <svg width="1em" height="0.93em" viewBox="0 0 100 100">
     <title>{'snow_heavy'}</title>
     <g fill="#EBEBEB" fillRule="evenodd">
@@ -12,4 +12,4 @@ const SvgComponent = () => (
   </svg>
 )
 
-export default SvgComponent
+export {Snow}

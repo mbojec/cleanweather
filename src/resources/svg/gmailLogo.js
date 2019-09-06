@@ -24,4 +24,4 @@ const GmailLogo = () => (
   </svg>
 );
 
-export default GmailLogo
+export {GmailLogo}

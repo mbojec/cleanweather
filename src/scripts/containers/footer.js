@@ -1,10 +1,6 @@
 require('../../resources/style/main.scss');
 import React, {Component} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEnvelope} from "@fortawesome/free-solid-svg-icons";
-import GithubLogo from "../../resources/svg/githubLogo";
-import LinkedinLogo from "../../resources/svg/linkedinLogo";
-import GmailLogo from "../../resources/svg/gmailLogo";
+import {GithubLogo, LinkedinLogo, GmailLogo} from "../../resources/svg";
 
 class Footer extends Component{
 
