@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {changeView,  cleanQuery, fetchSearchQuery, openCloseDrawer, changeSearchQuery} from "./actions/navigation";
-import {showCurrentForecast, fetchForecast, showDailyForecast, showHourForecast} from "./actions/forecast";
+import {changeView, cleanQuery, fetchSearchQuery, openCloseDrawer, changeSearchQuery, fetchCityName} from "./actions/navigation";
+import {fetchForecast} from "./actions/forecast";
 
 
 export function withRedux(WrappedComponent) {
@@ -19,6 +19,7 @@ export function withRedux(WrappedComponent) {
       onCleanQueryArray: () => dispatch(cleanQuery()),
       onChangeDrawerState: (state) => dispatch(openCloseDrawer(state)),
       onFetchForecast: (queryPosition) => dispatch(fetchForecast(queryPosition)),
+      onFetchCityName: (queryPosition) => dispatch(fetchCityName(queryPosition))
     }
   };
 

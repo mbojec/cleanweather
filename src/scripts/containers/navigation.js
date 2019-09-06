@@ -53,7 +53,7 @@ class Navigation extends Component{
         latitude: queryParams[0][1],
         longitude:queryParams[1][1]
       };
-      // do reverse geocoding and update navbar
+      this.props.onFetchCityName(queryPosition);
     }
   }
 
