@@ -56,7 +56,9 @@ const printError = (error)  => {
 export const fetchSearchQuery = (query) => (dispatch) => {
   axios.get(`https://cors-anywhere.herokuapp.com/https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?access_token=${process.env.REACT_APP_MAPBOX_API_KEY}&autocomplete=true&types=place&locality&postcode&district&country&region&limit=10`,
     {headers: {"Content-Type": "application/json"}})
-    .then(res => changeQuery(res.features))
+    .then(res => {
+      dispatch(changeQuery(res.data.features));
+    })
     .catch((error) => {
       printError(error);
     });

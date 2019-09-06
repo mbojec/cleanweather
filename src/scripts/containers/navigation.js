@@ -41,7 +41,7 @@ class Navigation extends Component{
 
   navigateToQueryLocation(cityName,position){
     this.props.onChangeView('current');
-    this.props.onChangeSearchQuery(cityName);
+    this.props.onChangeQueryArray(cityName);
     this.props.onCleanQueryArray();
     this.props.history.push({pathname:'/search',search: `?lat=${position[1]}&lng=${position[0]}`})
   }
