@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {changeView,  cleanQuery, fetchSearchQuery, openCloseDrawer, changeSearchQuery} from "./actions/navigation";
-import {showCurrentForecast, fetchForecast, showDailyForecast, showHourForecast} from "./actions/forecast";
+import {changeView, cleanQuery, fetchSearchQuery, openCloseDrawer, changeCityName, fetchCityName} from "./actions/navigation";
+import {fetchForecast} from "./actions/forecast";
 
 
 export function withRedux(WrappedComponent) {
@@ -15,17 +15,18 @@ export function withRedux(WrappedComponent) {
     return {
       onChangeView: (screen) => dispatch(changeView(screen)),
       onFetchSearchQuery: (searchQuery) => dispatch(fetchSearchQuery(searchQuery)),
-      onChangeQueryArray: (query) => dispatch(changeSearchQuery(query)),
+      onChangeCityName: (cityName) => dispatch(changeCityName(cityName)),
       onCleanQueryArray: () => dispatch(cleanQuery()),
       onChangeDrawerState: (state) => dispatch(openCloseDrawer(state)),
       onFetchForecast: (queryPosition) => dispatch(fetchForecast(queryPosition)),
+      onFetchCityName: (queryPosition) => dispatch(fetchCityName(queryPosition))
     }
   };
 
   const mapStateToProps = state => {
     return {
       screenView: state.navigation.stateView,
-      searchQuery: state.navigation.searchQuery,
+      cityName: state.navigation.cityName,
       queryArray: state.navigation.queryArray,
       drawerIsOpen: state.navigation.drawerIsOpen,
       forecast: state.forecast.forecast,
