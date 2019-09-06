@@ -1,4 +1,4 @@
-import { ADD_FORECAST, ADD_POSITION, SHOW_CURRENT_FORECAST, SHOW_DAILY_FORECAST, SHOW_HOUR_FORECAST } from "../actions/forecast";
+import { ADD_FORECAST, ADD_POSITION } from "../actions/forecast";
 
 const initialState = {
   queryPosition:{},
@@ -6,7 +6,6 @@ const initialState = {
   currentForecast: {},
   hourForecast: [],
   dailyForecast: [],
-  displayForecast: {}
 };
 
 function hourForecast(array){
@@ -34,27 +33,11 @@ const forecast = (state = initialState, action) => {
         currentForecast: action.payload.data.currently,
         hourForecast: hourForecast(action.payload.data.hourly.data),
         dailyForecast: dailyForecast(action.payload.data.daily.data),
-        displayForecast: action.payload.data.currently,
       };
     case ADD_POSITION:
       return {
         ...state,
         queryPosition: action.payload
-      };
-    case SHOW_CURRENT_FORECAST:
-      return {
-        ...state,
-        displayForecast: state.currentForecast
-      };
-    case SHOW_HOUR_FORECAST:
-      return {
-        ...state,
-        displayForecast: state.hourForecast
-      };
-    case SHOW_DAILY_FORECAST:
-      return {
-        ...state,
-        displayForecast: state.dailyForecast
       };
     default:
       return state;

@@ -18,9 +18,6 @@ export function withRedux(WrappedComponent) {
       onChangeQueryArray: (query) => dispatch(changeSearchQuery(query)),
       onCleanQueryArray: () => dispatch(cleanQuery()),
       onChangeDrawerState: (state) => dispatch(openCloseDrawer(state)),
-      onShowCurrentForecast: () => dispatch(showCurrentForecast()),
-      onShowHourForecast: () => dispatch(showHourForecast()),
-      onShowDailyForecast: () => dispatch(showDailyForecast()),
       onFetchForecast: (queryPosition) => dispatch(fetchForecast(queryPosition)),
     }
   };
@@ -33,7 +30,9 @@ export function withRedux(WrappedComponent) {
       drawerIsOpen: state.navigation.drawerIsOpen,
       forecast: state.forecast.forecast,
       queryPosition: state.forecast.queryPosition,
-      displayForecast: state.forecast.displayForecast,
+      currentForecast: state.forecast.currentForecast,
+      hourForecast: state.forecast.hourForecast,
+      dailyForecast: state.forecast.dailyForecast,
     }
   };
 

@@ -1,8 +1,5 @@
 export const ADD_FORECAST = 'ADD_FORECAST';
 export const ADD_POSITION = "ADD_POSITION";
-export const SHOW_CURRENT_FORECAST = 'SHOW_CURRENT_FORECAST';
-export const SHOW_HOUR_FORECAST = 'SHOW_HOUR_FORECAST';
-export const SHOW_DAILY_FORECAST = 'SHOW_DAILY_FORECAST';
 import axios from 'axios';
 
 
@@ -17,25 +14,6 @@ export const addPosition = position => {
   return {
     type: ADD_POSITION,
     payload: position
-  };
-};
-
-export const showHourForecast = () => {
-  return {
-    type: SHOW_HOUR_FORECAST,
-  };
-};
-
-export const showDailyForecast = () => {
-  return {
-    type: SHOW_DAILY_FORECAST,
-  };
-};
-
-
-export const showCurrentForecast = () => {
-  return {
-    type: SHOW_CURRENT_FORECAST,
   };
 };
 

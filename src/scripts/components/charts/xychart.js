@@ -92,7 +92,7 @@ class XYChart extends Component{
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if(prevProps !== this.props){
+    if(prevProps.lineSeriesArray[0].data.length !== this.props.lineSeriesArray[0].data.length){
       let updateSeriesArray = this.createSeries();
       this.chart.series.clear();
       let colorList  = [];
