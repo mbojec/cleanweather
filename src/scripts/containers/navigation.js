@@ -13,7 +13,7 @@ class Navigation extends Component{
 
   handleChange(e){
     e.preventDefault();
-    this.props.onChangeQueryArray(e.target.value);
+    this.props.onChangeCityName(e.target.value);
     this.displayList(e.target.value)
   }
 
@@ -26,7 +26,8 @@ class Navigation extends Component{
   navigateToCurrentLocation = () =>{
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        this.props.history.push({pathname:'/search',search: `?lat=${position.coords.latitude}&lng=${position.coords.longitude}`})
+        this.props.history.push({pathname:'/search',search: `?lat=${position.coords.latitude}&lng=${position.coords.longitude}`});
+        this.props.onFetchCityName({latitude: position.coords.latitude, longitude: position.coords.longitude});
       },
       (error) => {
         console.error(JSON.stringify(error))
@@ -37,7 +38,7 @@ class Navigation extends Component{
 
   navigateToQueryLocation(cityName,position){
     this.props.onChangeView('current');
-    this.props.onChangeQueryArray(cityName);
+    this.props.onChangeCityName(cityName);
     this.props.onCleanQueryArray();
     this.props.history.push({pathname:'/search',search: `?lat=${position[1]}&lng=${position[0]}`})
   }
@@ -71,12 +72,12 @@ class Navigation extends Component{
                 <FontAwesomeIcon icon={faSearchLocation}/>
               </div>
               <form className={'navigation__app-bar__search-field__form'} onSubmit={e => { e.preventDefault();}}>
-                <input placeholder={'Znajdź miejscowość'} type="text" autoComplete="off" name='searchQuery' value={this.props.searchQuery} onChange={e => this.handleChange(e)}/>
+                <input placeholder={'Znajdź miejscowość'} type="text" autoComplete="off" name='searchQuery' value={this.props.cityName} onChange={e => this.handleChange(e)}/>
                 <ul className={'navigation__app-bar__search-field__query-list'}>
                   {this.props.queryArray && this.props.queryArray.length !==0 && this.props.queryArray.map((singleElement, index) => <li key={index} onClick={() => this.navigateToQueryLocation(singleElement.place_name,singleElement.center)}>{singleElement.place_name}</li>)}
                 </ul>
               </form>
-              <div className={'navigation__app-bar__search-field__icon__location'} onClick={event => this.navigateToCurrentLocation()}>
+              <div className={'navigation__app-bar__search-field__icon__location'} onClick={() => this.navigateToCurrentLocation()}>
                 <FontAwesomeIcon icon={faLocationArrow}/>
               </div>
             </div>

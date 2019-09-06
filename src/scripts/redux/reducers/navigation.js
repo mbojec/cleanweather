@@ -1,7 +1,7 @@
-import {CLEAN_QUERY, OPEN_CLOSE_DRAWER, CHANGE_QUERY, CHANGE_SEARCH_QUERY, CHANGE_VIEW} from "../actions/navigation";
+import {CLEAN_QUERY, OPEN_CLOSE_DRAWER, CHANGE_QUERY, CHANGE_CITY_NAME, CHANGE_VIEW} from "../actions/navigation";
 
 const initialState = {
-  searchQuery: 'Wrocław, Dolnośląskie, Poland',
+  cityName: 'Wrocław, Dolnośląskie, Poland',
   queryArray: [],
   stateView: 'current',
   drawerIsOpen: false
@@ -14,10 +14,10 @@ const navigation = (state = initialState, action) => {
         ...state,
         stateView: action.payload
       };
-    case CHANGE_SEARCH_QUERY:
+    case CHANGE_CITY_NAME:
       return {
         ...state,
-        searchQuery: action.payload
+        cityName: action.payload
       };
     case CHANGE_QUERY:
       return {

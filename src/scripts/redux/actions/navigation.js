@@ -1,6 +1,6 @@
 import axios from "axios";
 export const CHANGE_VIEW = 'CHANGE_VIEW';
-export const CHANGE_SEARCH_QUERY = 'CHANGE_SEARCH_QUERY';
+export const CHANGE_CITY_NAME = 'CHANGE_CITY_NAME';
 export const CHANGE_QUERY = "CHANGE_QUERY";
 export const CLEAN_QUERY = 'CLEAN_QUERY';
 export const OPEN_CLOSE_DRAWER = 'OPEN_CLOSE_DRAWER';
@@ -13,10 +13,10 @@ export const changeView = screen => {
   };
 };
 
-export const changeSearchQuery = searchQuery => {
+export const changeCityName = cityName => {
   return {
-    type: CHANGE_SEARCH_QUERY,
-    payload: searchQuery
+    type: CHANGE_CITY_NAME,
+    payload: cityName
   };
 };
 
@@ -57,7 +57,7 @@ export const fetchCityName = (queryPosition) => (dispatch) => {
   axios.get(`https://cors-anywhere.herokuapp.com/https://api.mapbox.com/geocoding/v5/mapbox.places/${queryPosition.longitude},${queryPosition.latitude}.json?access_token=${process.env.REACT_APP_MAPBOX_API_KEY}&autocomplete=true&types=place&locality&postcode&district&country&region&limit=10`,
     {headers: {"Content-Type": "application/json"}})
     .then(res => {
-      dispatch(changeSearchQuery(res.data.features[0].place_name));
+      dispatch(changeCityName(res.data.features[0].place_name));
     })
     .catch((error) => {
       printError(error);
