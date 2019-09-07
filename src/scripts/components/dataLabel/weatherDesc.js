@@ -1,10 +1,12 @@
+import PropTypes from "prop-types";
+
 require('../../../resources/style/main.scss');
 import React, {Component} from "react";
 import { Wind, Sleet, NightCloudy, ClearNight, Hail, Fog, DayCloudy, ClearDay, Cloudy, Rain, Snow, Thunderstorm} from '../../../resources/svg'
 
 class WeatherDesc extends Component{
 
-  getIcon(weatherIcon){
+  static getIcon(weatherIcon){
     switch (weatherIcon) {
       case 'clear-day':
         return <ClearDay/>;
@@ -57,12 +59,17 @@ class WeatherDesc extends Component{
           </div>
           <div className={'card__data__content row'}>
             <div style={weatherDescStyle} className={'col-xs-6'}>{this.props.value}</div>
-            <div style={iconStyle} className={'col-xs-12'}>{this.getIcon(this.props.weatherIcon)}</div>
+            <div style={iconStyle} className={'col-xs-12'}>{WeatherDesc.getIcon(this.props.weatherIcon)}</div>
           </div>
         </div>
       </>
     )
   }
 }
+
+WeatherDesc.propTypes = {
+  value: PropTypes.string,
+  weatherIcon: PropTypes.string
+};
 
 export {WeatherDesc}

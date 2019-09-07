@@ -1,13 +1,12 @@
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 
 class PressureGauge extends Component{
 
-  fontSize(){
+  static fontSize(){
     if(window.innerWidth > 1200){
       return 35;
     } else if(window.innerWidth < 1200 && window.innerWidth >= 992){
@@ -58,7 +57,7 @@ class PressureGauge extends Component{
 
     let label = chart.radarContainer.createChild(am4core.Label);
     label.isMeasured = false;
-    label.fontSize = this.fontSize();
+    label.fontSize = PressureGauge.fontSize();
     label.x = am4core.percent(50);
     label.y = am4core.percent(100);
     label.horizontalCenter = "middle";
@@ -82,7 +81,8 @@ class PressureGauge extends Component{
     let animation = new am4core.Animation(hand, {
       property: "value",
       to: this.props.value
-    }, 3000, am4core.ease.cubicOut).start();
+    }, 3000, am4core.ease.cubicOut);
+    animation.start();
 
     this.chart = chart;
   }
@@ -100,13 +100,16 @@ class PressureGauge extends Component{
         <div className={'card card__data'}>
           <div className={'card__data__label'}>Pressure</div>
           <div className={'card__data__content'}>
-            <div id="pressure" style={{ width: "100%", height: "100%" }}></div>
+            <div id="pressure" style={{ width: "100%", height: "100%" }}/>
           </div>
         </div>
       </>
     )
   }
-
 }
+
+PressureGauge.propTypes = {
+  value: PropTypes.number,
+};
 
 export {PressureGauge}

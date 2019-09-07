@@ -75,7 +75,7 @@ WeatherDescLongShortTermItem.propTypes = {
   weatherIcon: PropTypes.string,
   daily: PropTypes.bool,
   value: PropTypes.string,
-  time: PropTypes.string
+  time: PropTypes.number
 };
 
 export {WeatherDescLongShortTermItem}

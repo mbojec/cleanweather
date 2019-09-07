@@ -1,14 +1,14 @@
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 require('../../../resources/style/main.scss');
 
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 
 class TemperatureGauge extends Component{
 
-  fontSize(){
+  static fontSize(){
     if(window.innerWidth > 1200){
       return 40;
     } else if(window.innerWidth < 1200 && window.innerWidth >= 992){
@@ -41,8 +41,6 @@ class TemperatureGauge extends Component{
       return `${text} ${String.fromCharCode(176)} C`;
     });
 
-    let colorSet = new am4core.ColorSet();
-
     let axis2 = chart.xAxes.push(new am4charts.ValueAxis());
     axis2.min = -50;
     axis2.max = 50;
@@ -61,7 +59,7 @@ class TemperatureGauge extends Component{
 
     let label = chart.radarContainer.createChild(am4core.Label);
     label.isMeasured = false;
-    label.fontSize = this.fontSize();
+    label.fontSize = TemperatureGauge.fontSize();
     label.x = am4core.percent(50);
     label.y = am4core.percent(100);
     label.horizontalCenter = "middle";
@@ -84,7 +82,8 @@ class TemperatureGauge extends Component{
     let animation = new am4core.Animation(hand, {
       property: "value",
       to: this.props.value
-    }, 3000, am4core.ease.cubicOut).start();
+    }, 3000, am4core.ease.cubicOut);
+    animation.start();
 
     this.chart = chart;
   }
@@ -102,7 +101,7 @@ class TemperatureGauge extends Component{
         <div className={'card__data'}>
           <div className={'card__data__label'}>Temperature</div>
           <div className={'card__data__content'}>
-            <div id="temperature" style={{ width: "100%", height: "100%" }}></div>
+            <div id="temperature" style={{ width: "100%", height: "100%" }}/>
           </div>
         </div>
       </>
@@ -110,5 +109,9 @@ class TemperatureGauge extends Component{
   }
 
 }
+
+TemperatureGauge.propTypes = {
+  value: PropTypes.number,
+};
 
 export {TemperatureGauge}

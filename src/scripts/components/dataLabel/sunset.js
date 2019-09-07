@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 
 class Sunset extends Component{
 
@@ -31,11 +32,15 @@ class Sunset extends Component{
     return(
       <div style={styleContainer}>
         <div style={styleListItemLabel}>Sunset</div>
-        <div style={styleListItemIcon}></div>
+        <div style={styleListItemIcon}>/</div>
         <div style={styleListItemData}>{`${date.getHours()<10? '0'+date.getHours():date.getHours()}:${date.getMinutes() < 10? '0'+date.getMinutes():date.getMinutes()}`}</div>
       </div>
     )
   }
 }
+
+Sunset.propTypes = {
+  value: PropTypes.number
+};
 
 export {Sunset}

@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 require('../../../resources/style/main.scss');
 import React, {Component} from "react";
 import * as am4core from "@amcharts/amcharts4/core";
@@ -94,12 +96,13 @@ class WindGauge extends Component{
     let animation = new am4core.Animation(hand, {
       property: "value",
       to: this.props.windSpeedValue
-    }, 3000, am4core.ease.cubicOut).start();
+    }, 3000, am4core.ease.cubicOut);
     let animation2 = new am4core.Animation(hand2, {
       property: "value",
       to: this.props.windGustValue
-    }, 3000, am4core.ease.cubicOut).start();
-
+    }, 3000, am4core.ease.cubicOut);
+    animation.start();
+    animation2.start();
     this.chart = chart
 
   }
@@ -121,7 +124,7 @@ class WindGauge extends Component{
           <div>Wind gust</div>
         </div>
         <div className={'card__data__content'}>
-          <div id="wind" style={{ width: "100%", height: "100%" }}></div>
+          <div id="wind" style={{ width: "100%", height: "100%" }}/>
         </div>
         </div>
       </>
@@ -129,5 +132,10 @@ class WindGauge extends Component{
   }
 
 }
+
+WindGauge.propTypes = {
+  windGustValue: PropTypes.number,
+  windSpeedValue: PropTypes.number,
+};
 
 export {WindGauge}

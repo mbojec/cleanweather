@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 require('../../../resources/style/main.scss');
 import React, {Component} from "react";
 import {XYChart} from "./xychart";
@@ -63,7 +64,12 @@ class TemperatureChart extends Component{
       </>
     );
   }
-
 }
+
+TemperatureChart.propTypes = {
+  value: PropTypes.array,
+  screen: PropTypes.string
+};
+
 
 export {TemperatureChart}

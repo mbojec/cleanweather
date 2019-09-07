@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 
 class TimeZone extends Component{
 
@@ -31,11 +32,15 @@ class TimeZone extends Component{
     return(
       <div style={styleContainer}>
         <div style={styleListItemLabel}>Time Zone</div>
-        <div style={styleListItemIcon}></div>
+        <div style={styleListItemIcon}/>
         <div style={styleListItemData}>{this.props.value}</div>
       </div>
     )
   }
 }
+
+TimeZone.propTypes = {
+  value: PropTypes.string,
+};
 
 export {TimeZone}

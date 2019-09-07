@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 require('../../../resources/style/main.scss');
 import React, {Component} from "react";
 import {Sunset, Sunrise, TimeZone} from "./";
@@ -31,5 +33,11 @@ class WeatherData extends Component{
     )
   }
 }
+
+WeatherData.propTypes = {
+  sunsetValue: PropTypes.number,
+  sunriseValue: PropTypes.number,
+  timeZone: PropTypes.string
+};
 
 export {WeatherData}

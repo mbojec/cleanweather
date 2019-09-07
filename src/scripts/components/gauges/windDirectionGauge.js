@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 require('../../../resources/style/main.scss');
 import React, {Component} from "react";
 import * as am4core from "@amcharts/amcharts4/core";
@@ -6,7 +8,7 @@ import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 
 class WindDirectionGauge  extends Component{
 
-  getDirectionString(degrees){
+  static getDirectionString(degrees){
     if(degrees > 337 && degrees <359 || degrees >= 0 && degrees <23){
       return 'N';
     } else if (degrees > 22 && degrees <68){
@@ -111,13 +113,14 @@ class WindDirectionGauge  extends Component{
     let label = labelList.create();
     label.parent = chart.chartContainer;
     label.x = am4core.percent(50);
-    label.text = `${this.getDirectionString(0)}`;
+    label.text = `${WindDirectionGauge.getDirectionString(0)}`;
 
-    label.text = `${this.getDirectionString(this.props.value)}`;
+    label.text = `${WindDirectionGauge.getDirectionString(this.props.value)}`;
     let animation = new am4core.Animation(hand, {
       property: "value",
       to: this.props.value
-    }, 3000, am4core.ease.cubicOut).start();
+    }, 3000, am4core.ease.cubicOut);
+    animation.start();
 
     this.chart = chart;
   }
@@ -134,12 +137,16 @@ class WindDirectionGauge  extends Component{
         <div className={'card card__data'}>
           <div className={'card__data__label'}>Wind direction</div>
           <div className={'card__data__content'}>
-            <div id="wind-direction" style={{ width: "100%", height: "100%" }}></div>
+            <div id="wind-direction" style={{ width: "100%", height: "100%" }}/>
           </div>
         </div>
       </>
     );
   }
 }
+
+WindDirectionGauge.propTypes = {
+  value: PropTypes.number,
+};
 
 export {WindDirectionGauge}

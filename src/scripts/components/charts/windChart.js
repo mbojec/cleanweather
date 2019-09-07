@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 require('../../../resources/style/main.scss');
 import React, {Component} from "react";
 import {XYChart} from "./xychart";
@@ -45,7 +46,10 @@ class WindChart extends Component{
       </>
     );
   }
-
 }
+
+WindChart.propTypes = {
+  value: PropTypes.array,
+};
 
 export {WindChart}
