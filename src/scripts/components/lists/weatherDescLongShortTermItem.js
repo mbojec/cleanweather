@@ -1,5 +1,5 @@
-require('../../../resources/style/main.scss');
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import { Wind, Sleet, NightCloudy, ClearNight, Hail, Fog, DayCloudy, ClearDay, Cloudy, Rain, Snow, Thunderstorm} from '../../../resources/svg'
 
 class WeatherDescLongShortTermItem extends Component{
@@ -68,7 +68,13 @@ class WeatherDescLongShortTermItem extends Component{
       </div>
     )
   }
-
 }
+
+WeatherDescLongShortTermItem.propTypes = {
+  weatherIcon: PropTypes.string,
+  daily: PropTypes.bool,
+  value: PropTypes.string,
+  time: PropTypes.number
+};
 
 export {WeatherDescLongShortTermItem}

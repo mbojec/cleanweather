@@ -1,4 +1,4 @@
-require('../../../resources/style/main.scss');
+import PropTypes from "prop-types";
 import React, {Component} from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
@@ -58,7 +58,6 @@ class HumidityPrecipCloudGauge extends Component{
     valueAxis.max = 100;
     valueAxis.strictMinMax = true;
 
-// Create series
     series1 = chart.series.push(new am4charts.RadarColumnSeries());
     series1.dataFields.valueX = "full";
     series1.dataFields.categoryY = "category";
@@ -105,12 +104,18 @@ class HumidityPrecipCloudGauge extends Component{
           <div>Precip probalbility</div>
         </div>
         <div className={'card__data__content'}>
-          <div id="cloud_humidity_percip" style={{ width: "100%", height: "100%" }}></div>
+          <div id="cloud_humidity_percip" style={{ width: "100%", height: "100%" }}/>
         </div>
         </div>
       </>
     );
   }
 }
+
+HumidityPrecipCloudGauge.propTypes = {
+  precip_value: PropTypes.number,
+  cloud_value: PropTypes.number,
+  humidity_value: PropTypes.number,
+};
 
 export {HumidityPrecipCloudGauge}

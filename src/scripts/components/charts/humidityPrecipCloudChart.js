@@ -1,4 +1,4 @@
-require('../../../resources/style/main.scss');
+import PropTypes from "prop-types";
 import React, {Component} from "react";
 import {XYChart} from "./xychart";
 
@@ -65,7 +65,10 @@ class HumidityPrecipCloudChart extends Component{
       </>
     );
   }
-
 }
+
+HumidityPrecipCloudChart.propTypes = {
+  value: PropTypes.array
+};
 
 export {HumidityPrecipCloudChart}

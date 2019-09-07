@@ -1,5 +1,5 @@
-require('../../resources/style/main.scss');
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { withRouter } from 'react-router-dom';
 import {ForecastLayout, ShortLongTermForecastLayout} from './layouts'
@@ -12,7 +12,7 @@ class Forecast extends Component{
     this.props.onFetchForecast(queryPosition);
   }
 
-  componentDidMount() {
+  getQueryPosition(){
     let queryPosition;
     if(this.props.match.url === '/'){
       queryPosition = {
@@ -30,27 +30,16 @@ class Forecast extends Component{
         longitude:queryParams[1][1]
       };
     }
-      this.getForecast(queryPosition);
+    return queryPosition;
   }
 
+  componentDidMount() {
+      this.getForecast(this.getQueryPosition());
+  }
+
+  // eslint-disable-next-line no-unused-vars
   componentDidUpdate(prevProps, prevState, snapshot) {
-    let queryPosition;
-    if(this.props.match.url === '/'){
-      queryPosition = {
-        latitude: 51.12895169999,
-        longitude:16.9871287
-      };
-    } else {
-      const query = new URLSearchParams(this.props.location.search);
-      let queryParams = [];
-      for (let param of query.entries()) {
-        queryParams.push(param)
-      }
-      queryPosition = {
-        latitude: queryParams[0][1],
-        longitude:queryParams[1][1]
-      };
-    }
+    let queryPosition = this.getQueryPosition();
     if(this.props.queryPosition.latitude !== queryPosition.latitude && this.props.queryPosition.longitude !== queryPosition.longitude){
       this.getForecast(queryPosition);
     }
@@ -74,6 +63,15 @@ class Forecast extends Component{
     )
   }
 }
+
+Forecast.propTypes = {
+  onFetchForecast: PropTypes.func,
+  screenView: PropTypes.string,
+  forecast: PropTypes.object,
+  queryPosition: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object
+};
 
 const forecastHoc = compose(withRedux, withRouter)(Forecast);
 export {forecastHoc as Forecast}

@@ -1,5 +1,5 @@
-require('../../../resources/style/main.scss');
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
@@ -91,7 +91,8 @@ class UvGauge extends Component{
     let animation = new am4core.Animation(hand, {
       property: "value",
       to: this.props.value
-    }, 3000, am4core.ease.cubicOut).start();
+    }, 3000, am4core.ease.cubicOut);
+    animation.start();
 
     this.chart = chart;
   }
@@ -108,12 +109,16 @@ class UvGauge extends Component{
         <div className={'card card__data'}>
           <div className={'card__data__label'}>Uv index</div>
           <div className={'card__data__content'}>
-            <div id="uv" style={{ width: "100%", height: "100%" }}></div>
+            <div id="uv" style={{ width: "100%", height: "100%" }}/>
           </div>
         </div>
       </>
     );
   }
 }
+
+UvGauge.propTypes = {
+  value: PropTypes.number,
+};
 
 export {UvGauge}

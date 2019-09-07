@@ -1,4 +1,3 @@
-require('../../resources/style/main.scss');
 import React from "react";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Route, Switch} from 'react-router-dom';

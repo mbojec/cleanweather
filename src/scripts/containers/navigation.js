@@ -1,10 +1,11 @@
-require('../../resources/style/main.scss');
 import React, {Component} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationArrow, faSearchLocation, faBars } from '@fortawesome/free-solid-svg-icons'
 import { withRouter } from 'react-router-dom';
 import {compose} from "recompose";
 import {withRedux} from "../redux/wrapper";
+import PropTypes from 'prop-types';
+
 
 class Navigation extends Component{
 
@@ -57,45 +58,61 @@ class Navigation extends Component{
 
   render() {
     return (
-      <>
-        <div className={'navigation__app-bar row'}>
-          <div className={'navigation__app-bar__hamburger-icon col-xs-1 col-sm-1'} onClick={() => this.props.onChangeDrawerState(!this.props.drawerIsOpen)}>
-            <FontAwesomeIcon icon={faBars}/>
-          </div>
-          <p className={'col-xs-10 col-sm-4 col-md-3 navigation__app-bar__title'}>Clean Weather</p>
-          <div className={'col-xs-12 col-sm-7 col-md-5 col-lg-6 navigation__app-bar__search'}>
-            <div className={'navigation__app-bar__search-field'}>
-              <div className={'navigation__app-bar__search-field__icon'}>
-                <FontAwesomeIcon icon={faSearchLocation}/>
-              </div>
-              <form className={'navigation__app-bar__search-field__form'} onSubmit={e => { e.preventDefault();}}>
-                <input placeholder={'Znajdź miejscowość'} type="text" autoComplete="off" name='searchQuery' value={this.props.cityName} onChange={e => this.handleChange(e)}/>
-                <ul className={'navigation__app-bar__search-field__query-list'}>
-                  {this.props.queryArray && this.props.queryArray.length !==0 && this.props.queryArray.map((singleElement, index) => <li key={index} onClick={() => this.navigateToQueryLocation(singleElement.place_name,singleElement.center)}>{singleElement.place_name}</li>)}
-                </ul>
-              </form>
-              <div className={'navigation__app-bar__search-field__icon__location'} onClick={() => this.navigateToCurrentLocation()}>
-                <FontAwesomeIcon icon={faLocationArrow}/>
-              </div>
+      <div className={'navigation__app-bar row'}>
+        <div className={'navigation__app-bar__hamburger-icon col-xs-1 col-sm-1'} onClick={() => this.props.onChangeDrawerState(!this.props.drawerIsOpen)}>
+          <FontAwesomeIcon icon={faBars}/>
+        </div>
+        <p className={'col-xs-10 col-sm-4 col-md-3 navigation__app-bar__title'}>Clean Weather</p>
+        <div className={'col-xs-12 col-sm-7 col-md-5 col-lg-6 navigation__app-bar__search'}>
+          <div className={'navigation__app-bar__search-field'}>
+            <div className={'navigation__app-bar__search-field__icon'}>
+              <FontAwesomeIcon icon={faSearchLocation}/>
             </div>
-          </div>
-          <div className={'col-md-4 col-lg-3 navigation__app-bar__buttons-panel'}>
-            <div onClick={() => {this.props.onChangeView('current'); }} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'current'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>Current</div>
-            <div onClick={() => {this.props.onChangeView('shortTerm'); }} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'shortTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>12h</div>
-            <div onClick={() => {this.props.onChangeView('longTerm'); }} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'longTerm'&&'navigation__app-bar__buttons-panel__button--clicked'}`}>7 day's</div>
-          </div>
-          <div className={`navigation__app-bar__drawer ${this.props.drawerIsOpen? 'navigation__app-bar__drawer--show':'navigation__app-bar__drawer--hide'}`}>
-            <div className={'navigation__app-bar__drawer__list'}>
-              <div onClick={() => {this.props.onChangeView('current'); this.props.onChangeDrawerState(false)}}  className={`navigation__app-bar__drawer__item ${this.props.screenView === 'current'&&'navigation__app-bar__drawer__item--clicked'}`}>Current</div>
-              <div onClick={() => {this.props.onChangeView('shortTerm'); this.props.onChangeDrawerState(false)}} className={`navigation__app-bar__drawer__item ${this.props.screenView === 'shortTerm'&&'navigation__app-bar__drawer__item--clicked'}`}>12h</div>
-              <div onClick={() => {this.props.onChangeView('longTerm'); this.props.onChangeDrawerState(false)}} className={`navigation__app-bar__drawer__item ${this.props.screenView === 'longTerm'&&'navigation__app-bar__drawer__item--clicked'}`}>7 day's</div>
+            <form className={'navigation__app-bar__search-field__form'} onSubmit={e => { e.preventDefault();}}>
+              <input placeholder={'Znajdź miejscowość'} type="text" autoComplete="off" name='searchQuery' value={this.props.cityName} onChange={e => this.handleChange(e)}/>
+              <ul className={'navigation__app-bar__search-field__query-list'}>
+                {this.props.queryArray && this.props.queryArray.length !==0 && this.props.queryArray.map((singleElement, index) => <li key={index} onClick={() => this.navigateToQueryLocation(singleElement.place_name,singleElement.center)}>{singleElement.place_name}</li>)}
+              </ul>
+            </form>
+            <div className={'navigation__app-bar__search-field__icon__location'} onClick={() => this.navigateToCurrentLocation()}>
+              <FontAwesomeIcon icon={faLocationArrow}/>
             </div>
           </div>
         </div>
-      </>
+        <div className={'col-md-4 col-lg-3 navigation__app-bar__buttons-panel'}>
+          <div onClick={() => {this.props.onChangeView('current'); }} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'current' && 'navigation__app-bar__buttons-panel__button--clicked'}`}>Current</div>
+          <div onClick={() => {this.props.onChangeView('shortTerm'); }} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'shortTerm' && 'navigation__app-bar__buttons-panel__button--clicked'}`}>12h</div>
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
+          <div onClick={() => {this.props.onChangeView('longTerm'); }} className={`navigation__app-bar__buttons-panel__button ${this.props.screenView === 'longTerm' && 'navigation__app-bar__buttons-panel__button--clicked'}`}>7 day's</div>
+        </div>
+        <div className={`navigation__app-bar__drawer ${this.props.drawerIsOpen? 'navigation__app-bar__drawer--show':'navigation__app-bar__drawer--hide'}`}>
+          <div className={'navigation__app-bar__drawer__list'}>
+            <div onClick={() => {this.props.onChangeView('current'); this.props.onChangeDrawerState(false)}}  className={`navigation__app-bar__drawer__item ${this.props.screenView === 'current'&&'navigation__app-bar__drawer__item--clicked'}`}>Current</div>
+            <div onClick={() => {this.props.onChangeView('shortTerm'); this.props.onChangeDrawerState(false)}} className={`navigation__app-bar__drawer__item ${this.props.screenView === 'shortTerm'&&'navigation__app-bar__drawer__item--clicked'}`}>12h</div>
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
+            <div onClick={() => {this.props.onChangeView('longTerm'); this.props.onChangeDrawerState(false)}} className={`navigation__app-bar__drawer__item ${this.props.screenView === 'longTerm'&&'navigation__app-bar__drawer__item--clicked'}`}>7 day's</div>
+          </div>
+        </div>
+      </div>
     )
   }
 }
+
+Navigation.propTypes = {
+  onChangeView: PropTypes.func,
+  onChangeDrawerState: PropTypes.func,
+  onFetchSearchQuery: PropTypes.func,
+  onChangeCityName: PropTypes.func,
+  onFetchCityName: PropTypes.func,
+  onCleanQueryArray: PropTypes.func,
+  history: PropTypes.object,
+  screenView: PropTypes.string,
+  queryArray: PropTypes.array,
+  cityName: PropTypes.string,
+  drawerIsOpen: PropTypes.bool
+};
+
+
 const NavigationHoc = compose(withRedux, withRouter)(Navigation);
 export {NavigationHoc as Navigation}
 

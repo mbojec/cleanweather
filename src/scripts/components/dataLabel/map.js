@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+import PropTypes from "prop-types";
 
 const Map = ReactMapboxGl({
   accessToken: `${process.env.REACT_APP_MAPBOX_API_KEY}`,
@@ -33,9 +34,12 @@ class MainMap extends Component{
       </Map>
     )
   }
-
-
 }
+
+MainMap.propTypes = {
+  latitude: PropTypes.number,
+  longitude: PropTypes.number
+};
 
 export {MainMap}
 

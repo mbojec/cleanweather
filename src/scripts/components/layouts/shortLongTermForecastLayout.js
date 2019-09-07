@@ -1,7 +1,5 @@
-import {connect} from "react-redux";
-
-require('../../../resources/style/main.scss');
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {TemperatureChart, WindChart, HumidityPrecipCloudChart, PressureChart} from "../charts";
 import {WeatherDescLongShortTermList} from "../lists";
@@ -41,6 +39,12 @@ class ShortLongTermForecastLayout extends Component{
     )
   }
 }
+
+ShortLongTermForecastLayout.propTypes = {
+  screenView: PropTypes.string,
+  hourForecast: PropTypes.array,
+  dailyForecast: PropTypes.array
+};
 
 const ShortLongTermForecastLayoutHoc = compose(withRedux, withRouter)(ShortLongTermForecastLayout);
 export {ShortLongTermForecastLayoutHoc as ShortLongTermForecastLayout}

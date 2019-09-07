@@ -1,4 +1,4 @@
-require('../../../resources/style/main.scss');
+import PropTypes from "prop-types";
 import React, {Component} from "react";
 
 class Sunrise extends Component{
@@ -34,11 +34,15 @@ class Sunrise extends Component{
     return(
       <div style={styleContainer}>
         <div style={styleListItemLabel}>Sunrise</div>
-        <div style={styleListItemIcon}></div>
+        <div style={styleListItemIcon}/>
         <div style={styleListItemData}>{`${date.getHours()<10? '0'+date.getHours():date.getHours()}:${date.getMinutes() < 10? '0'+date.getMinutes():date.getMinutes()}`}</div>
       </div>
     )
   }
 }
+
+Sunrise.propTypes = {
+  value: PropTypes.number
+};
 
 export {Sunrise}

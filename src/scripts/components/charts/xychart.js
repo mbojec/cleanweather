@@ -1,8 +1,7 @@
-require('../../../resources/style/main.scss');
+import PropTypes from "prop-types";
 import React, {Component} from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 
 class XYChart extends Component{
@@ -91,6 +90,7 @@ class XYChart extends Component{
     this.chart = chart;
   }
 
+  // eslint-disable-next-line no-unused-vars
   componentDidUpdate(prevProps, prevState, snapshot) {
     if(prevProps.lineSeriesArray[0].data.length !== this.props.lineSeriesArray[0].data.length){
       let updateSeriesArray = this.createSeries();
@@ -114,9 +114,21 @@ class XYChart extends Component{
 
   render() {
     return(
-      <div id={this.props.divId} style={{ width: "100%", height: "100%" }}></div>
+      <div id={this.props.divId} style={{ width: "100%", height: "100%" }}/>
     )
   }
 }
+
+XYChart.propTypes = {
+  colorArray: PropTypes.array,
+  divId: PropTypes.string,
+  lineSeriesArray: PropTypes.array,
+  valueAxisMin: PropTypes.number,
+  valueAxisMax: PropTypes.number,
+  valueAxisDesc: PropTypes.string,
+  lineSeries: PropTypes.number,
+  columnSeriesArray: PropTypes.array,
+  columnSeries: PropTypes.number,
+};
 
 export {XYChart}
