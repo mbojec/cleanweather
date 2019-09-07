@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {GithubLogo, LinkedinLogo, GmailLogo} from "../../resources/svg";
+import {GithubLogo, LinkedinLogo, GmailLogo} from "../assets/svg";
 
 class Footer extends Component{
 
