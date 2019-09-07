@@ -5,3 +5,4 @@ RewriteRule .* https://www.%{SERVER_NAME}%{REQUEST_URI} [R,L]
 RewriteCond %{HTTP_HOST} ^clean-weather\.com
 RewriteCond %{HTTPS} !=on
 RewriteRule .* http://www.%{SERVER_NAME}%{REQUEST_URI} [R,L]
+

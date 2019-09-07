@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: $font-roboto;
+  background-color: $color-dark-3;
+}
+
+.wrapper{
+  max-width: $screen-breakpoint-xl;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+img {
+  box-sizing: border-box;
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+.map{
+  display: none;
+  @include screen-md{
+    display: inline-block;
+    position: absolute;
+  }
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+  color: transparent;
+}
+
