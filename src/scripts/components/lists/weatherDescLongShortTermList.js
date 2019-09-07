@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 require('../../../resources/style/main.scss');
 import React, {Component} from "react";
 import {WeatherDescLongShortTermItem} from "./";
@@ -9,7 +11,11 @@ class WeatherDescLongShortTermList extends Component{
       <>{this.props.value.map((singleForecast) => <WeatherDescLongShortTermItem key={(singleForecast.time * 1000)} time={(singleForecast.time * 1000)} value={singleForecast.summary} weatherIcon={singleForecast.icon} daily={this.props.daily}/>)}</>
     )
   }
-
 }
+
+WeatherDescLongShortTermList.propTypes = {
+  value: PropTypes.array,
+  daily: PropTypes.bool
+};
 
 export{WeatherDescLongShortTermList}

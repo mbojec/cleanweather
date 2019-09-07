@@ -1,5 +1,4 @@
-import {connect} from "react-redux";
-
+import PropTypes from "prop-types";
 require('../../../resources/style/main.scss');
 import React, {Component} from "react";
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -41,6 +40,12 @@ class ShortLongTermForecastLayout extends Component{
     )
   }
 }
+
+ShortLongTermForecastLayout.propTypes = {
+  screenView: PropTypes.string,
+  hourForecast: PropTypes.array,
+  dailyForecast: PropTypes.array
+};
 
 const ShortLongTermForecastLayoutHoc = compose(withRedux, withRouter)(ShortLongTermForecastLayout);
 export {ShortLongTermForecastLayoutHoc as ShortLongTermForecastLayout}

@@ -6,6 +6,7 @@ import {TemperatureGauge, PressureGauge, HumidityPrecipCloudGauge, UvGauge, Wind
 import {WeatherData, MainMap, WeatherDesc} from "../dataLabel"
 import {compose} from "recompose";
 import {withRedux} from "../../redux/wrapper";
+import PropTypes from "prop-types";
 
 class ForecastLayout extends Component{
 
@@ -64,6 +65,11 @@ class ForecastLayout extends Component{
     )
   }
 }
+
+ForecastLayout.propTypes = {
+  currentForecast: PropTypes.object,
+  forecast: PropTypes.object,
+};
 
 const ForecastLayoutHoc = compose(withRedux, withRouter)(ForecastLayout);
 export {ForecastLayoutHoc as ForecastLayout}
