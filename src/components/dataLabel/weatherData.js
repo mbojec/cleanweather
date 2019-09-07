@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, {Component} from "react";
-import {Sunset, Sunrise, TimeZone} from "./";
+import {Sunset, Sunrise, TimeZone} from "./index";
 
 class WeatherData extends Component{
 

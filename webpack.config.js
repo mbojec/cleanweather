@@ -3,8 +3,6 @@ const entryPath = "src";
 const entryFile = "index.js";
 const Html = require('html-webpack-plugin');
 const MiniCSS = require("mini-css-extract-plugin");
-const Compression = require("compression-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = function (env) {
@@ -12,7 +10,7 @@ module.exports = function (env) {
     let isProd = !!env.prod;
     const config = {};
 
-    config.entry = `./${entryPath}/scripts/${entryFile}`;
+    config.entry = `./${entryPath}/${entryFile}`;
 
     config.output = {
         filename: isDev ? "out.js" : "out.[chunkhash].js",
@@ -28,8 +26,12 @@ module.exports = function (env) {
     config.module.rules = [];
 
     const browsers = {
-        dev: ['Chrome > 60'],
-        prod: ['> 1%']
+        dev: ["last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"],
+        prod: [">0.2%",
+            "not dead",
+            "not op_mini all"]
     };
 
     const js = {
@@ -119,8 +121,8 @@ module.exports = function (env) {
                 name: isProd
                     ? '[name].[hash].[ext]'
                     : '[name].[ext]',
-                publicPath: 'fonts',
-                outputPath: 'fonts'
+                publicPath: `${entryPath}/assets/fonts`,
+                outputPath: `${entryPath}/assets/fonts`
             }
         }
     };
@@ -145,26 +147,19 @@ module.exports = function (env) {
 
     if(isProd) {
         config.plugins.push( new MiniCSS(
-            { filename: '_main.scss.[chunkhash].css' } )
-            // { filename: 'main.css' } )
+            { filename: 'main.scss.[chunkhash].css' } )
         )
     }
 
     config.plugins.push( new Html({
             filename: 'index.html',
-            template: `./${entryPath}/app.html`,
+            template: `./${entryPath}/index.html`,
             minify: isProd
                 ? { collapseWhitespace: true }
                 : false
         })
     );
-    // if(isProd) {
-    //     config.plugins.push( new Compression({
-    //             threshold: 0,
-    //             minRatio: 0.8
-    //         })
-    //     );
-    // }
+
 
     if(isProd) {
         config.plugins.push(
@@ -175,13 +170,6 @@ module.exports = function (env) {
     config.plugins.push(
       new Dotenv()
     );
-
-
-    // config.plugins.push(
-    //   new HtmlWebpackPlugin({
-    //       template: `out.js`
-    //   })
-    // );
 
     if(isDev) {
         config.devServer = {

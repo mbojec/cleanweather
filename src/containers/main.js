@@ -2,7 +2,7 @@ import React from "react";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Route, Switch} from 'react-router-dom';
 import {Forecast} from "../components/forecast";
-import {NotFound} from "./";
+import {NotFound} from "./index";
 
 const Main = () => {
   return(

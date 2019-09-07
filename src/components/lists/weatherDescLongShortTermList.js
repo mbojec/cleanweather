@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {WeatherDescLongShortTermItem} from "./";
+import {WeatherDescLongShortTermItem} from "./index";
 
 class WeatherDescLongShortTermList extends Component{
 
