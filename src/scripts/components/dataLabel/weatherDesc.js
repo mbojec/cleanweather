@@ -1,6 +1,4 @@
 import PropTypes from "prop-types";
-
-require('../../../resources/style/main.scss');
 import React, {Component} from "react";
 import { Wind, Sleet, NightCloudy, ClearNight, Hail, Fog, DayCloudy, ClearDay, Cloudy, Rain, Snow, Thunderstorm} from '../../../resources/svg'
 

@@ -1,4 +1,3 @@
-require('../../resources/style/main.scss');
 import React, {Component} from "react";
 import {GithubLogo, LinkedinLogo, GmailLogo} from "../../resources/svg";
 

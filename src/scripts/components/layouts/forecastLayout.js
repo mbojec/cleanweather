@@ -1,5 +1,4 @@
 import {withRouter} from "react-router";
-require('../../../resources/style/main.scss');
 import React, {Component} from "react";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {TemperatureGauge, PressureGauge, HumidityPrecipCloudGauge, UvGauge, WindDirectionGauge, WindGauge} from "../gauges";

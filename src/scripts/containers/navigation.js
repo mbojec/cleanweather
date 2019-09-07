@@ -1,4 +1,3 @@
-require('../../resources/style/main.scss');
 import React, {Component} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationArrow, faSearchLocation, faBars } from '@fortawesome/free-solid-svg-icons'

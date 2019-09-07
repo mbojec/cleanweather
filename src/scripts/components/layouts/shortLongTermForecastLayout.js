@@ -1,6 +1,5 @@
-import PropTypes from "prop-types";
-require('../../../resources/style/main.scss');
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {TemperatureChart, WindChart, HumidityPrecipCloudChart, PressureChart} from "../charts";
 import {WeatherDescLongShortTermList} from "../lists";

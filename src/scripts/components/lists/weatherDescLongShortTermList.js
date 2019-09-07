@@ -1,7 +1,5 @@
-import PropTypes from "prop-types";
-
-require('../../../resources/style/main.scss');
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {WeatherDescLongShortTermItem} from "./";
 
 class WeatherDescLongShortTermList extends Component{

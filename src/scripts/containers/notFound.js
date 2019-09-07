@@ -1,4 +1,3 @@
-require('../../resources/style/main.scss');
 import React from "react";
 
 const NotFound = () => {
